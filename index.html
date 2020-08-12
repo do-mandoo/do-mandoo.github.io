@@ -171,10 +171,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-08-11 16:45:49 / Modified: 18:34:59" itemprop="dateCreated datePublished" datetime="2020-08-11T16:45:49+09:00">2020-08-11</time>
+              <time title="Created: 2020-08-11 16:45:49" itemprop="dateCreated datePublished" datetime="2020-08-11T16:45:49+09:00">2020-08-11</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-12 19:23:10" itemprop="dateModified" datetime="2020-08-12T19:23:10+09:00">2020-08-12</time>
+              </span>
 
           
 
@@ -188,13 +194,48 @@
 
       
           <p>Hi, This is my TIL. Welcome.</p>
-<h1 id="day-01"><a href="#day-01" class="headerlink" title="day -01"></a>day -01</h1><h3 id="HTML의-ATTRIBUTE-와-CSS의-PROPERTY의-차이"><a href="#HTML의-ATTRIBUTE-와-CSS의-PROPERTY의-차이" class="headerlink" title="HTML의 ATTRIBUTE 와 CSS의 PROPERTY의 차이"></a>HTML의 ATTRIBUTE 와 CSS의 PROPERTY의 차이</h3><ul>
+<h2 id="HTML의-ATTRIBUTE-와-CSS의-PROPERTY의-차이"><a href="#HTML의-ATTRIBUTE-와-CSS의-PROPERTY의-차이" class="headerlink" title="HTML의 ATTRIBUTE 와 CSS의 PROPERTY의 차이"></a>HTML의 ATTRIBUTE 와 CSS의 PROPERTY의 차이</h2><ul>
 <li><strong>HTML의 ATTRIBUTE</strong>: 속성이라는 뜻. html문서에서 elements(요소들)에 추가적인 정보를 넣을 때 사용되는 요소. 정적(변하지 않음)이다.<br>예) <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;my-study&quot;</span>&gt;</span>HI<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 위의 코드에서 <code>&quot;my-study&quot;</code>는 <code>&lt;div&gt;</code>의 element(요소)이고, <code>class</code>는 attribute(속성, <strong>추가정보</strong>)가 된다.<br><code>my-study&quot;</code>는 class attribute의 value(값)가 됨.</li>
 <li><strong>CSS의 PROPERTY</strong>: 특성, 요소라는 뜻. html DOM안에서 attribute를 가리키는/대신하는 표현. 동적(값이 변할 수 있음)이다.<br>예) 위의 예에서 DOM 노드트리로 표현한 것에서  className <code>&quot;my-study&quot;</code>가 property가 됨.<br>CSS에서의 font-size와 color는 property이다. font-size와 color는 태어날 때부터 가지고 있는 속성이 있지만 바뀔 수 있다. 그래서 동적과 정적이라고 함.</li>
 </ul>
-<h1 id="day-02"><a href="#day-02" class="headerlink" title="day -02"></a>day -02</h1><h3 id="HTML이란"><a href="#HTML이란" class="headerlink" title="HTML이란"></a>HTML이란</h3><ul>
-<li><strong>H</strong>yper<strong>T</strong>ext<strong>M</strong>arkup<strong>L</strong>anguage =  문서와 문서가 태그로 이루어져있고 링크로 연결되어있는 언어.<br>웹을 이루는 가장 기초적인 구성 요소이다.<br>hypertext는 다른 text에 대한 link를 포함하는 text이다. = text와 text가 link로 연결되어 있다.</li>
+<h2 id="HTML이란"><a href="#HTML이란" class="headerlink" title="HTML이란"></a>HTML이란</h2><ul>
+<li><strong>H</strong>yper<strong>T</strong>ext<strong>M</strong>arkup<strong>L</strong>anguage =  문서와 문서가 태그로 이루어져있고 링크로 연결되어있는 언어. 마크업 언어이다.</li>
+<li>웹의 아버지 : 팀 버너스리<br>웹을 이루는 가장 기초적인 구성 요소이다.<br>hypertext는 다른 text에 대한 link를 포함하는 text이다. = text와 text가 link로 연결되어 있다.</li>
+</ul>
+<p><strong>1. W</strong>eb Standards 웹표준기술<br><strong>2. W</strong>eb Accessibilty 윕 접근성 - 한가지 대안만 사용하지 않는다.</p>
+<ul>
+<li>예) 계단 옆의 경사로. </li>
+<li>접근을 생각해보면 떠오르는 장애 접근성. </li>
+<li>장애에 대한 이해: 시각장애(전맹, 저시력), 청각장애, 지체장애(절단 및 지체기능 장애), 뇌변병장애</li>
+<li>장애 환경에 대한 이해: 다양한 Platform, Cross Browsing(크롬이나 익스플로러등 다양한 환경), SEO(Search Engine Optimization), 저사양 또는 저속 회선</li>
+<li>장애는 틀린것이 아닌 다른것임. 다름을 인정해야 한다.</li>
+</ul>
+<p><strong>3.</strong> HTML의 탄생 ( 운영체제 - vender )</p>
+<ul>
+<li>IE - MS</li>
+<li>Chrome - Google</li>
+<li>Safari - Apple</li>
+<li>Firefox - Gojira</li>
+<li>Opera - Opera</li>
+</ul>
+<p><strong>4. WHATWG</strong></p>
+<ul>
+<li>웹 하이퍼텍스트 애플리케이션 테크놀로지 워킹 그룹(Web Hypertext Application Technology Working Group, WHATWG)은 HTML 및 관련 기술을 발전시키는 데 관심이 있는 사람들의 모임이다. 2004년 애플, 모질라 재단, 오페라 소프트웨어의 개인들이 설립하였다. 그 후, 당시 WHATWG 규격의 편집장이었던 이안 힉슨(Ian Hickson)이 오페라 소프트웨어에서 구글로 이직함에 따라 구글도 WHATWG의 일원이 됐다.<br>WHATWG는 멤버스(Members)로 불리는 초대 전용의 조그마한 감시 위원회를 가지고 있으며 이 위원회는 규격을 맡은 편집장을 탄핵할 권한을 가지고 있다. 누구든지 WHATWG 메일링 리스트에 참가하여 기여자로 참여할 수 있다.</li>
+</ul>
+<h2 id="CSS란"><a href="#CSS란" class="headerlink" title="CSS란"></a>CSS란</h2><ul>
+<li><strong>C</strong>ascading <strong>S</strong>tyle <strong>S</strong>heets = 사용자에게 문서를 표시하는 방법을 지정하는 언어.<br>웹 이전부터 워드프로세서 등에서 사용했던 개념.</li>
+<li>프론트 엔드의 3대장(HTML5, CSS3, JavaScript)중 1대장은 JavaScript이다.</li>
+<li>Web기술의 설정 값으로 HTML5는 건강한 신체이고  CSS3은 근사한 스타일링을 맡는다고 할 수 있다.<br>CSS는 스타일링할때에 설계가 필요하고 기획, 디자인 또한 필요하다.<br>JavaScript는 스마트한 두뇌의 역할이라 코어까지 들어가면 어렵게 느껴질 수 있다.</li>
+<li>요소 배치 방법<br>: display, float, position, table, flex, grid</li>
+</ul>
+<p><strong>1.</strong> FLOAT 배치방법 </p>
+<ul>
+<li>classic버전.</li>
+<li>도움이 되는 동영상 = <a target="_blank" rel="noopener" href="https://youtu.be/xara4Z1b18I" title="CSS float이해">Youtube</a>링크 클릭.</li>
+<li>노멀플로우(Normal Flow)는 띄워지지 않은, 바닥에 위치해있는 기본위치를 의미한다.<br>float과 position(중 absolute)를 요소에 지정하면 공중에 띄워진다.</li>
+<li>float의 기본 값은 none이고 left와 right를 지정할 수 있다.</li>
+<li>float은 block레이아웃의 사용을 뜻하기 때문에 float을 하면 block요소로 바뀐다. </li>
 </ul>
 
       
@@ -238,10 +279,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-08-11 15:49:58 / Modified: 15:52:50" itemprop="dateCreated datePublished" datetime="2020-08-11T15:49:58+09:00">2020-08-11</time>
+              <time title="Created: 2020-08-11 15:49:58" itemprop="dateCreated datePublished" datetime="2020-08-11T15:49:58+09:00">2020-08-11</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-12 12:44:36" itemprop="dateModified" datetime="2020-08-12T12:44:36+09:00">2020-08-12</time>
+              </span>
 
           
 
@@ -254,8 +301,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Hi, there!<br>Nice to meet you!</p>
-<p>I’m Iron man.</p>
+          <p>HELLO WORLD!</p>
+<p>What a beautiful World!! lol</p>
+<p>Hi, there!<br>Nice to meet you!</p>
+<p>Do you know <strong>Eddie Redmayne</strong>?<br>He is my favorite actor in space.</p>
 
       
     </div>
