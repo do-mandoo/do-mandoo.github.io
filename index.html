@@ -148,6 +148,142 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://do-mandoo.github.io/2020/08/24/%ED%91%9C%ED%98%84%EC%8B%9Dexpressin%EA%B3%BC-%EB%AC%B8statement/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="JinSol">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JINLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/24/%ED%91%9C%ED%98%84%EC%8B%9Dexpressin%EA%B3%BC-%EB%AC%B8statement/" class="post-title-link" itemprop="url">표현식expressin과 문statement</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-24 17:45:29 / Modified: 17:45:46" itemprop="dateCreated datePublished" datetime="2020-08-24T17:45:29+09:00">2020-08-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>값</li>
+</ol>
+<p>-값(Value)은 식(표현식, Expression 수학의 식과 거의 유사. ex)10+20 )이 평가(Evaluate)되어 생성된 결과(30= 10+20의 결과30)를 말함.<br>-평가(Evaluate)란 식(표현식, Expression)을 해석해서 값을 생성하거나 참조하는 것을 의미. = 값을 도출하는 과정을 평가라고 한다.<br>ex) 10+20;//30 일때 10+20 은 평가되어 숫자 값 30을 생성함.<br>변수에 할당되는 것은 평가된 결과의 값이다.<br>ex) var sum = 10+20; 일때 변수sum에는10+20이 평가되어 생성된 숫자 30이 할당됨. 10+20은 할당 이전에 평가 되어 값을 생성해야 한다.<br>-모든 값은 데이터 타입을 갖으며 메모리에 2진수 = bit비트의 나열로 저장된다. 메모리에 저장된 값은 데이터타입에 따라 다르게 해석될 수 있다.<br>ex)0100 0001<br>    -&gt; 숫자로 해석 = 65<br>    -&gt; 문자열로 해석 = A<br>2. 리터럴<br>리터럴(Literal)은 사람이 이해할 수 있는 문자 또는 약속된 기호를 사용해서 값을 생성하는 표기 방식(Notation)을 말함.<br>3도 단순한 아라비아 숫자3이 아닌 숫자 리터럴 3이다. 자바스크립트엔진은 숫자리터럴 3을 평가해서 숫자 값 3을 생성한다.<br>이처럼 리터럴은 사람이 이해할 수 있는 문자(아라비아 숫자, 알파벳, 한글 등)나 또는 미리 약속된 기호(‘.’”,”.,[]{}//등)로 표기한 코드다.<br>자바스크립트 엔진은 코드가 실행되는 시점인 런타임(Runtime)에 리터럴을 평가해서 값을 생성한다.=리터럴을 작성하면 코드가 실행될 시점에서 상응하는 값을 생성한다.<br>즉, 리터럴은 값을 생성하기 위해 미리 약속된 표기법이라 할 수 있음.<br>리터럴을 사용하면 다양한 종류의 Data Type의 값을 생성할 수 있다. -&gt; 정수,부동소수점(실수), 2진수(0b로 시작),8진수(0o로 시작), 16진수(0x로 시작), 문자열, 불리언, null, undefined, 객체{}, 배열[], 함수Function() , 정규표현식 리터럴<br>3. 표현식—– 이해 더 필요!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 유툽강의 다시보기.<br>표현식(Expression)은 값으로 평가될 수 있는 문(Statement)이다. 즉 , 표현식이 평가되면 새로운 값을 생성하거나 기존 값을 참조한다. = 리터럴도 표현식이다. 리터럴은 그 자체로 표현식이다. 값으로 평가되는 문은 모두 표현식이다.<br>4. 문<br>문(Statement)과 표현식(Expression)용어 구분 필수! 확실히 이해!<br>문:  프로그램을 구성하는 기본 단위이자 최소 실행 단위임. 문의 집합이 프로그램. 문을 작성하고 순서에 맞게 나열하는 것이 프로그래밍!<br>-여러 토큰으로 구성된 것이 문이다. 토큰(Token)이란 문법적인 의미를 가지고, 문법적으로 더이상 나눌 수 없는 코드의 기본 요소를 의미함.<br>ex) var sum = 1+2; 에서 각 키워드var, 식별자sum, 연산자=, 리터럴1, 연산자+, 리터럴2, 세미콜론; 이나 마침표. 가 토큰이다.<br>-문을 명령문이라고도 한다. 문=컴퓨터에 내리는 명령=문 실행= -&gt;명령실행-&gt;무슨일이 일어남.<br>-선언문, 표현식 문(할당문), 함수 선언문, 조건문, 반복문<br>5. 세미콜론(;)과 세미콜론 자동 삽입 기능<br>세미콜론(;): 문 의 종료를 나타냄.  = 자바스크립트 엔진은 세미콜론으로 문이 종료한 위치를 파악하고 순차적으로 하나씩 문을 실행함. 단 0개 이상의 문을 중괄호로 묵은 코드블록 ({ … })뒤에는 세미콜론을 붙이지 않는다. if문, for문, 함수등의 코드블록뒤에는 세미콜론을 붙이지 않는다. 코드블록은 언제나 문 의 종료를 의미하는 자체종결성(Self Closing)을 갖기 떄문이다.<br>문 의 끝에 붙이는 세미콜론은 옵션이라 생략이 가능하다. 자바스크립트 엔진은 자동으로 세미콜론 자동삽인기능(ASI)이 수행되기 때문이다. 하지만 ASI 동작과 개발자의 예측이 일치하지않는 경우가 간혹 있기때문에 세미콜론 사용을 기본으로 설정하는 습관을 들이자.<br>6. 표현식인 문과 표현식이 아닌 문<br>표현식은 문 의 일부일 수도 있고 그 자체로 문이 될수도 있다.!!!!!!!!!!!!!<br>구별하는 방법!: 변수에 할당해보자. 변수에 할당 할 수 있으면 표현식인 문이다.</p>
+<ul>
+<li>변수 선언문 =/= 표현식<br>ex) var x; //변수 선언문이다. =&gt; var foo = var x;// 는 SyntaxError,</li>
+<li>할당문 === 표현식<br>ex) x=100; // 할당문이다. =&gt; var foo = x = 100; //을 console.log(foo);를 찍으면 100이 나온다.</li>
+<li>완료 값(Completion Value): 크롬개발자도구에서 표현식이아닌 문 실행하면 언제나 undefined를 출력/ 표현식인 문을 실행하면 언제나 평가된 값을 반환.</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://do-mandoo.github.io/2020/08/24/%EB%B3%80%EC%88%98variable/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="JinSol">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JINLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/24/%EB%B3%80%EC%88%98variable/" class="post-title-link" itemprop="url">변수variable</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-24 17:42:50 / Modified: 17:45:55" itemprop="dateCreated datePublished" datetime="2020-08-24T17:42:50+09:00">2020-08-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>변수란 무엇인가? 왜 필요한가?<br>변수란 데이터를 관리하기 위한 핵심 개념이다.<br>자바스크립트는 개발자의 직접적인 메모리 제어를 허용하지 않는다.=메모리 주소를 통해 값에 직접 접근하려는 시도는 올바른 방법이 아니다.<br>변수는 하나의 값을 저장하기 위해 확보된 메모리 공간 자체 또는 그 메모리공간을 식별하기 위해 붙인 이름을 말한다.(상수도 변수이지만 일반적인 변수와 다른 성격을 갖고있다. 상수는 재할당이 안된다.)<br>변수는 하나의 값을 저장하기 위한 매커니즘. 여러개의 값을 지정하려면 여러개의 변수 사용. 하지만 배열이나 객체같은 자료구조를 사용하면 관련이 있는 여러개의 값을 그룹화해서 하나의 값처럼 사용할 수 있다.<br>ex) var coffee= [americano, latte, mocha, hazelnut]; // 하나의 변수에 여러개의 값 저장.<br>변수이름은 가독성을 높이는 부수적인 효과도 있기 때문에 변수의 이름은 첫아이의 이름을 짓듯이 심사숙고해서 지어야한다(曰강사님)</li>
+<li>식별자 + 8. 식별자 네이밍 규칙과 같이 보자.<br>변수 이름=식별자=어떤값을 구별해서 식별할 수 있는 고유한 이름.like사람이름.<br>값은 메모리 공간에 저장되어 있기때문에 저장되어있는 어떤 값을 구별해서  식별해내야한다. 따라서 식별자는 이를위해 어떤값이 저장되어있는 메모리 주소를 기억(저장)해야한다.<br>식별자는 값이 아니라 메모리 주소를 기억하고 있다는것이 핵심이다.= 식별자는 메모리 주소에 붙인 이름.</li>
+<li>변수 선언<br>변수를 생성하는 것을 변수 선언이라 함.= 값을 저장하기 위한 메모리 공간을 확보하고 변수이름과 확보된 메모리 공간의 주소를 연결해서 값을 저장할 수 있게 준비하는 것.<br>변수를 사용하려면 반드시 선언이 필요. 변수 선언 키워드 -&gt; var, let, const<br>(리바인딩과 변형mutation을 헷갈려서는 안됨. 리바인딩은 참조하는 식별자에 대한 변화이고 변형은 참조되는 값의 변화이다.<br>var키워드로 선언한 변수는 런타임 이전에 자바스크립트 엔진에 의해 암묵적으로 ‘선언단계’와 ‘초기화단계’가 한번에 진행됨., 재할당 가능<br>let은 분리되어 진행됨=런타임이전에 선언단계 실행되고 변수 선언문에 도달했을 때 초기화단계 실행. , 재할당 가능<br>const는 반드시 선언과 동시에 초기화해야한다.,  재할당 금지</li>
+<li>변수 선언의 실행 시점과 변수 호이스팅<br>변수 선언의 실행: 변수 선언이 소스코드가 한 줄씩 순차적으로 실행되는 시점, 즉 런타임이 아니라 그 이전 단계에서 먼저 실행되기 때문에 선언문보다 변수를 참조하는 코드가 앞에 있다해서 참조에러ReferenceError를 발생시키지 않는다. 런타임단계를 실행하기 앞서 먼저 소스코드의 평가 과정을 거치면서 소스코드 실행을 위한 준비를 함.<br>변수 호이스팅: 자바스크립트 엔진은 변수 선언이 소스코드의 어디에 있든 상관없이 다른 코드보다 먼저 실행함. = 변수선언이 소스코드의 어디에 위치하는지와 상관없이 어디서든지 변수를 참조할 수 있음.=변수선언(선언단계와 초기화단계)이 소스코드가 순차적으로 실행되는 런타임 이전 단계에서 먼저 실행된다는 증거. === 변수 선언문이 코드의 선두로 끌어 올려진것처럼 동작하는 자바스크립 고유의 특징을 변수 호이스팅 이라 함.</li>
+<li>값의 할당<br>할당=대입=저장 할 때는 할당 연산자 “=”를 사용. 우변의 값을 좌변의 변수에 할당.<br>변수에 값을 할당할때는 이전값=초기된 값이 저장되어있던 메모리를 덮어쓰는것이 아님. 새로운 메모리공간을 확보하고 그 곳에 할당 된 값을 저장한다는 것이 중요.<br>초기화된 값은 더이상 불러올 수 없음. 왜냐하면 초기화된 값의 변수이름이 할당된 변수의 이름으로 이동했기 때문에 초기화된 값의 변수이름이 없어서 부를 수가 없음. 사용할 수 없음.</li>
+<li>값의 재할당<br>이미 값이 할당되어 있는 변수에 새로운값을 또다시 할당하는 것.<br>var키워드로 선언한 변수는 값을 재할당하는게 가능. let도 가능 const는 불가능.<br>만약 값을 재할당 할 수 없어 한번 정해지면 변하지 않는 값은 상수라고 한다. const키워드도 상수를 표현할 수 있지만 반드시 상수만의 위해 사용하는것은 아니다.<br>초기값에 값을 할당하는것도 재할당이라고 할 수 있다.<br>재할당역시 새로운 메모리공간을 확보하고 재할당한 값을 저장한다.</li>
+<li>값의 교환<br>두 변수의 값을 교환하는 코드를 작성하라<br>var x=1;<br>var y=2;<br>//TODO<br>var x=2;<br>var y=1; //2 1 재할당.<br> or<br>var x=y;<br>var y=1;// 2 1 y값 재할당.<br> or<br>var c = x;<br>var x = y;<br>var y = c;// 2 1 교환재할당.<br>console.log(x,y); // 2 1</li>
+<li>식별자 네이밍 규칙 +  2. 식별자와 같이 보자.<br>식별자는 어떤 값을 구별해서 식별해낼 수 있는 고유한 이름을 말하기때문에 식별자는 네이밍 규칙을 준수해야함.</li>
+</ol>
+<p>-식별자는 특수문자를 제외한 문자, 숫자, 언더스코어<em>, 달러기호$를 호함할 수 있다.<br>단, 특수문자를 제외한 문자, 언더스코어</em>, 달러기호$로 시작해야함. 숫자로 시작하는건 허용하지 않음.<br>-예약어는 식별자로 사용할 수 없음.(예약어는 프로그래밍 언어에서 사용되고 있거나 사용 예정인 단어를 말함.)<br>-네이밍 컨벤션 4가지 유형<br>1.카멜 케이스 : firstName - 변수나 함수이름에 사용.<br>2.스네이크 케이스 : first_name<br>3.파스칼 케이스:FirstName - 생성자 함수, 클래스 이름에 사용.<br>4.헝가리언케이스: strFirstName//type+identifier , $elem=document.getElenentById(‘myId)//JQuery에서 DOM노드 요소를 나타냄, observable=fromEvent(document, ‘click’)//RxJS옵저버블</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://do-mandoo.github.io/2020/08/18/My-JavaScript/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -171,10 +307,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-08-18 18:34:56 / Modified: 18:59:38" itemprop="dateCreated datePublished" datetime="2020-08-18T18:34:56+09:00">2020-08-18</time>
+              <time title="Created: 2020-08-18 18:34:56" itemprop="dateCreated datePublished" datetime="2020-08-18T18:34:56+09:00">2020-08-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-08-19 23:54:29" itemprop="dateModified" datetime="2020-08-19T23:54:29+09:00">2020-08-19</time>
+              </span>
 
           
 
@@ -187,12 +329,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Hi there.!!! It’s me again lol. welcome.</p>
+          <p>Hi there!!! It’s me again. LOL. welcome to my JIN BLOG :-)</p>
 <p>매년 나오는 버전업그레이드. 특징들을 적극적으로 받아들여야한다. 높은 수준의 함수이지만 배워야한다.</p>
 <p>웹페이지와 웹애플리케이션의 차이,구분은 애매하다. 만약 회사홈페이지를 만들었다면 그 상태도 웹페이지이고 로그인해야 게시판에 글을 쓰는것도 웹페이지라고 한다. 웹애플리케이션은 그 것을 가지고 일,업무를 하기위한 그런 느낌이다. 예를들면  vscode나 slack같은 프로그램들을 웹애플리케이션이라고 한다.</p>
 <p>SPA에서 single page라는것은 html이 하나만있다는 뜻.</p>
-<p>자바스크립트와 에크마스크립트<br>ECMAScript는 스팩상 용어이다. 노드랑 브라우저에서 동작 가능.<br>자바스크립트 alert(‘foo’);실행시키는 것을 nodejs에서 실행시키면 모른다고 나온다. 참조에러가 뜸. = 함수는 브라우저에서는 되고 노드에서는 안되는것이 있다. alert은 경고창이지만 브라우저에서 작동하는것이라 node는 브라우저가 없으니 실행이 안됨.<br>DOM!!!! 또한 브라우저가 있어야만 실행가능하기 때문에 node에서 동작안됨.</p>
-<p>인터프리터! 중요. 컴파일러(a.k.a번역)와 인터프리터(a.k.a통역) 구분.<br>소스코드는 순수한 text파일을 말한다.<br>컴파일러의 단점은 컴파일을 해야한다는것이 단점이다.<br>컴파일중 수정사항이 생기면 다시 파일을 줘야한다.<br>프로그래머에게 편한건 인터프리터언어이지만,<br>실행속도가 빠른것은 컴파일러언어이다.<br>따라서 일부 컴파일을 쓴다. 인터프리터 언어다! 실행파일을 안만들기때문에 인터프리터 언어라고 말한다!</p>
+<p>자바스크립트와 에크마스크립트<br>ECMAScript는 스펙상 용어이다. 노드랑 브라우저에서 동작 가능.<br>자바스크립트 alert(‘foo’);실행시키는 것을 nodejs에서 실행시키면 모른다고 나온다. 참조에러가 뜸. = 함수는 브라우저에서는 되고 노드에서는 안되는것이 있다. alert은 경고창이지만 브라우저에서 작동하는것이라 node는 브라우저가 없으니 실행이 안됨.<br>DOM!!!! 또한 브라우저가 있어야만 실행가능하기 때문에 node에서 동작안됨.</p>
+<p>인터프리터! 중요. 컴파일러(like번역)와 인터프리터(like통역) 구분.<br>소스코드는 순수한 text파일을 말한다.<br>컴파일러의 단점은 컴파일을 해야한다는것이 단점이다.<br>컴파일중 수정사항이 생기면 다시 파일을 줘야한다.<br>프로그래머에게 편한건 인터프리터언어이지만,<br>실행속도가 빠른것은 컴파일러언어이다.<br>따라서 일부 컴파일을 쓴다. 인터프리터 언어다! 실행파일을 안만들기때문에 인터프리터 언어라고 말한다!</p>
+<h2 id="변수에서의-값의-할당"><a href="#변수에서의-값의-할당" class="headerlink" title="변수에서의 값의 할당"></a>변수에서의 값의 할당</h2><p>변수는 초기값으로 쓰레기 값을 가지고 있다. 사용자(?)가 새로운 값을 할당해주면 쓰레기값의 메모리를 덮어씌우는 것이 아닌 새로운 메모리공간에 할당된 값을 저장한다는 개념이 중요하다.<br>키워드var, let, const중에서 var와 let은 값의 재할당이 가능하다.<br>따지면 쓰레기값에 값을 할당하는것도 재할당하는 것이다.<br>ex)<br>var mandoo; // mandoo라는 변수에는 값을 할당하지 않았지만 보이지않는 초기값인 쓰레기값을 갖고있다.<br>mandoo = 20; // mandoo라는 변수에 숫자20 값을 할당했다. = 쓰레기값에 숫자20을 재할당했다.</p>
 
       
     </div>
@@ -243,7 +386,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-18 18:34:14" itemprop="dateModified" datetime="2020-08-18T18:34:14+09:00">2020-08-18</time>
+                <time title="Modified: 2020-08-19 23:55:42" itemprop="dateModified" datetime="2020-08-19T23:55:42+09:00">2020-08-19</time>
               </span>
 
           
@@ -257,7 +400,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Hi, This is my TIL. Welcome.</p>
+          <p>Hi, This is my TIL(Today I Learn). Welcome.</p>
 <h2 id="HTML의-ATTRIBUTE-와-CSS의-PROPERTY의-차이"><a href="#HTML의-ATTRIBUTE-와-CSS의-PROPERTY의-차이" class="headerlink" title="HTML의 ATTRIBUTE 와 CSS의 PROPERTY의 차이"></a>HTML의 ATTRIBUTE 와 CSS의 PROPERTY의 차이</h2><ul>
 <li><strong>HTML의 ATTRIBUTE</strong>: 속성이라는 뜻. html문서에서 elements(요소들)에 추가적인 정보를 넣을 때 사용되는 요소. 정적(변하지 않음)이다.<br>예) <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;my-study&quot;</span>&gt;</span>HI<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 위의 코드에서 <code>&quot;my-study&quot;</code>는 <code>&lt;div&gt;</code>의 element(요소)이고, <code>class</code>는 attribute(속성, <strong>추가정보</strong>)가 된다.<br><code>my-study&quot;</code>는 class attribute의 value(값)가 됨.</li>
@@ -521,7 +664,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
