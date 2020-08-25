@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"do-mandoo.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="연산자(operator)는 하나 이상의 표현식을 대상으로 산술, 할당, 비교, 논리, 타입, 지수 연산(operation)등을 수행해 하나의 값을 만듦. 이때 연산의 대상의 피연산자(operand)라 함. 피연산자는 값으로 평가될 수 있는 표현식이어야 함.  피연산자가 “값”이라는 명사의 역할을 한다면,연산자는 “피연산자를 연산하여 새로운 값을 만든다”라는">
+<meta property="og:type" content="article">
+<meta property="og:title" content="연산자operator">
+<meta property="og:url" content="https://do-mandoo.github.io/2020/08/25/%EC%97%B0%EC%82%B0%EC%9E%90operator/index.html">
+<meta property="og:site_name" content="JINLOG">
+<meta property="og:description" content="연산자(operator)는 하나 이상의 표현식을 대상으로 산술, 할당, 비교, 논리, 타입, 지수 연산(operation)등을 수행해 하나의 값을 만듦. 이때 연산의 대상의 피연산자(operand)라 함. 피연산자는 값으로 평가될 수 있는 표현식이어야 함.  피연산자가 “값”이라는 명사의 역할을 한다면,연산자는 “피연산자를 연산하여 새로운 값을 만든다”라는">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-08-25T13:20:35.000Z">
+<meta property="article:modified_time" content="2020-08-25T13:20:48.413Z">
+<meta property="article:author" content="JinSol">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://do-mandoo.github.io/2020/08/25/%EC%97%B0%EC%82%B0%EC%9E%90operator/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>연산자operator | JINLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">JINLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Awesome</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://do-mandoo.github.io/2020/08/25/%EC%97%B0%EC%82%B0%EC%9E%90operator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="JinSol">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JINLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          연산자operator
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-25 22:20:35 / Modified: 22:20:48" itemprop="dateCreated datePublished" datetime="2020-08-25T22:20:35+09:00">2020-08-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>연산자(operator)는 하나 이상의 표현식을 대상으로 산술, 할당, 비교, 논리, 타입, 지수 연산(operation)등을 수행해 하나의 값을 만듦. 이때 연산의 대상의 피연산자(operand)라 함. 피연산자는 값으로 평가될 수 있는 표현식이어야 함.</p>
+<ul>
+<li>피연산자가 “값”이라는 명사의 역할을 한다면,<br>연산자는 “피연산자를 연산하여 새로운 값을 만든다”라는 동사의 역할을 한다고 볼 수 있음.<br>= 피연산자는 연산의 대상이 되어야 하므로 값으로 평가할 수 있어야 함. 연산자는 값으로 평가된 피연산자를 연산해 새로운 값을 만듦.</li>
+</ul>
+<ol>
+<li>산술연산자<br>arithmetic operator<br>피연산자를 대상으로 수학적 계산을 수행해 새로운 값을 만듦. 산술 연산이 불가능할 경우 NaN을 반환함. 산술연산자는 피연산자의 개수에 따라 이항산술연산자와 단항산술연산자로 구분할 수 있음.<br>1-1. 이항(binary) 산술 연산자<br>binary산술 연산자는 2개의 피연산자를 산술연산해서 숫자값을 만듦.<br>모든 이행 산술연산자는 피연산자의 값을 변경하는 부수효과(side effect)가 없음. = 어떤 산술을 해도 피연산자의 값이 바뀌는 경우는 없고 언제나 새로운값을 만들뿐!<br>종류: +덧셈 -뺼셈 *곱셈 /나누기 %나머지<br>1-2. 단항(unary) 산술 연산자<br>unary산술 연산자는 1개의 피연산자를 산술연산하여 숫자값을 만듦.<br>종류: ++증가(부수효과있음)<pre><code>    --감소(부수효과있음) 
+   +어떠한효과없고 음수양수반전도 안하고 부수효과도 없음.
+    -양수를음수로음수를양수로반전한값을 반환하고 부수효과는 없음.</code></pre>
+증가++ 감소– 연산자는 피연산자의 값을 변경하는 부수효과가 있다는 것이 중요!!= 증가/감소 연산을 하면 피연산자의 값을 변경하는 암묵적할당이 이루어짐.</li>
+</ol>
+<p>** 증가/감소(++/–)연산자는 위치에 의미가 있음!! 중요!!!</p>
+<ul>
+<li>피연산자 앞에 위치한 = 전위 증가/감소 연산자(prefix increment/ decrement operator)는 피연산자의 값은 먼저 증가/감소 시킨 후, 다른 연산을 수행.</li>
+<li>피연산자 뒤에 위치한 = 후위 증가/감소 연산자(postfix increment/ decrement operator)는 다른 연산을 먼저 수행한 후 피연산자의 값을 증가/감소시킴.</li>
+<li><ul>
+<li>단항연산자는 피연산자에 어떠한 효과도 없음. 음수를 양수로 반전하지도 않음. 숫자타입이 아닌 피연산자에 +사용하면 숫자타입으로 변환한 값을 생성해서 반환함. 부수효과없음.</li>
+</ul>
+</li>
+<li>-단항연산잔느 피연산자의 부호를 반전한 값을 반환함. +단항연산자와 마찬가지로 숫자타입이 아닌 피연산자에 사용하면 숫자타입으로 변환한 값을 생성하여 반환함. 피연산자를 변경한느것이 아닌 부호를 반전한 값을 생성해서 반환함. 부수효과 없음.<br>1-3. 문자열 연결 연산자<ul>
+<li>연산자는 피연산자 중 하나 이상이 문자열인 경우 문자열 연결 연산자로 동작. 그 외의 경우는 산술연산자로 동작.</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><p>할당 연산자<br>assignment operator는 우항에 있는 피연산자의 평가결과를 좌항에 있는 변수에 할당. 할당연산자는 좌항의 변수에 값을 할당하므로 변수값이 변하는 부수효과가 있음.<br>종류: = -&gt; x = 5 , x = 5</p>
+<pre><code> += -&gt; x += 5, x=x+5
+  -= -&gt; x -= 5, x=x-5
+  *= -&gt; x *= 5, x=x*5
+  /= -&gt; x /= 5, x=x/5
+  %= -&gt; x %= 5, x=x%5</code></pre>
+<p>할당문은 표현식인 문일까 표현식이 아닌 문일까? = 할당문은 값으로 평가되는 표현식인 문으로서 할당된 값으로 평가됨. 할당문을 다른 변수에 할당하는 특징을 활용해 여러변수에 동일한 값을 연쇄할당할 수 있음<br>ex) var a, b, c;<br>   a = b = c = 0; //연쇄할당. 오른쪽에서 왼쪽으로 진행. c=0, b=0, a=0.<br>  console.log(a, b, c); // 0, 0, 0</p>
+</li>
+<li><p>비교 연산자<br>comparison operator는 좌항과 우항의 피연산자를 비교한 다음 그 결과를 불리언 값으로 반환함. 비교 연산자는 if문이나 for문과 같은 제어문의 조건식에서 주로 사용함.<br>3-1. 동등/ 일치 비교 연산자<br>동등비교(loose equality)연산자와 일치비교(strict equality)연산자는 좌항과 우항의 피연산자가 같은 값으로 평가되는 지 비교해 불리언값을 반환함. 하지만 비교하는 엄격성의 정도가 다름! 동등비교는 느슨한비교, 일치비교는 엄격한비교. 부수효과 전부 없음.<br>종류 : == 동등비교, x == y, x와 y의 값이 같음.</p>
+<pre><code>    === 일치비교, x === y, x와 y의 타입이 같음.
+    != 부동등 비교, x != y, x와 y의 값이 다름.
+    !== 불일치비교, x !== y, x와 y의 타입이 다름.</code></pre>
+<p>동등비교(==)는 좌항과 우항의 피연산자를 비교할때 암묵적인 타입변환을 통해 타입일치시킨 후 같은 값인지 비교함.<br>ex) 0 == ‘ ‘; // true<br>   0 == ‘0’; // true<br>   ‘0’ == ‘ ‘; // false<br>동등비교연산자는 결과를 예측하기 어려우므로 일치비교(===)연산자를 사용한다.<br>ex) 5 === 5; // true<br>   5 === ‘5’; // false<br>일치비교(===)연산자에서 주의할 것은 NaN 이다!!!<br>NaN은 자신과 일치하지 않는 유일한 값임.<br>ex) NaN===NaN; // false<br>따라서 숫자가 NaN인지 조사하려면 빌트인 함수 isNaN을 사용.<br>ex) isNaN(NaN); // true</p>
+<pre><code>isNaN(10); // false</code></pre>
+<p>숫자 0도 주의!!!! 자바스에는 양의0과 음의0이 있는데 이들을 비교하면 true를 반환함.<br>ex) 0 === -0; // true</p>
+<pre><code>0 == -0; // true</code></pre>
+<dl><dt>(** Object.is 메서드</dt><dd>ES6에서 도입된 Object.is메서드는 예측 가능한 정확한 비교결과를 반환함. 그 외에는 일치비교(===)연산자와 동일하게 작동.<br>ex)  -0 === +0; // true</dd></dl><pre><code> Object.is(-0, +0); // false
+ NaN === NaN; // false
+ Object.is(NaN, NaN); // true</code></pre>
+<p>)<br>부동등 비교연산자(!=)와 불일치 비교 연산자(!==)는 각각 동등비교(==)연산자와 일치비교(===)연산자의 반대개념임.<br>3-2. 대소 관계 비교 연산자<br>피연산자의 크기를 비교하여 불리언 값을 반환함. 부수효과 없음.<br>종류 : &gt; , x &gt; y, x가 y보다 크다.</p>
+<pre><code>    &lt; , x &lt; y, x가 y보다 작다.
+    &gt;= , x &gt;= y, x가 y보다 크거나 같다.
+    &lt;= , x &lt;= y, x가 y보다 작거나 같다.</code></pre>
+</li>
+<li><p>삼항 조건 연산자<br>ternary operator는 조건식의 평가 결과에 따라 반환할 값을 결정함. 자바스의 유일한 삼항 연산자이며 부수효과 없음.<br>사용 예 : 조건식 ? 조건식이 true일 때 반환할 값 : 조건식이 false일 때 반환할 값<br>삼항조건연산자는 두번째 피연산자 또는 세번째 피연산자로 평가되는 표현식임.<br>물음표? 앞의 첫번째 피연산자는 조건식=불리언 타입의 값으로 평가될 표현식임. 조건식의 평가 결과가 불리언값이 아니어도 불리언값으로 암묵적타입변환됨. 이때 조건식이 참true이면 콜론:  앞의 두번째 피연산자가 평가되어 반환, 거짓false라면 콜론: 뒤의 세번째 피연산자가 평가되어 반환.<br>if~ else문을 사용해도 삼항조건 연산자 표현식과 유사하게 처리할 수 있음.<br>하지만 삼항조건연산자표현식은 값처럼 사용가능(=표현식인 문)하지만 if~else문은 값처럼 사용할 수 없음(=표현식이 아닌 문).</p>
+</li>
+<li><p>논리 연산자<br>logical operator는 우항과 좌항의 피연산자(부정 논리 연산자의 경우 우항의 피연산자)를 논리 연산한다. 부수효과 없음.<br>종류 : || 논리합(OR)</p>
+<pre><code>    &amp;&amp; 논리곱(AND)
+    ! 부정(NOT) // 언제나 불리언 값을 반환함.</code></pre>
+</li>
+</ol>
+<dl><dt>** 드 모르간의 법칙</dt><dd>논리 연산자로 구성된 복잡한 표현식은 가독성이 좋지 않아 한눈에 이해하기 어려울 때가 있음. 이러한 경우 드 모르간 법칙을 활용하면 복잡한 표현식을 좀 더 가독성 좋은 표현식으로 변환할 수 있음.<br>ex) !(x || y) === (!x &amp;&amp; !y)<br>      !(x &amp;&amp; y) === (!x || !y)</dd></dl><ol start="6">
+<li><p>쉼표 연산자<br>, 쉼표 연산자는 왼쪽 피 연산자부터 차례대로 피연산자를 평가하고 마지막 피연산자의 평가가 끝나면 마지막 피연산자의 평가결과를 반환함.<br>ex)  var x, y, z;</p>
+<pre><code>x = 1, y = 2, z = 3; // 3</code></pre>
+</li>
+<li><p>그룹 연산자<br>소괄호( ) 로 피연산자를 감싸는 그룹 연산자는 자신의 피연산자인 표현식을 가장 먼저 평가함. 연산자의 우선순위 조절 가능. 연산자 우선순위가 가장 높음.<br>ex) 10 * 2 + 3; // 23<br>   10 * (2 + 3); // 50</p>
+</li>
+<li><p>typeof 연산자<br>데이터 타입을 문자열로 반환함. 7가지 문자열 “string”, “number”, “boolean”, “undefined”, “symbol”, “object”, “function” 중 하나를 반환함. “null”을 반환하는 경우 없음. 함수의 경우 “function”을 반환. = typeof연산자가 반환하는 문자열은 7개의 데이터 타입과 정확하게 일치하지 않음!!<br>typeof연산자로 null값을 연산해보면 “null”이 아닌”object”를 반환한다는 데 주의!!! 자바스의 첫번째 버전의 버그임. 기존코드에 영향을 줄 수 있기때문에 아직까지 수정되지못함.<br>= 따라서 값이 null 타입인지 확인할때는 typeof연산자말고 일치연산자(===)사용하자.<br>그리고 선언하지 않은 식별자를 typeof연산자로 연산해보면 ReferenceError가 발생하지않고 undefined를 반환함.</p>
+</li>
+<li><p>지수 연산자<br>ES7에서 도입된 지수연산자는 좌항의 피연산자를 밑으로, 우항의 피연산자를 지수로 거듭 제곱하여 숫자값을 반환함.<br>ex) 2 ** 2; //4<br>   2 ** 0; // 1<br>   2 ** -2; // 0.25<br>   2 ** 2.5; // 5.65685<br>지수연산자 도입전까진 Math.pow메서드를 사용했음. 지수연산자가 가독성이 더 좋음<br>음수를 거듭제곱의 밑으로 사용해 계산하려면 괄호로 묶어야 함.<br>ex) (-5) ** 2; // 25<br>다른 산술연산자와 마찬가지로 할당연산자와 함께 사용할 수 있음.<br>이항 연산자 중에서 우선순위가 가장 높음.</p>
+</li>
+<li><p>그 외의 연산자<br>종류 : ?.  옵셔널 체이닝 연산자</p>
+<pre><code>   ??  null 병합 연산자
+   delete 프로퍼티 삭제
+   new 생성자 함수를 호출할 때 사용하여 인스턴스를 생성
+   instanceof 좌변의 객체가 우변의 생성자 함수와 연결된 인스턴스인지 판별
+   in 프로퍼티 존재 확인</code></pre>
+</li>
+<li><p>연산자의 부수 효과<br>대부분의 연산자는 다른 코드에 영향을 주지 않음. 일부 연산자는 다른코드에 영향을 주는 부수효과(side effect)가 있음.<br>부수 효과가 있는 연산자는 할당(=), 증가(++), 감소(–), delete연산자 이다.</p>
+</li>
+<li><p>연산자 우선순위<br>우선순위가 높을수록 먼저 실행됨.</p>
+</li>
+<li><p>연산자 결합 순서<br>연산자의 어느쪽(좌항 또는 우항)부터 평가를 수행할 것인지를 나타내는 순서를 말함.<br>결합순서:<br>좌항-&gt;우항: + , - , / , % , &lt; , &lt;= , &gt; , &gt;= , &amp;&amp; , || , . , [] , () , ?? , ?. , in , instanceof<br>우항-&gt;좌항: ++ , – , 할당연산자, !x , +x , -x , ++x , –x , typeof , delete , ? … : …</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/25/%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%83%80%EC%9E%85-data-type/" rel="prev" title="데이터타입 data type">
+      <i class="fa fa-chevron-left"></i> 데이터타입 data type
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">JinSol</p>
+  <div class="site-description" itemprop="description">All Dev stories found in here</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JinSol</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
