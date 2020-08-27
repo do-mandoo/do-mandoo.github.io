@@ -148,6 +148,296 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://do-mandoo.github.io/2020/08/27/%EA%B0%9D%EC%B2%B4%EB%A6%AC%ED%84%B0%EB%9F%B4object/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="JinSol">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JINLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/27/%EA%B0%9D%EC%B2%B4%EB%A6%AC%ED%84%B0%EB%9F%B4object/" class="post-title-link" itemprop="url">객체리터럴object</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-27 17:43:52 / Modified: 17:44:04" itemprop="dateCreated datePublished" datetime="2020-08-27T17:43:52+09:00">2020-08-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li><p>객체란?<br>Object. 자바스는 객체기반의 프로그래밍 언어이며, 자바스를 구성하는 거의 “모든 것”이 객체. 원시값을 제외한 나머지 값들(함수, 배열, 정규표현식 등)은 모두 객체임.<br>원시 타입은 단 하나의 값만을 나타내지만 객체타입(object/ reference type)은 다양한 타입의 값(원시값 또는 다른 객체)을 하나의 단위로 구성한 복합적인 자료구조(data structure)임. 또한 원시타입의 값 = 원시값은 변경불가능한 값(immutable value)이지만, 객체타입의값=객체는 변경가능한 값(mutable value)임.<br>객체는 0개 이상의 프로퍼티로 구성된 집합, 프로퍼티는 키(key)와 값(value)으로 구성됨.<br>ex) var person = {</p>
+<pre><code> name : &#39;Lee&#39;,
+ age : 20</code></pre>
+<p>   }; // name과 age는 프로퍼티 키, Lee와 20은 프로퍼티 값. 이 둘을 어우르는것이 프로퍼티.<br>자바스에서 사용할 수 있는 모든 값은 프로퍼티 값이 될 수 있음. 자바스의 함수는 일급객체이므로 값으로 취급할 수 있음. 따라서 함수도 프로퍼티 값으로 사용 할 수 있음. 프로퍼티 값이 함수일경우 일반함수와 구분하기 위해 메서드(method)라고 부른다.<br>ex) var counter = {</p>
+<pre><code>  num : 0,                   //프로퍼티
+  increase : function() &#123;   //메서드영역 시작
+    this.num++;
+  &#125;                                        //메서드영역 끝</code></pre>
+<p>   };<br>이처럼 객체는 프로퍼티와 메서드로 구성된 집하체임.<br>프로퍼티와 메서드의 역할 : </p>
+<ul>
+<li>프로퍼티: 객체의 상태를 나타내는 값(data)</li>
+<li>메서드: 프로퍼티(상태 데이터)를 참조하고 조작할 수 있는 동작(behavior)<br>이처럼 객체는 상태와 동작을 하나의 단위로 구조화할 수 있어 유용함.<br>** 객체와 함수<br>: 자바스의 객체는 함수와 밀접한 관계를 가짐. 함수로 객체를 생성하기도 하며 함수 자체가 객체이기도 함. 자바스에서 함수와 객체는 분리해서 생각할 수 없는 개념=객체를 이해해야 함수를 제대로 이해, 함수를 이해해야 객체를 정확히 이해 가능.</li>
+</ul>
+</li>
+<li><p>객체 리터럴에 의한 객체 생성</p>
+</li>
+</ol>
+<ul>
+<li>C++이나 자바와 같은 클래스기반 객체지향언어는 클래스를 사전에 정의하고 필요한 시점에 new연산자와 함께 생성자(constructor)를 호출하여 인스턴스(instance: 클래스에 의해 생성되어 메모리에 저장된 실체를 말함. 객체지향프로그래밍에서 객체는 클래스와 인스턴스를 포함한 개념임. 클래스는 인스턴스를 생성하기 위한 템플릿의 역할을 함. 인스턴스는 객체가 메모리에 저장되어 실제로 존재하는 것에 초점을 맞춘 용어)를 호출하여 인스턴스를 생성하는 방식으로 객체를 생성함.</li>
+<li>자바스는 프로토타입 객체지향언어로 클래스기반 객체지향언어와는달리 다양한 객체 생성 방법을 지원함. -&gt; 객체 리터럴, Object생성자 함수, 생성자함수, Object.create메서드, 클래스(ES6)<br>이러한 객체 생성 방법중에서 가장일반적이고 간단한 방법은 객체 리터럴을 사용하는 방법임. 리터럴literal은 사람이 이해할 수 있는 문자 또는 약속된 기호를 사용하여 값을 생성하는 표기법을 말함. 객체리터럴은 객체를 생성하기 위한 표기법임.!!!!</li>
+<li>객체 리터럴은 중괄호({…})내에 0개 이상의 프로퍼티를 정의함. 변수에 할당이 이루어지는 시점에 자바스엔진은 객체리터럴을 해석해서 객체를 생성함.<br>만약 중괄호 내에 프로퍼티를 정의하지 않으면 빈 객체가 생성됨.<br>객체 리터럴의 중괄호는 코드블록을 의미하지 않음!!! 블록의 닫는 중괄호 뒤에는 세미콜론을 붙이지 않음. 하지만 객체 리터럴은 값으로 평가되는 표현식임. = 객체리터럴의 닫는 중괄호 뒤에는 세미콜론 붙임.</li>
+<li>객체리터럴은 자바스의 유연함과 강력함을 대표하는 객체 생성 방식임. 객체를 생성하기 위해 클래스를 먼저 정의하고 new연산자와 함께 생성자를 호출할 필요가 없음. 숫자값이나 문자열을 만드는것과 유사하게 리터럴로 객체를 생성함. 객체 리터럴에 프로퍼티를 포함시켜 객체를 생성함과 동시에 프로퍼티를 만들수도 있고, 객체를 생성한 이후에 프로퍼티를 동적으로 추가할 수도 있음.</li>
+<li>객체리터럴 외의 객체생성방식은 모두 함수를 사용해 객체를 생성함</li>
+</ul>
+<ol start="3">
+<li>프로퍼티</li>
+</ol>
+<ul>
+<li>객체는 프로퍼티property들의 집합이며 프로퍼티는 키key와 값value로 구성됨.</li>
+<li>프로퍼티 나열할때는 쉼표( , )로 구분. 일반적으로 마지막프로퍼티뒤에는 쉼표사용안하지만 사용해도 됨.</li>
+<li>프로퍼티 키와 프로퍼티 값으로 사용할수 있는 값:<br>  -프로퍼티 키: 빈 문자열을 포함하는 모든 문자열 또는 심벌 값<br>  -프로퍼티 값: 자바스크립트에서 사용할 수 있는 모든 값</li>
+<li>프로퍼티 키는 프로퍼티 값에 접근할 수 있는 이름으로서 식별자역할을 함. 하지만 반드시 식별자네이밍규칙을 따라야하는것은 아님. 단! 미묘한차이는 있음.</li>
+<li>심벌값도 프로퍼티 키로 사용할 수 있지만 일반적으로 문자열을 사용함. 이때 프로퍼티 키는 문자열이므로 따옴표( ‘ ‘ 또는 “ “ )로 묶어야 함. 하지만 식별자네이밍규칙을 준수하는 이름(=자바스에서 사용가능한 유요한 이름)인경우 따옴표 생략 가능.= 식별자네이밍규칙 따르지 않는 이름에는 반드시 따옴표 사용!</li>
+<li>가급적 식별자네이밍규칙을 준수하는 프로퍼티 키를 사용할것을 권장!!</li>
+<li>문자열 또는 문자열로 평가할수있는 표현식을 사용해 프로퍼티키를 동적으로 생성할수 있음. 사용할 프로퍼티키를 대괄호( […] )로 묶어서 사용.</li>
+<li>빈 문자열을 프로퍼티키로 사용해도 에러는나지않지만 키로서 의미를갖지 못하니까 권장하지 않음.</li>
+<li>프로퍼티 키에 문자열이나 심벌값 이외의 값을 사용하면 암묵적타입변환을 통해 문자열이 됨. ex)프로퍼티키로 숫자리터럴사용하면 따옴표는 붙지않지만 내부적으로는 문자열로 변환됨.</li>
+<li>var, function과 같은 예약어를 프로퍼티 키로 사용해도 에러발생안함.하지만 예상치 못한 에러발생의 여지가 있으니 권장안함.</li>
+<li>이미 존재하는 프로퍼티키를 중복선언하면 나중에 선언한프로퍼티로 덮어씀. 에러가 발생하지않으니 주의!!</li>
+</ul>
+<ol start="4">
+<li><p>메서드<br>자바스에서 사용할 수 있는 모든 값은 프로퍼티값으로 사용할수 있다고 했다. 자바스의 함수는 객체다. 따라서 함수는 값으로 취급할 수 있기 때문에 프로퍼티 값으로 사용할 수 있음.<br>프로퍼티 값이 함수일 경우 일반 함수와 구분하기 위해 메서드method라 부름.= 메서드는 객체에 묶여있는 함수를 의미.<br>메서드 내부에서 사용한 this키워드는 객체자신을 가리키는 참조변수임.일단간단하게 이렇게 알고있기.</p>
+</li>
+<li><p>프로퍼티 접근</p>
+</li>
+</ol>
+<ul>
+<li>접근방법 두가지<br>  1- 마침표 프로퍼티 접근 연산자(.)를 사용하는 마침표 표기법(dot notation)<br>  2- 대괄호 프로퍼티 접근 연산자([…])를 사용하는 대괄호 표기법(bracket notation)</li>
+<li>프로퍼티키가 식별자네이밍규칙을 준수하는 이름(=자바스에서 사용가능한 이름)이면 마침표 표기법과 대괄호 표기법을 모두 사용할 수 있음.</li>
+<li>마침표 프로퍼티 접근 연산자 또는 대괄호 프로퍼티 접근 연산자의 좌측에는 객체로 평가되는 표현식을 기술함. 마침표 프로퍼티 접근 연산자의 우측 또는 대괄호 프로퍼티 접근 연산자의 내부에는 프로퍼티 키를 지정함.</li>
+<li>대괄호 표기법을 사용하는 경우 대괄호 프로퍼티 접근 연산자 내부에 지정하는 프로퍼티 키는 반드시 따옴표로 감싼 문자열이어야 함. 그렇지않으면 자바스엔진은 식별자로 해석하기 때문. ex) [‘name’] (O) . <a href="X">name</a></li>
+<li>객체에 존재하지 않는 프로퍼티에 접근하면 undefined를 반환함. 이때 ReferenceError가 발생하지 않게 주의!!!</li>
+<li>프로퍼티키가 식별자네이밍규칙을 준수하지않는 이름(=자바스에서 사용가능하지 않는 이름)은 반드시 대괄호 표기법을 사용해야함. 단! 프로퍼티키가 숫자로 이루어진 문자열인경우 따옴표 생략가능. 그 외의 경우는 반드시 대괄호 내에 따옴표로 감싼 문자열이어야만 함!!</li>
+<li>ex) person.last-name; // 1.브라우저환경: NaN , 2.Node.js환경:ReferenceError  //person[‘last-name’]; 이 맞는 표기.<br>브라우저 환경과 Node.js 환경에서의 실행결과가 다른 이유는  person.last-name을 실행할때 ①자바스엔진은 person.last를 평가②name식별자로 해석됨. Node.js환경은 name식별자 선언이 없으므로, 브라우저환경은 name이라는 전역변수가 암묵적을 존재. 간단하게는 이렇게 다르다. 자세한 것은 교안(나중에 잘 정리해서 추가하기)확인.</li>
+</ul>
+<ol start="6">
+<li><p>프로퍼티 값 갱신<br>이미 존재하는 프로퍼티에 값을 할당하면 프로퍼티 값이 갱신됨.<br>ex) var person = { name: ‘Lee’ };</p>
+<pre><code> person.name = &#39;Kim&#39;; //person 객체에 name프로퍼티가 존재하므로 name프로퍼티 값이 갱신됨.
+ console.log(person); // &#123;name: &quot;Kim&quot;&#125;</code></pre>
+</li>
+<li><p>프로퍼티 동적 생성<br>존재하지 않는 프로퍼티에 값을 할당하면 프로퍼티가 동적으로 생성되어 추가되고 프로퍼티 값이 할당됨.<br>ex) var person = { name: ‘Lee’};</p>
+<pre><code> person.age=20; // person객체에 age프로퍼티 존재안함. 선언때 프로퍼티가 동적으로 생성되고 값이 할당됨.
+ console.log(person);// &#123;name: &quot;Lee&quot;, age: 20&#125;</code></pre>
+</li>
+<li><p>프로퍼티 삭제<br>delete연산자는 객체의 프로퍼티를 삭제함. 이때 delete연산자의 피연산자는 프로퍼티값에 접근할 수 있는 표현식이어야 함. 만약 존재하지 않는 프로퍼티를 삭제하면 아무런 에러없이 무시됨.!<br>ex) var person = { name: ‘Lee’};</p>
+<pre><code>  person.age=20; // 프로퍼티 동적 생성
+  delete person.age; // person 객체에 age프로퍼티 존재하므로 삭제가능.
+  delete person.address; // person객체에 address프로퍼티 존재안함으로 에러 발생하지 않음.
+  console.log(person); // &#123;name: &quot;Lee&quot;&#125;</code></pre>
+</li>
+<li><p>ES6에서 추가된 객체 리터럴의 확장 기능<br>ES6에서는 더욱 간편하고 표현력있는 객체 리터럴의 확장기능을 제공함.<br>9-1.프로퍼티 축약 표현<br>객체리터럴의 프로퍼티는 프로퍼티 키와 프로퍼티 값으로 구성됨. 프로퍼티 값은 변수에 할당된 값= 식별자 표현식일 수도 있음.<br>ES6에서는 프로퍼티 값으로 변수를 사용하는 경우, 변수이름과 프로퍼티 키가 동일한 이름일때, 프로퍼티키를 생략(property shorthand)할 수 있음. 이때 프로퍼티 키는 변수 이름으로 자동 생성됨.<br>9-2.계산된 프로퍼티 이름<br>문자열 또는 문자열로 타입변환할 수있는 값으로 평가되는 표현식을 사용해 프로퍼티 키를 동적으로 생성할 수도있음. 단, 프로퍼티키로 사용할 표현식을 대괄호([…])로 묶어야 함. 이를 계산된 프로퍼티 이름(computed property name)이라 함.<br>ES6에서는 객체리터럴 내부에서도 계산된 프로퍼티 이름으로 프로퍼티 키를 동적 생산할 수 있음.<br>9-3.메서드 축약 표현<br>ES6에서 : 메서드 정의할 때, function키워드를 생략한 축약표현 사용가능, </p>
+<pre><code>                 ex)ES5에서: sayHi: function()&#123;&#125;/  ES6에서:sayHi()&#123;&#125;
+           메서드 축약표현으로 정의한 메서드는 프로퍼티에 할당한 함수와 다르게 동작!</code></pre>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://do-mandoo.github.io/2020/08/27/%EC%9B%90%EC%8B%9C%EA%B0%92primitive-%EA%B3%BC-%EA%B0%9D%EC%B2%B4object-reference-%EC%9D%98-%EB%B9%84%EA%B5%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="JinSol">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JINLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/27/%EC%9B%90%EC%8B%9C%EA%B0%92primitive-%EA%B3%BC-%EA%B0%9D%EC%B2%B4object-reference-%EC%9D%98-%EB%B9%84%EA%B5%90/" class="post-title-link" itemprop="url">원시값primitive 과 객체object/reference 의 비교</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-27 17:42:38 / Modified: 17:43:04" itemprop="dateCreated datePublished" datetime="2020-08-27T17:42:38+09:00">2020-08-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>ㅠ(“6.데이터타입”) 참고<br>자바스가 제공하는 7가지 데이터 타입(숫자, 문자열, 불리언, null, undefined, 심벌, 객체타입)은 크게 원시타입(primitive type)과 객체(object/ reference type)타입으로 구분.<br>구분하는 이유는? : 근본적으로 다른다는 의미. 세가지 측면에서 다름</p>
+<ul>
+<li>원시타입의 값(= 원시값)은 변경 불가능한 값(immutable value)임.,<br>객체(참조)타입의 값(=객체)는 변경 가능한 값(mutable value)임.</li>
+<li>원시값을 변수에 할당하면 변수(확보된 메모리공간)에는 실제 값이 저장됨. ,<br>객체를 변수에 할당하면 변수(확보된 메모리 공간)에는 참조값이 저장됨.</li>
+<li>원시값을 갖는 변수를 다른 변수에 할당하면 원본의 원시값이 복사되어 전달됨. 이를 값에 의한 전달(pass by value)라 함.<br> 객체를 가리키는 변수를 다른 변수에 할당하면 원본의 참조값이 복사되어 전달됨. 이를 참조에 의한 전달(pass by reference)라 함.</li>
+</ul>
+<ol>
+<li>원시값<br>1-1.변경 불가능한 값<br>primitive type=immutable type </li>
+</ol>
+<ul>
+<li><p>한 번 생성된 원시값은 읽기전용(read only)값이라 변경할 수 없음.</p>
+</li>
+<li><p>값을 변경할 수 없다 : 변수와 값을 구분해서 생각하자. </p>
+<pre><code>                                   - 변수: 하나의 값을 저장하기 위해 확보한 메모리공간 자체 또는 메모리 공간을 식별하기 위해 붙인 이름,
+                                   - 값: 변수에 저장된 데이터로서 표현식이 평가되어 생성된 결과.
+                                     따라서  변경 불가능하다는 것은 변수가 아니라 값에 대한 진술임.  = 즉, &quot;원시값은 변경 불가능하다&quot;는 말은 원시값 자체를 변경할 수 없다는 것이지 변수값을 변경할 수 없다는것이 아님!! 변수는 언제든지 재할당을 통해 변수값을 변경(엄밀히 말하자면 교체)할 수 있기때문에 변수라고 부름.</code></pre>
+</li>
+<li><p>변수의 상대개념인  상수는 재할당이 금지된 변수를 말함. 상수도 값을 저장하기 위한 메모리공간이 필요하므로 변수라고 할 수 있음. 단, 변수는 언제든지 재할당을 통해 변수값을 변경(교체)할 수 있지만 상수는 단 한번만 할당이 허용되므로 변수값을 변경(교체)할 수 없음. =&gt; 상수와 변경불가능한값을 동일시하면 안됨. 상수는 재할당이 금지된 변수일 뿐임!!</p>
+</li>
+<li><p>원시값은 변경불가능한 값= 읽기 전용 값. = 불변 = 데이터의 신뢰성 보장.</p>
+</li>
+<li><p>재할당하면 메모리공간 덮어쓰기가 아닌 새로운 메모리공간을 확보하고 저장. 주소가 바뀌는 것. 이러한 특성을 불변성immutability라 함.<br>1-2.문자열과 불변성</p>
+</li>
+<li><p>데이터 타입에 의한 메모리 공간의 확보가 필요. 단 ECMAScript사양에 문자열타입(2byte)과 숫자타입(8byte)이외의 원시타입은 크기를 명확히규정하고있지않음=브라우저 제조사의 구현에따라 다름.</p>
+</li>
+<li><p>원시값인 문자열만의 독특한 특징: 문자열은 0개 이상의 문자(character)로 이뤄진 집합을 말하며, 1개의 문자는 2바이트의 메모리공간에 저장됨.=문자열은 몇개의 문자로 이뤄졌느냐에 따라 필요한 메모리공간의 크기가 결정됨. 숫자값은 1도, 1,000,000도 동일한 8byte가 필요하지만 문자열의 경우(단순계산때) 1개의 문자열은 2byte, 10개로 이뤄진 문자열은 20byte필요.</p>
+</li>
+<li><p>이런 이유들로 C에서는 하나의 문자를 위한 데이터타입(char)만 있을 뿐 문자열 타입은 존재하지 않음. C에서는 문자열을 문자들의 배열로 처리하고 자바에서는 문자열을 String객체로 처리함.</p>
+</li>
+<li><p>하지만!  -&gt;자바스의 장점: 개발자의 편의를 위해 원시타입인 문자열타입을 제공!! 자바스의 문자열은 원시타입,변경불가능.=문자열이 생성된 이후에는 변경할수없음을 의미</p>
+<pre><code> ex) var str = &#39;hello&#39;;
+        str = &#39;world&#39;;</code></pre>
+<p>  일때, 첫번째문을 실행해서 hello가 저장된 메모리 공간의 첫번째 메모리셀 주소를 가리킨다. 두번째문 실행하면 world메모리생성하고 식별자str은 이것을 가리킴. hello를 수정해서 world를 덮어씌우는게 아니다. hello와world는 모두 메모리에 존재함. 식별자 str이 문자열 hello를 가리키고 있다가 문자열world를 가리키도록 변경되었을 뿐!!!!!!</p>
+</li>
+<li><p>문자열은 유사배열객체이면서 이터러블이므로 배열과 유사하게 각 문자에 접근할 수 있음.<br>  ** 유사배열객체array-like object란, </p>
+<pre><code>   : 마치 배열처럼 인덱스로 프로퍼티 값에 접근할수있고 length프로퍼티를 갖는 객체를 말함. 
+      문자열은 마치 배열처럼 인데스를 통해 각 문자에 접근할 수 있고, length프로퍼티를 갖기 때문에 유사배열객체이고 for문으로 순회할수도있음.</code></pre>
+<p>1-3.값에 의한 전달</p>
+</li>
+<li><p>ex) var score = 80;</p>
+<pre><code>  var copy = score;
+
+  console.log(score); // 80
+  console.log(copy); // 80</code></pre>
+<p>일때, 변수에 변수를 할당했을때 어떻게 전달되는가가 핵심이다.<br>copy=score에서 변수값80으로 평가되므로 copy변수에도 80이 할당(새로운 숫자값 80이 생성되어 copy변수에 할당됨)</p>
+</li>
+<li><blockquote>
+<p>변수에 원시값을 갖는 변수를 할당하면 할당받는 변수(copy)에는 할당되는 변수(score)의 원시값이 복사되어 전달됨 = 값에 의한 전달(Pass by value)라 함.<br>score변수와 copy변수의 값 80은 다른 메모리공간에 저장된 별개의 값임!!</p>
+</blockquote>
+<p>ex) 위 ex에 연결.</p>
+<pre><code>   score = 100;
+
+   console.log(score); // 100
+   console.log(copy); // ??? (정답: 80)</code></pre>
+<p>에서 score변수와 copy변수의 값 80은 다른 메모리공간에 저장된 별개의 값이라 했음. 따라서 score변수의 값을 100으로 재할당 해도 copy변수의 값에는 어떠한 영향도 주지 않음!!</p>
+</li>
+<li><p>ECMAScript사양에는 “값에 의한 전달”이라는 용어등장하지 않음.<br>“값에 의한 전달”과 “참조에 의한 전달” “공유에의한전달”이라고 표현.</p>
+</li>
+<li><p>정확히는 “값에 의한 전달”은 값을 전달하는 것이 아닌 메모리 주소를 전달하는것임. 단, 전달된 메모리 주소를 통해 메모리 공간에 접근하면 값을 참조할 수 있음.</p>
+</li>
+<li><p>두변수의 원시값은 서로 다른 메모리공간에 저장된 별개의 값이되어 어느한쪽에서 재할당을 통해 값을 변경해도 서로 간섭할수 없음!!!</p>
+</li>
+</ul>
+<ol start="2">
+<li>객체</li>
+</ol>
+<ul>
+<li>프로퍼티 개수가 정해져 있지 않으며, 동적으로 추가됙고 삭제할 수 있음. 또한 프로퍼티의 값에도 제약이 없음. = 객체는 원시값과 같이 확보해야할 메모리공간의 크기를 사전에 정해둘 수 없음.</li>
+<li>객체는 복합적인 자료구조이므로 객체 관리 방식이 원시값과 비교해서 복잡함. 원시값은 상대적으로 적은 메모리를 소비하지만 객체는 경우에따라 크기가 매우클수도 있음. 객체 생성하고 프로퍼티에 접근하는것도 원시값과 비교할때 비용이 많이 드는 일임. = 객체는 원시값과는 다른 방식으로 동작하게 설계되어있음.<br>2-1.변경가능한 값</li>
+<li>객체(참조)타입의 값= 객체는 변경 가능한 값(mutable value)임.</li>
+<li>원시값을 할당한 변수가 기억하는 메모리 주소를 통해 메모리공간에 접근하면 원시값에 접근할수있음. = 원시값을 할당한 변수는 원시값자체를 값으로 갖음. !하지만! 객체를 할당한 변수가 기억하는 메모리주소를 통해 메모리공간에 접근하면 참조값(reference value)에 접근할 수 있음. 참조값은 생성된 객체가 저장된 메모리공간의주소, 그 자체임.</li>
+<li>ex) var person = { name: ‘Lee’};<pre><code>  console.log(person); //&#123;name: &quot;Lee&quot;&#125; // person변수는 객체 &#123;name: &#39;Lee&#39;;&#125;를 가리키고point(참조하고)있음.
+   (이어서)
+   person.name = &#39;Kim&#39;; //  프로퍼티 값 갱신
+   person.address = &#39;Seoul&#39;; // 프로퍼티 동적 생성
+   console.log(person); //&#123;name: &quot;Kim&quot;, address: &quot;Seoul&quot;&#125; // person변수는 객체 &#123;name: &#39;Lee;&#125;를 가리키고point(참조하고)있음. ,, // 객체를 할당한 변수에 재할당을 하지 않았으므로 객체를 할당한 변수의 참조값은 변경되지 않음.</code></pre>
+</li>
+<li>원시값은 변경 불가능한 값이므로 원시값을 갖는 변수의 값을 변경하려면 재할당을 통해 메모리에 원시값을 새롭게 생성해야함. 하지만 객체는 변경가능한 값으므로 메모리에 저장된 객체를 직접 수정할 수 있음. = 재할당없이 프로퍼티를 동적으로 추가할수도 있고 프로퍼티값을 갱신할수도 있으며 프로퍼티자체를 삭제할수도 있음. </li>
+<li>메모리를 효율적으로 사용하기위해, 객체를 복사해 생성하는 비용을 절약해서 성능을 향상시키기위해 객체는 변경 가능한 값으로 설계되어있음. 메모리 사용의 효율성과 성능을 위해 어느정도의 구조적인 단점을 감안한 설계</li>
+<li>구조적단점에 따른 부작용: 원시값과는 다르게 여러개의 식별자가 하나의 객체를 공유할 수 있다는 것.<br> **얕은 복사(shallow copy)와 깊은 복사(deep copy)<pre><code>  :얕은복사 - 객체를 프로퍼티 값으로 갖는객체의 경우 한단계까지만 복사.
+    깊은 복사 - 객체에 중첩되어있는 객체까지 모두 복사.</code></pre>
+2-2.참조에 의한 전달<br>여러개의 식별자가 하나의 객체를 공유할 수 있다는것을 공부하자.</li>
+<li>ex) var person = { name: ‘Lee’};<pre><code>   var copy = person // 참조값을 복사 (얕은복사)</code></pre>
+객체를 가리키는 변수(원본,person)를 다른변수(사본,copy)에 할당하면 원본의 참조값이 복사되어 전달됨= 참조에의한전달pass by reference<br>원본person과 사본copy는 저장된 메모리 주소는 다르지만 동일한 참조값을 갖음= 모두 동일한 객체를 가리킴.=두개의 식별자가 하나의 객체를 공유함을 의미.= 원본이나 사본중 어느한쪽에서 객체를 변경(재할당이아닌 객체의 프로퍼티값을 변경하거나 프로퍼티추가,삭제)하면 서로 영향을 주고 받음.</li>
+<li>ex) var person = { name=’Lee’};<pre><code>   var copy = person; // =&gt;참조값을 얕은 복사함. copy와person은 동일한 참조값 갖음.
+   console.log(copy===person); //true =&gt;copy와 person은 동일한 객체를 참조함.
+   copy.name = &#39;Kim&#39;; // =&gt;copy를 통해 객체를 변경
+   person.address = &#39;Seoul&#39;; // =&gt;person을 통해 동적생성
+   console.log(person); // &#123;name: &quot;Kim&quot;, address: &quot;Seoul&quot;&#125;
+   console.log(copy); // &#123;name: &quot;Kim&quot;, address: &quot;Seoul&quot;&#125;
+                                        =&gt;copy와person은 동일한객체가리킴.
+                                            서로 영향 주고 받음.</code></pre>
+</li>
+<li>결국 “값에 의한 전달”과 “참조에 의한 전달”은 식별자가 기억하는 메모리 공간에 저장되어있는 값을 복사해서 전달한다는 면에서 동일.<br>다만 식별자가 기억하는 공간=변수에 저장되어있는 값이 원시값이냐 참조값이냐 하는 차이만 있음.</li>
+<li>자바스에는 “참조에 의한 전달”은 존재하지않고 “값에 의한 전달”만이 존재한다고 말할수있음.</li>
+<li>따라서 교안에서는 전달되는 값의 종류가 원시값인지 참조값인지 구별해서 강조하는 의미에서 “값에의한전달”과 “참조에의한전달”로 구분해서 부르기로함.</li>
+</ul>
+<p><strong><em>퀴즈!!</em></strong><br>var person1 = {name=’Lee’};<br>var person2 = {name=’Lee’};<br>console.log(person1 === person2} //  false =&gt;객체의 변수이름이 다름(?)<br>console.log(person1.name === person2.name} //  true =&gt; 객체의 참조값이 같음.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://do-mandoo.github.io/2020/08/25/%EC%97%B0%EC%82%B0%EC%9E%90operator/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -908,7 +1198,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
