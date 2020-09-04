@@ -1047,10 +1047,16 @@ console.log(add(&#39;a&#39;, &#39;b&#39;)); // &#39;ab&#39;</code></pre>
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-08-24 17:42:50 / Modified: 17:45:55" itemprop="dateCreated datePublished" datetime="2020-08-24T17:42:50+09:00">2020-08-24</time>
+              <time title="Created: 2020-08-24 17:42:50" itemprop="dateCreated datePublished" datetime="2020-08-24T17:42:50+09:00">2020-08-24</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-09-04 20:25:21" itemprop="dateModified" datetime="2020-09-04T20:25:21+09:00">2020-09-04</time>
+              </span>
 
           
 
@@ -1063,17 +1069,68 @@ console.log(add(&#39;a&#39;, &#39;b&#39;)); // &#39;ab&#39;</code></pre>
     <div class="post-body" itemprop="articleBody">
 
       
-          <ol>
-<li>변수란 무엇인가? 왜 필요한가?<br>변수란 데이터를 관리하기 위한 핵심 개념이다.<br>자바스크립트는 개발자의 직접적인 메모리 제어를 허용하지 않는다.=메모리 주소를 통해 값에 직접 접근하려는 시도는 올바른 방법이 아니다.<br>변수는 하나의 값을 저장하기 위해 확보된 메모리 공간 자체 또는 그 메모리공간을 식별하기 위해 붙인 이름을 말한다.(상수도 변수이지만 일반적인 변수와 다른 성격을 갖고있다. 상수는 재할당이 안된다.)<br>변수는 하나의 값을 저장하기 위한 매커니즘. 여러개의 값을 지정하려면 여러개의 변수 사용. 하지만 배열이나 객체같은 자료구조를 사용하면 관련이 있는 여러개의 값을 그룹화해서 하나의 값처럼 사용할 수 있다.<br>ex) var coffee= [americano, latte, mocha, hazelnut]; // 하나의 변수에 여러개의 값 저장.<br>변수이름은 가독성을 높이는 부수적인 효과도 있기 때문에 변수의 이름은 첫아이의 이름을 짓듯이 심사숙고해서 지어야한다(曰강사님)</li>
-<li>식별자 + 8. 식별자 네이밍 규칙과 같이 보자.<br>변수 이름=식별자=어떤값을 구별해서 식별할 수 있는 고유한 이름.like사람이름.<br>값은 메모리 공간에 저장되어 있기때문에 저장되어있는 어떤 값을 구별해서  식별해내야한다. 따라서 식별자는 이를위해 어떤값이 저장되어있는 메모리 주소를 기억(저장)해야한다.<br>식별자는 값이 아니라 메모리 주소를 기억하고 있다는것이 핵심이다.= 식별자는 메모리 주소에 붙인 이름.</li>
-<li>변수 선언<br>변수를 생성하는 것을 변수 선언이라 함.= 값을 저장하기 위한 메모리 공간을 확보하고 변수이름과 확보된 메모리 공간의 주소를 연결해서 값을 저장할 수 있게 준비하는 것.<br>변수를 사용하려면 반드시 선언이 필요. 변수 선언 키워드 -&gt; var, let, const<br>(리바인딩과 변형mutation을 헷갈려서는 안됨. 리바인딩은 참조하는 식별자에 대한 변화이고 변형은 참조되는 값의 변화이다.<br>var키워드로 선언한 변수는 런타임 이전에 자바스크립트 엔진에 의해 암묵적으로 ‘선언단계’와 ‘초기화단계’가 한번에 진행됨., 재할당 가능<br>let은 분리되어 진행됨=런타임이전에 선언단계 실행되고 변수 선언문에 도달했을 때 초기화단계 실행. , 재할당 가능<br>const는 반드시 선언과 동시에 초기화해야한다.,  재할당 금지</li>
-<li>변수 선언의 실행 시점과 변수 호이스팅<br>변수 선언의 실행: 변수 선언이 소스코드가 한 줄씩 순차적으로 실행되는 시점, 즉 런타임이 아니라 그 이전 단계에서 먼저 실행되기 때문에 선언문보다 변수를 참조하는 코드가 앞에 있다해서 참조에러ReferenceError를 발생시키지 않는다. 런타임단계를 실행하기 앞서 먼저 소스코드의 평가 과정을 거치면서 소스코드 실행을 위한 준비를 함.<br>변수 호이스팅: 자바스크립트 엔진은 변수 선언이 소스코드의 어디에 있든 상관없이 다른 코드보다 먼저 실행함. = 변수선언이 소스코드의 어디에 위치하는지와 상관없이 어디서든지 변수를 참조할 수 있음.=변수선언(선언단계와 초기화단계)이 소스코드가 순차적으로 실행되는 런타임 이전 단계에서 먼저 실행된다는 증거. === 변수 선언문이 코드의 선두로 끌어 올려진것처럼 동작하는 자바스크립 고유의 특징을 변수 호이스팅 이라 함.</li>
-<li>값의 할당<br>할당=대입=저장 할 때는 할당 연산자 “=”를 사용. 우변의 값을 좌변의 변수에 할당.<br>변수에 값을 할당할때는 이전값=초기된 값이 저장되어있던 메모리를 덮어쓰는것이 아님. 새로운 메모리공간을 확보하고 그 곳에 할당 된 값을 저장한다는 것이 중요.<br>초기화된 값은 더이상 불러올 수 없음. 왜냐하면 초기화된 값의 변수이름이 할당된 변수의 이름으로 이동했기 때문에 초기화된 값의 변수이름이 없어서 부를 수가 없음. 사용할 수 없음.</li>
-<li>값의 재할당<br>이미 값이 할당되어 있는 변수에 새로운값을 또다시 할당하는 것.<br>var키워드로 선언한 변수는 값을 재할당하는게 가능. let도 가능 const는 불가능.<br>만약 값을 재할당 할 수 없어 한번 정해지면 변하지 않는 값은 상수라고 한다. const키워드도 상수를 표현할 수 있지만 반드시 상수만의 위해 사용하는것은 아니다.<br>초기값에 값을 할당하는것도 재할당이라고 할 수 있다.<br>재할당역시 새로운 메모리공간을 확보하고 재할당한 값을 저장한다.</li>
-<li>값의 교환<br>두 변수의 값을 교환하는 코드를 작성하라<br>var x=1;<br>var y=2;<br>//TODO<br>var x=2;<br>var y=1; //2 1 재할당.<br> or<br>var x=y;<br>var y=1;// 2 1 y값 재할당.<br> or<br>var c = x;<br>var x = y;<br>var y = c;// 2 1 교환재할당.<br>console.log(x,y); // 2 1</li>
-<li>식별자 네이밍 규칙 +  2. 식별자와 같이 보자.<br>식별자는 어떤 값을 구별해서 식별해낼 수 있는 고유한 이름을 말하기때문에 식별자는 네이밍 규칙을 준수해야함.</li>
+          <h1 id="1-변수란-무엇인가-왜-필요한가"><a href="#1-변수란-무엇인가-왜-필요한가" class="headerlink" title="1. 변수란 무엇인가? 왜 필요한가?"></a>1. 변수란 무엇인가? 왜 필요한가?</h1><p>변수란 데이터를 관리하기 위한 핵심 개념이다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10</span> + <span class="number">20</span></span><br></pre></td></tr></table></figure>
+<p>자바스크립트를 해석하고 실행하는 자바스크립트 엔진이 위 코드를 계산(=평가evalution)하려면 10,20,+ 라는 기호의 의미를 알고 있어야 하며, 10+20이라는 식(=표현식expression)의 의미도 해석(=파싱parsing)할 수 있어야 한다.<br>10+20은 새로운 숫자값 30을 만들어 낸다.<br>컴퓨터는 CPU를 사용해서 연산하고, 메모리를 사용해서 데이터를 기억한다.<br>메모리(memory)는 데이터를 저장할 수 있는 메모리셀(memory cell)의 집합체이다. 메모리 셀 하나의 크기는 1바이트(byte)=8비트(bit)이며, 컴퓨터의 메모리 셀의 크기로(=1바이트 단위로) 데이터를 저장(write)하거나 읽어(read)들인다.<br><img src="https://user-images.githubusercontent.com/67843356/92218879-bc6da080-eed4-11ea-84ba-a8f82db0f4c7.jpg" alt="variable_memory_1" title="JS_memory"><br>각 셀은 고유의 메모리 주소(memory address)를 갖는다. 이 메모리 주소는 메모리공간의 위치를 나타내며, 0부터 시작해서 메모리의 크기만큼 정수로 표현된다.<br>컴퓨터는 모든 데이터를 2진수로 처리하기때문에 메모리에 저장되는 데이터는 데이터의종류(숫자,텍스트,이미지,동영상)와 상관없이 모두 2진수로 저장된다.<br>위 예제에서 숫자값 10과20은 메모리상 임의의 위치(메모리주소)에 기억(=저장)되고 CPU는 이 값을 읽어들여 연산을 수행한다 -&gt; 연산된 결과로 생성된 숫자 값 30도 메모리상 임의의 위치에 저장된다.<br><img src="https://user-images.githubusercontent.com/67843356/92218884-bd9ecd80-eed4-11ea-9e40-2afb7d8c939c.jpg" alt="variable_memory_2"><br>편의상 10진수로 표기한 이미지이다. 하지만 우리는 메모리에 저장되는 모든 값이 2진수로 저장된다는것을 기억해야한다.<br>여기서 문제가 발생한다. CPU가 연산해서 만들어낸 숫자 값30을 <strong>재사용할수 없다</strong>는 것이다.<br>연산결과를 단 한번만 사용한다면 문제가 없겠지만 만약 연산 결과 30을 재사용하고싶다면 메모리주소를 통해 연산결과 30이 저장된 메모리 공간에 직접 접근하는것 이외에는 방법이 없다.<br>하지만 자바스크립트는 개발자의 직접적인 메모리 제어를 허용하지 않는다. 다시말해 메모리 주소를 통해 값에 직접 접근하려는 시도는 올바른 방법이 아니다.<br>프로그래밍 언언느 기억하고 싶은 값을 메모리에 저장하고, 저장된 값을 읽어들여 <strong>재사용하기 위해 변수</strong>라는 메커니즘을 제공한다.<br><strong>변수는 <u>하나의 값을 저장</u>하기 위해 확보된 메모리 공간 자체(=<u>변수는 메모리 공간이다.</u>) 또는 그 <u>메모리공간을 식별하기 위해 붙인 이름</u>을 말한다.</strong>(상수도 변수이지만 일반적인 변수와 다른 성격을 갖고있다. 상수는 재할당이 안된다.)<br><strong><em>변수에 여러개의 값을 저장하는 방법</em></strong> : 변수는 하나의 값을 저장하기 위한 매커니즘이다. 여러개의 값을 지정하려면 여러개의 변수를 사용해야하지만 배열이나 객체같은 자료구조를 사용하면 관련이 있는 여러개의 값을 그룹화해서 하나의 값처럼 사용할 수 있다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> coffeeA = <span class="string">&#x27;latte&#x27;</span>; <span class="comment">// 하나의 값을 저장.</span></span><br><span class="line"><span class="keyword">var</span> coffeeShot = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> coffee = &#123;<span class="string">&#x27;americano&#x27;</span>, <span class="string">&#x27;latte&#x27;</span>, <span class="string">&#x27;mocha&#x27;</span>, <span class="string">&#x27;hazelnut&#x27;</span>&#125;; <span class="comment">// 하나의 변수에 객체나 배열과 같은 자료구조 사용하여 여러개의 값 저장.</span></span><br><span class="line"><span class="keyword">var</span> coffeeAShot[</span><br><span class="line">    &#123;<span class="attr">coffeeA</span>: <span class="string">&#x27;latte&#x27;</span>, <span class="attr">coffeeShot</span>: <span class="number">1</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">cooffeB</span>: <span class="string">&#x27;americano&#x27;</span>, <span class="attr">coffeeShot</span>: <span class="number">2</span>&#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<p>변수를 사용해서 위의 코드를 다시 작성하면</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = <span class="number">10</span> + <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+<p>으로, 변수 result에 10+20의 결과 값인 30을 메모리 공간에 저장된다. 이때 메모리공간에 저장된 값 30을 다시 읽어들여 <strong>재사용할 수 있도록</strong> 저장된 메모리공간에 상징적인 이름을 붙인것이 바로 변수이다.<br>변수에 값을 저장하는것을 할당(assignment, 대입, 저장)이라 하고,<br>변수에 저장된 값을 읽어 들이는 것을 참조(reference)라 한다.</p>
+<p>사람이 이해할 수 있는 언어로 값이 저장된 메모리 공간에 붙인 상징적인 이름인 변수 이름을 통해 변수에 저장된 값의 의미를 명확히 이해할 수 있어 가독성을 높이는 부수적인 효과도 있다. 코드는 컴퓨터에게 내리는 명령이면서 개발자를 위한 문서이기때문에 개발자의 의도를 나타내는 명확한 네이밍은 코드를 이해하기 쉽게 만들며, 이는 협업과 품질향상에도 도움을 준다. 변수의 이름을 심사숙고해서 지어야한다.</p>
+<h1 id="2-식별자-‘8-식별자-네이밍-규칙’과-같이-보자"><a href="#2-식별자-‘8-식별자-네이밍-규칙’과-같이-보자" class="headerlink" title="2. 식별자 + ‘8.식별자 네이밍 규칙’과 같이 보자."></a>2. 식별자 + ‘8.식별자 네이밍 규칙’과 같이 보자.</h1><p>변수 이름(=식별자ID,identifer)은 <strong>어떤값을 구별해서 식별할 수 있는 고유한 이름</strong>으로 사람이름을 짓는거와 같다.<br>값은 메모리 공간에 저장되어 있기때문에 저장되어있는 어떤 값을 구별해서  식별해내야한다. 따라서 식별자는 이를위해 어떤값이 저장되어있는 메모리 주소를 기억(저장)해야한다.<br><strong>식별자는 값이 아니라 <u>메모리 주소를 기억</u>하고 있다는 것</strong>이 핵심이다.(=식별자는 메모리 주소에 붙인 이름이다.)<br><strong><em>!변수이름은 고유해야한다고 했다. 그렇다면 한 번 사용한 변수이름은 두 번 다시 못쓸까?!</em></strong> 결론부터 말하자면 <strong><u></u>아니다.</u></strong> 다시 쓸 수 있다. 쉽게말하면 파일이름지을때 <code>test.js</code>만들었다고 가정했을때 <code>test.js</code>를 같은 폴더에서는 못쓰고 다른 폴더에서 동일한 이름으로 사용할수있다. 이는 스코프에서 더 배우자!</p>
+<h1 id="3-변수-선언"><a href="#3-변수-선언" class="headerlink" title="3. 변수 선언"></a>3. 변수 선언</h1><p>변수를 생성하는 것을 변수 선언(variable declaration)이라 한다. 즉, 값을 저장하기 위한 메모리 공간을 확보하고 변수이름과 확보된 메모리 공간의 주소를 연결(name binding)해서 값을 저장할 수 있게 준비하는 것이다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> score; <span class="comment">// 변수 선언(변수 선언문)</span></span><br></pre></td></tr></table></figure>
+<p>변수를 사용하려면 반드시 선언이 필요하다. <strong>변수 선언 키워드(keyword) -&gt; <code>var</code>, <code>let</code>, <code>const</code></strong><br>(!리바인딩과 변형mutation을 헷갈려서는 안된다. 리바인딩은 참조하는 식별자에 대한 변화이고 변형은 참조되는 값의 변화이다.</p>
+<ul>
+<li><code>var</code>키워드로 선언한 변수는 런타임 이전에 자바스크립트 엔진에 의해 암묵적으로 ‘선언단계’와 ‘초기화단계’가 한번에 진행된다. 재할당이 가능하다.<ul>
+<li>선언 단계: 변수 이름을 등록해서 자바스크립트 엔진에 변수의 존재를 알린다.</li>
+<li>초기화 단계 : 값을 저장하기 위한 메모리 공간을 확보하고 암묵적으로 undefined를 할당해 초기화(initialization,변수가 선언된 이후 최초로 값을 할당함.)한다.</li>
+<li><code>var score;</code>는 선언 단계를 통해 변수이름 <code>score</code>를 등록하고, 초기화 단계를 통해 <code>score</code>변수에 암묵적으로 <code>undefined</code>를 할당해 초기화한다.</li>
+</ul>
+</li>
+<li><code>let</code>은 분리되어 진행된다. 즉, 런타임이전에 선언단계 실행되고 변수 선언문에 도달했을 때 초기화단계 실행한다. 재할당 가능하다.</li>
+<li><code>const</code>는 반드시 선언과 동시에 초기화해야한다. 재할당이 금지된다.</li>
+</ul>
+<h1 id="4-변수-선언의-실행-시점과-변수-호이스팅"><a href="#4-변수-선언의-실행-시점과-변수-호이스팅" class="headerlink" title="4. 변수 선언의 실행 시점과 변수 호이스팅"></a>4. 변수 선언의 실행 시점과 변수 호이스팅</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//올바른 상태</span></span><br><span class="line"><span class="keyword">var</span> score; <span class="comment">// 변수 선언문</span></span><br><span class="line"><span class="built_in">console</span>.log(score); <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//호이스팅이 일어나는 상태</span></span><br><span class="line"><span class="built_in">console</span>.log(score); <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">var</span> score; <span class="comment">// 변수 선언문</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//두개의 코드 모두 같은 결과를 도출함.</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>변수 선언의 실행: <ul>
+<li>변수 선언이 소스코드가 한 줄씩 순차적으로 실행되는 시점인 <strong>런타임(runtime)**이 아니라 **그 이전 단계에서 먼저 실행</strong>되기 때문에 선언문보다 변수를 참조하는 코드가 앞에 있다해서 <strong>참조에러ReferenceError를 발생시키지 않는다.</strong> 런타임단계를 실행하기 앞서 먼저 소스코드의 평가 과정을 거치면서 소스코드 실행을 위한 준비를 한다.</li>
+</ul>
+</li>
+<li>변수 호이스팅: <ul>
+<li>자바스크립트 엔진은 변수 선언이 소스코드의 어디에 있든 상관없이 다른 코드보다 먼저 실행한다. 즉, <strong>변수선언이 소스코드의 어디에 위치하는지와 상관없이 어디서든지 변수를 참조할 수 있다.</strong> (=변수선언(선언단계와 초기화단계)이 소스코드가 순차적으로 실행되는 런타임 이전 단계에서 먼저 실행된다는 증거===<strong><u>변수 선언문이 코드의 선두로 끌어 올려진것처럼 동작하는 자바스크립 고유의 특징을 변수 호이스팅(variable hoisting)</u></strong> 이라 한다.)</li>
+<li>호이스팅 발생을 이용해서 무언갈 하려는 행위를 하면 안된다.</li>
+<li>var는 호이스팅이 발생하지 않는것처럼 보이지만 let과 const로 바꾸면 에러가 발생한다.</li>
+</ul>
+</li>
+</ul>
+<p><em>!사실 호이스팅은 변수 선언 뿐만이 아니라 var, let, const, function, function*, class 키워드를 사용해서 선언하는 모든 식별자(변수, 함수, 클래스 등)는 호이스팅된다. 모든 선언문은 런타임 이전 단계에서 먼저 실행되기 때문이다.!</em></p>
+<h1 id="5-값의-할당"><a href="#5-값의-할당" class="headerlink" title="5. 값의 할당"></a>5. 값의 할당</h1><p>할당(assignment,대입, 저장) 할 때는 할당 연산자’=’를 사용한다. 우변의 값을 좌변의 변수에 할당한다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> score; <span class="comment">// 변수 선언(변수 선언문)</span></span><br><span class="line">score = <span class="number">80</span>; <span class="comment">// 값의 할당</span></span><br></pre></td></tr></table></figure>
+<p>변수 선언과 값의 할당을 하나의 문(statement)으로 단축 표현할 수 있다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> score = <span class="number">80</span>; <span class="comment">// 변수 선언(변수 선언문)과 값의 할당</span></span><br></pre></td></tr></table></figure>
+<p>자바스크립트 엔진은 변수 선언과 값의 할당을 하나의 문으로 표현해도 변수선언과 값의할당을 2개의 문으로 나누어 각각 실행한다.<br>주의할 점!!: 변수 선언은 소스코드가 순차적으로 실행되는 시점인 런타임 이전에 먼저 실행되지만 값의 할당은 소스코드가 순차적으로 실행되는 시점인 런타임에 실행된다는 것이다.<br>변수에 값을 할당할때는 이전값(=초기된 값)이 저장되어있던 <strong>메모리를 덮어쓰는것이 아니다.</strong> <u>새로운 메모리공간을 <strong>확보</strong></u>하고 그 곳에 할당 된 값을 저장한다는 것이 중요하다.<br><img src="https://user-images.githubusercontent.com/67843356/92231416-ae754b00-eee7-11ea-8512-5f1999b4c24b.jpg" alt="variable_memory_3"><br><strong><em>!변수선언때 메모리공간에 할당한 값을 덮어쓰지 않는 이유는 자바스크립트 엔진이 원래있던 값을 지우는 동작을 부수적으로 실행해야하기 때문이다. 컴퓨터입장에서는 새로운 메모리공간을 확보하는것이 더 편하기 때문이다.!</em></strong><br>초기화된 값은 더이상 불러올 수 없다. 왜냐하면 초기화된 값의 변수이름이 할당된 변수의 이름으로 이동했기 때문에 초기화된 값의 변수이름이 없어서 부를 수가 없다. 사용할 수 없다는 것이다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(score); <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//DO-1</span></span><br><span class="line"><span class="keyword">var</span> score;   <span class="comment">//변수 선언 -①</span></span><br><span class="line">score = <span class="number">80</span>;  <span class="comment">//값의 할당 -②</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// DO-2 </span></span><br><span class="line"><span class="comment">// score = 80; 값의 할당</span></span><br><span class="line"><span class="comment">// var score;  변수 선언</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(score); <span class="comment">// ?? -&gt; 80</span></span><br></pre></td></tr></table></figure>
+<p>위의 코드 DO-1의 코드와 DO-1과 DO-2의 동작의 결과가 똑같이 일어나는 이유를 설명할 수 있어야 한다.</p>
+<h1 id="6-값의-재할당"><a href="#6-값의-재할당" class="headerlink" title="6. 값의 재할당"></a>6. 값의 재할당</h1><p>이미 값이 할당되어 있는 변수에 새로운 값을 또다시 할당하는 것을 말한다.<br>var키워드로 선언한 <strong>변수는 값을 재할당하는게 가능</strong>하다. let도 가능하지만 const는 불가능하다.<br>만약 값을 재할당 할 수 없어 <u>한 번 정해지면 변하지 않는 값은 상수(constant)</u>라고 한다. const키워드도 상수를 표현할 수 있지만 반드시 상수만의 위해 사용하는것은 아니다.<br>초기값에 값을 할당하는것도 재할당이라고 할 수 있다.<br>재할당역시 새로운 메모리공간을 확보하고 재할당한 값을 저장한다.<br><em>!가비지 콜렉터(garbage collector) : 애플리케이션이 할당(allocate)한 메모리공간을 주기적으로 검사해서 더이상 사용되고 있지 않는 메모리, 즉 어떤 식별자도 참조하지 않는 <strong>메모리공간을 해제(release)</strong> 하는 기능을 말한다.</em><br><em>!언매니지드 언어(unmanaged language)와 매니지드 언어(managed language) : 프로그래밍 언어는 메모리 관리방식에 따라 분류할 수 있다.<br><u>C언어 같은 언매니지드 언어</u>는 개발자가 명시적으로 메모리를 할당하고 해제하기 위해 메모리 제어 기능을 제공하여 개발자가 주도할 수 있으므로 개발자의 역량에 따라  최적의 성능을 확보할수도 있지만 반대의 경우 치명적인 오류를 생산할 가능성도 있다.<br><u>자바스크립트같은 매니지드 언어</u>는 개발자가 명시적으로 메모리를 할당하고 해제할 수 없고, 메모리 해제는 가비지콜렉터가 수행하며 개발자가 관여할 수 없다. 개발자의 역량에 의존하는 부분이 상대적으로 작아져서 어느정도 일정한 생산성을 확보할 수 있지만 성능면에서 어느정도의 손실은 감수해야한다.!</em></p>
+<h1 id="7-값의-교환"><a href="#7-값의-교환" class="headerlink" title="7. 값의 교환"></a>7. 값의 교환</h1><p>두 변수의 값을 교환하는 코드를 작성하라.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> y=<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//TODO</span></span><br><span class="line"><span class="keyword">var</span> c = x;</span><br><span class="line"><span class="keyword">var</span> x = y;</span><br><span class="line"><span class="keyword">var</span> y = c;<span class="comment">// 2 1 교환재할당!.</span></span><br><span class="line"><span class="comment">//강사님의 또다른 풀이</span></span><br><span class="line">[x,y]=[y.x]</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(x,y); <span class="comment">// 2 1</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="8-식별자-네이밍-규칙-‘2-식별자’와-같이-보자"><a href="#8-식별자-네이밍-규칙-‘2-식별자’와-같이-보자" class="headerlink" title="8. 식별자 네이밍 규칙 + ‘2.식별자’와 같이 보자."></a>8. 식별자 네이밍 규칙 + ‘2.식별자’와 같이 보자.</h1><p>외우자.<br>식별자는 어떤 값을 구별해서 식별해낼 수 있는 고유한 이름을 말하기때문에 식별자는 네이밍 규칙을 준수해야한다.<br>-식별자는 특수문자를 제외한 문자, 숫자, 언더스코어<em>, 달러기호$를 포함할 수 있다.<br>    - 단, 특수문자를 제외한 문자, 언더스코어</em>, 달러기호$로 시작해야함. 숫자로 시작하는건 허용하지 않는다.<br>-예약어(reserved word)는 식별자로 사용할 수 없다.(예약어는 프로그래밍 언어에서 사용되고 있거나 사용 예정인 단어를 말한다.)</p>
+<ul>
+<li>var first-name // SyntaxError가 나오는 이유는 -기호를 산술연산자로 인식하기 때문이다.</li>
+<li>네이밍 컨벤션(naming convention)은 식별자를 만들 때 가독성이 좋게하여 단어를 한눈에 구분하기위해 규정한 명명규칙이다.<ul>
+<li>네이밍 컨벤션 4가지 유형<ol>
+<li>카멜 케이스 : firstName - 변수나 함수이름에 사용.</li>
+<li>스네이크 케이스 : first_name</li>
+<li>파스칼 케이스:FirstName - 생성자 함수, 클래스 이름에 사용.</li>
+<li>헝가리언케이스: strFirstName//type+identifier , $elem=document.getElenentById(‘myId)//JQuery에서 DOM노드 요소를 나타냄, observable=fromEvent(document, ‘click’)//RxJS옵저버블</li>
 </ol>
-<p>-식별자는 특수문자를 제외한 문자, 숫자, 언더스코어<em>, 달러기호$를 호함할 수 있다.<br>단, 특수문자를 제외한 문자, 언더스코어</em>, 달러기호$로 시작해야함. 숫자로 시작하는건 허용하지 않음.<br>-예약어는 식별자로 사용할 수 없음.(예약어는 프로그래밍 언어에서 사용되고 있거나 사용 예정인 단어를 말함.)<br>-네이밍 컨벤션 4가지 유형<br>1.카멜 케이스 : firstName - 변수나 함수이름에 사용.<br>2.스네이크 케이스 : first_name<br>3.파스칼 케이스:FirstName - 생성자 함수, 클래스 이름에 사용.<br>4.헝가리언케이스: strFirstName//type+identifier , $elem=document.getElenentById(‘myId)//JQuery에서 DOM노드 요소를 나타냄, observable=fromEvent(document, ‘click’)//RxJS옵저버블</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>일반적으로 변수나 함수의 이름에는 카멜케이스를 사용하고,<br>생성자함수, 클래스의 이름에는 파스칼케이스를 사용하는 것이 좋다.</p>
 
       
     </div>
