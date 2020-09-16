@@ -148,6 +148,412 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://do-mandoo.github.io/2020/09/16/let-const-and-block-level-scope/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="JinSol">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JINLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/16/let-const-and-block-level-scope/" class="post-title-link" itemprop="url">let, const and block-level scope</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-09-16 22:20:13 / Modified: 22:20:53" itemprop="dateCreated datePublished" datetime="2020-09-16T22:20:13+09:00">2020-09-16</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>var 키워드로 선언한 변수의 문제점</li>
+</ol>
+<ul>
+<li>ES5까지 변수를 선언할수 있는 유일한 방법은 var키워드를 사용하는것이었다. var키워드로 선언된 변수는 다음과같은 특징이 있다. 이는 다른 언어와는 구별되는 독특한 특징으로, 주의를 기울이지 않으면 심각한 문제를 발생시킬수 있다.<br>1-1. 변수 중복 선언 허용</li>
+<li>var키워드로 선언한 변수는 중복선언이 가능하다.<br>var x = 1;<br>var y = 1;</li>
+</ul>
+<p>// var키워드로 선언된 변수는 같은 스코프내에서 중복선언을 허용한다.<br>// 초기화문이 있는 변수선언문은 자바스크립트엔진에 의해 var키워드가 없는것처럼 동작한다.<br>var x = 100;<br>// 초기화문이 없는 변수선언문은 무시된다.<br>var y;</p>
+<p>console.log(x); // 100<br>console.log(y); // 1<br>위 코드를 보면 var 키워드로 선언한 변수를 중복선언하면 초기화문(변수선언과 동시에 초기값을 할당하는 문) 유무에 따라 다르게 동작한다. 초기화문이 있는 변수선언문은 자바스크립트엔진에 의해 var키워드가 없는것처럼 동작하고, 초기화문이 없는 변수선언문은 무시된다. 이때 에러는 발생하지 않는다.<br>위 코드와 같이 만약 동일한 이름의 변수가 이미 선언되어있는것을 모르고 변수를 중복선언하면서 값까지 할당했다면 의도치않게 먼저선언된변수의 값이 변경되는 부작용이 발생한다.<br>1-2. 함수 레벨 스코프</p>
+<ul>
+<li>var 키워드로 선언한 변수는 오로지 함수의 코드블록만을 지역스코프로 인정한다. 따라서 함수 외부에서 var키워드로 선언한변수는 코드블록내에서 선언해도 모두 전역변수가 된다.<br>var x = 1;<br>if(true) {<br>// x는 전역변수다. 이미선언된 전역변수 x가 있으므로 x변수는 중복선언된다.<br>// 이는 의도치않게 변수값이 변경되는 부작용을 발생시킨다.<br>var x = 10;<br>}<br>console.log(x); // 10</li>
+<li>for문의 변수선언문에서 var키워드로 선언한 변수도 전역변수가 된다.<br>var i = 10;<br>// for문에서 선언한 i는 전역변수이다. 이미선언된 전역변수 i가 있으므로 중복선언된다.<br>for(var i = 0; i&lt;5; i++) {<br>console.log(i); // 0 1 2 3 4<br>}<br>//의도치않게 i변수의 값이 변경되었다.<br>console.log(i); // 5<br>함수 레벨 스코프는 전역변수를 남발할 가능성을 높인다. 이로인해 의도치않게 전역변수가 중복선언되는 경우가 발생한다.<br>1-3. 변수 호이스팅</li>
+<li>var키워드로 변수를 선언하면 변수호이스팅에의해 변수선언문이 스코프의 선두로 끌어올려진것처럼 동작한다. 즉, 변수호이스팅에의해 var키워드로 선언한 변수는 변수선언문 이전에 참조할수 있다. 단, 할당문이전에 변수를 참조하면 언제나 undefined를 반환한다.<br>// 이 시점에는 변수 호이스팅에 의해 이미 foo 변수가 선언되었다.( 1.선언단계)<br>// 변수 foo는 undefined로 초기화된다.( 2.초기화단계)<br>console.log(foo); // undefined</li>
+</ul>
+<p>//변수에 값을 할당( 3.할당 단계)<br>foo = 123;<br>console.log(foo); // 123</p>
+<p>// 변수 선언은 런타임 이전에 자바스크립트 엔진에 의해 암묵적으로 실행된다.<br>var foo;</p>
+<p>변수선언문 이전에 변수를 참조하는것은 변수호이스팅에의해 에러를 발생시키지는않지만 프로그램의 흐름상 맞지않을뿐더러 가독성을 떨어뜨리고 오류를 발생시킬 여지를 남긴다.</p>
+<ol start="2">
+<li>let키워드</li>
+</ol>
+<ul>
+<li>앞에서 살펴본 var키워드의 단점을 보완하기위해 ES6에서는 새로운 변수 선언 키워드인 let과 const를 도입했다. var키워드와의 차이점을 중심으로 let키워드를 살펴보자.<br>2-1. 변수 중복 선언 금지</li>
+<li>var 키워드로 이름이 동일한 변수를 중복선언하면 아무런 에러가 발생하지 않는다. 이때 변수를 중복선언하면서 값까지 할당했다면 의도치않게 먼저 선언된 변수값이 재할당되어 변경되는 부작용이 발생한다. </li>
+<li>하지만 let키워드로 이름이 같은 변수를 중복선언하면 문법에러(SyntaxError)가 발생한다.<br>var foo = 123; // var키워드로 선언된 변수는 같은 스코프내에서 중복선언을 허용한다.<br>var foo = 456; // 자바스크립트엔진에 의해 var키워드가 없는것처럼 동작한다.<br>let bar = 123; // let이나 const 키워드로 선언된 변수는 같은 스코프내에서 중복선언을 허용하지않는다.<br>let bar = 456; // SyntaxError: Identifier ‘bar’ has already been declared<br>2-2. 블록 레벨 스코프</li>
+<li>var키워드로 선언한 변수는 오로지 함수의 코드블록만을 지역스코프로 인정하는 함수레벨스코프를 따른다. 하지만 let키워드로 선언한 변수는 모든 코드블록(함수, if문, for문, while문, try/catch문 등)을 지역스코프로 인정하는 블록레벨스코프(block-level scope)를 따른다.</li>
+<li>다음 코드를 살펴보자<br>let foo = 1; // 전역변수<br>{<br>let foo = 2; // 지역변수<br>let bar = 3; // 지역변수<br>}<br>console.log(foo); // 1<br>console.log(bar); // ReferenceError: bar is not defined</li>
+</ul>
+<p>let키워드로 선언된 변수는 블록레벨스코프를 따른다. 따라서 위 예제의 코드블록내에서 선언된 foo변수와 bar변수는 지역변수다. 전역에서 선언된 foo변수와 코드블록내에서 선언된 foo변수는 다른별개의 변수다. 또한 bar변수도 블록레벨스코프를 갖는 지역변수다. 따라서 전역에는 bar변수를 참조할수 없다.<br>함수도 코드블록이므로 스코프를 만든다. 이때 함수내의 코드블록은 함수레벨스코프에 중첩된다.<br>2-3. 변수 호이스팅</p>
+<ul>
+<li>var 키워드로 선언한 변수와 달리 let키워드로 선언한 변수는 변수호이스팅이 발생하지 않는것처럼 동작한다.<br>console.log(foo); //ReferenceError: foo is not defined<br>let foo;</li>
+</ul>
+<p>이처럼 let키워드로 선언한 변수를 변수선언문 이전에 참조하면 참조에러(ReferenceError)가 발생한다.<br>var 키워드로 선언한 변수는 런타임이전에 자바스크립트 엔진에 의해 암묵적으로 “선언단계”와 “초기화단계”가 한번에 진행된다.</p>
+<p>즉, 선언단계에서 스코프(실행컨텍스트의 렉시컬환경(Lexical Environment))에 변수 식별자를 등록해 자바스크립트 엔진에 변수의 존재를 알린다. 그리고 즉시 초기화단계에서 undefined로 변수를 초기화한다. 따라서 변수선언문 이전에 변수에 접근해도 스코프에 변수가 존재하기때문에 에러가 발생하지않는다. 다만 undefined를 반환한다. 이후 변수할당문에 도달하면 비로소 값이 할당된다.</p>
+<p>// var 키워드로 선언한 변수는 런타임이전에 선언단계와 초기화단계가 실행된다.<br>// 따라서 변수선언문 이전에 변수를 참조할수 없다.<br>console.log(foo); // undefined<br>var foo;<br>console.log(foo); // undefined<br>foo = 1; // 할당문에서 할당단계가 실행된다.<br>console.log(foo); // 1<br>설명:<br>let키워드로 선언한 변수는 “선언단계”와 “초기화단계”가 분리되어 진행된다. 즉, 런타임이전에 자바스크립트엔진에 의해 암묵적으로 선언단계가 먼저 실행되지만 초기화단계는 변수선언문에 도달했을때 실행된다.<br>만약 초기화단계가 실행되기 이전에 변수에 접근하려고하면 참조에러(ReferenceError)가 발생한다. let키워드로 선언한 변수는 스코프의 시작지점부터 초기화단계시작지점(변수선언문)까지 변수를 참조할수없다. 스코프의 시작지점부터 초기화시작지점까지 변수를 참조할수 없는 구간을 일시적사각지대(Temporal Dead Zone; TDZ)라고 부른다.</p>
+<p>// 런타임이전에 선언단계가 실행된다. 아직변수가 초기화되지 않았다.<br>// 초기화이전의 일시적 사각 지대에서는 변수를 참조할수 없다.<br>console.log(foo);// ReferenceError: foo is not defined</p>
+<p>let foo; // 변수선언문에서 초기화단계가 실행된다.<br>console.log(foo); // undefined</p>
+<p>foo = 1; // 할당문에서 할당단계가 실행된다.<br>console.log(foo); // 1<br>설명 :<br>결국 let 키워드로 선언한 변수는 변수호이스팅이 발생하지않는것처럼 보인다. 하지만 그렇지 않다.<br>let foo = 1; // 전역변수<br>{<br>  console.log(foo); // ReferenceError: Cannot access ‘foo’ before initialization<br>  let foo = 2; //지역변수<br>}<br>설명:<br>let 키워드로 선언한 변수의 경우, 변수호이스팅이 발생하지않는다면 위 코드는 전역변수foo의 값을 출력해야한다. 하지만 let키워드로 선언한 변수도 여전히 호이스팅이 발생하기때문에 참조에러(ReferenceError)가 발생한다.<br>자바스크립트는 ES6에서 도입된 let, const를 포함해서 모든 선언(var, let, const, function, function*, class 등)을 호이스팅한다. 단,ES6에서 도입된 let, const, class를 사용한 선언문은 호이스팅이 발생하지않는것처럼 동작한다.<br>2-4. 전역 객체와 let</p>
+<ul>
+<li>var키워드로 선언한 전역변수와 전역함수, 그리고 선언하지않은 변수에 값을 할당한 암묵적 전역은 전역객체에 window의 프로퍼티가 된다. 전역객체의 프로퍼티를 참조할때 window를 생략할수 있다.<br>// 이 코드 예제는 브라우저 환경에서 실행해야 한다.<br>//전역변수<br>var x=1;<br>//암묵적전역<br>y=2;<br>//전역함수<br>function foo() {}</li>
+</ul>
+<p>//var키워드로 선언한 전역변수는 전역객체 window의 프로퍼티다.<br>console.log(window.x); // 1<br>//전역객체 window의 프로퍼티는 전역변수처럼 사용할수 있다.<br>console.log(x); // 1</p>
+<p>//암묵적 전역은 전역객체 window의 프로퍼티다.<br>console.log(window.y); // 2<br>console.log(y); // 2</p>
+<p>//함수선언문으로 정의한 전역함수는 전역객체 window의 프로퍼티다.<br>console.log(window.foo); // f foo() {}<br>//전역객체 window의 프로퍼티는 전역변수처럼 사용할수 있다.<br>console.log(foo); // f foo() {}<br>설명:<br>let키워드로 선언한 전역변수는 전역객체의 프로퍼티가 아니다. 즉,window.foo와같이 접근할수 없다. let전역변수는 보이지않는 개념적인 블록(전역 렉시컬 환경의 선언적 환경 레코드. 이에 대해서는 ‘실행 컨텍스트’에서 자세히 공부하자.)내에 존재하게 된다.<br>// 이 코드 예제는 브라우저 환경에서 실행해야한다.<br>let x = 1;</p>
+<p>//let. const키워드로 선언한 전역변수는 전역객체 window의 프로퍼티가 아니다.<br>console.log(window.x); // undefined<br>console.log(x); // 1</p>
+<ol start="3">
+<li>const 키워드</li>
+</ol>
+<ul>
+<li>const 키워드는 상수(constant)를 선언하기위해 사용한다. 하지만 반드시 상수만을 위해 사용하지는 않는다. 이에 대해서는 후반부에 설명한다. const키워드의 특징은 let키워드와 대부분 동일하므로 let키워드와 다른점을 중심으로 살펴보자.<br>3-1. 선언과 초기화</li>
+<li>const 키워드로 선언한 변수는 반드시 선언과 동시에 초기화해야한다.<br> const foo = 1;<br> 그렇지않으면 문법에러가 발생한다.<br> const foo; // SyntaxError: Missing initializer in const declaration</li>
+<li>const키워드로 선언한 변수는 let키워드로 선언한 변수와 마찬가지로 블록레벨스코프를 가지며, 변수호이스팅이 발생하지않는것처럼 동작한다.<br> {<br>   // 변수 호이스팅이 발생하지 않는 것처럼 동작한다.<br>   console.log(foo); // ReferenceError: Cannot access ‘foo’ before initialization<br>   const foo = 1;<br>   console.log(foo); // 1<br> }<br> //블록 레벨 스코프를 갖는다.<br> console.log(foo); // ReferenceError: foo is not defined<br>3-2. 재할당 금지</li>
+<li>var 또는 let키워드로 선언한 변수는 재할당이 자유로우나 const키워드로 선언한 변수는 재할당이 금지된다.<br>const foo = 1;<br>foo = 2; // TypeError: Assignment to constant variable.<br>3-3. 상수</li>
+<li>const키워드로 선언한 변수에 원시값을 할당한경우 변수값을 변경할수 없다. 원시값은 변경불가능한 값(immutable value)이므로 재할당없이 값을 변경할수있는 방법이 없기때문이다. 이러한 특징을 이용해 const키워드를 상수를 표현하는데에 사용하기도 한다.</li>
+<li>변수의 상대개념인 상수는 재할당이 금지된 변수를 말한다. 상수도 값을 저장하기위한 메모리공간이 필요하므로 변수라고 할수있다. 단, 변수는 언제든지 재할당을 통해 변수값을 변경할수 있지만 재할당이 금지된다.</li>
+<li>상수는 상태유지와 가독성, 유지보수의 편의를 위해 적극적으로 사용해야한다.<br>//세전가격<br>let preTaxPrice = 100;</li>
+</ul>
+<p>//세후가격<br>//0.1의 의미를 명확히 알기 어렵기때문에 가독성이 좋지 않다.<br>let afterTaxPrice = preTaxPrice+(preTaxPrice*0.1);<br>console.log(afterTaxPrice); // 110<br>설명:<br>코드내에서 사용한 0.1은 어떤의미로 사용했는지 명확히 알기 어렵기 때문에 가독성이 좋지않다. 또한 세율을 의미하는 0.1은 쉽게바뀌지않는 값이며, 프로그램전체에서 고정된 값을 사용해야한다. 이때 세율을 상수로 정의하면 값의 의미를 쉽게 파악할수있고 변경될수없는 고정값으로 사용할수있다.<br>const 키워드로 선언된 변수는 재할당이 금지된다. const 키워드로 선언된 변수에 원시값을 할당한 경우, 원시값은 변경할 수 없는 값(immutable value)이고 const 키워드에 의해 재할당이 금지되므로 할당된 값을 변경할 수 있는 방법은 없다. 또한 상수는 프로그램 전체에서 공통적으로 사용하므로 나중에 세율이 변경되면 상수만을 변경하면 되기 때문에 유지보수성이 대폭 향상된다.<br>일반적으로 상수의 이름은 대문자로 선언해 상수임을 명확히 나타낸다. 여러 단어로 이뤄진 경우에는 언더스코어(_)로 구분해서 스네이크 케이스로 표현하는 것이 일반적이다.<br>//세율을 의미하는 0.1은 변경할 수 없는 상수로서 사용할 값이다.<br>//변수 이름을 대문자로 선언해 상수임을 명확히 나타낸다.<br>const TAX_RATE = 0.1;</p>
+<p>//세전 가격<br>let preTaxPrice = 100;</p>
+<p>//세후 가격<br>let afterTaxPrice = preTaxPrice+(preTaxPrice*TAX_RATE);<br>console.log(afterTaxPrice); // 110<br>3-4. const 키워드와 객체</p>
+<ul>
+<li>const 키워드로 선언된 변수에 원시값을 할당한경우 값을 변경할수 없다. 하지만 const키워드로 선언된 변수에 객체를 할당한 경우, 값을 변경할수 있다. 변경불가능한 값인 원시값은 재할당없이 변경(교체)할수 있는 방법이 없지만 변경가능한 값인 객체는 재할당없이도 직졉변경이 가능하기 때문이다.<br>const person = {<br>name: ‘Lee’<br>};<br>//객체는 변경 가능한 값이다. 따라서 재할당없이 변경이 가능하다.<br>person.name = ‘Kim’;<br>console.log(person); // {name:”Kim”}<br>설명:<br>const키워드는 재할당을 금지할뿐 “불변(immutable)”을 의미하지 않는다. 다시말해, 새로운 값을 재할당하는것은 불가능하지만 프로퍼티 동적 생성, 삭제, 프로퍼티값의 변경을 통해 객체를 변경하는것은 가능하다. 이때 객체가 변경되더라도 변수에 할당된 참조값은 변경되지 않는다.</li>
+</ul>
+<ol start="4">
+<li>var vs. let vs. const</li>
+</ol>
+<ul>
+<li>변수선언에는 기본적으로 const를 사용하고 let은 재할당이 필요한 경우에 한정해 사용하는것이 좋다. const키워드를 사용하면 의도치않은 재할당을 방지하기 때문에 좀 더 안전하다.</li>
+<li>var, let, const키워드는 다음과 같이 사용하는것을 권장한다.<br>ES6를 사용한다면 var키워드는 사용하지 않는다.<br>재할당이 필요한 경우에 한정해 let키워드를 사용한다. 이때 변수의 스코프는 최대한 좁게 만든다.<br>변경이 발생하지않고 읽기전용으로 사용하는 (재할당이 필요없는 상수)원시값과 객체에는 const키워드를 사용한다. const키워드는 재할당을 금지하므로 var, let키워드보다 안전하다.</li>
+<li>변수를 선언하는 시점에는 재할당이 필요할지 잘 모르는 경우가 많다. 그리고 객체는 의외로 재할당하는 경우가 드물다.(Angular, React, Vue.js와 같은 SPA프레임워크에서는 상태가 변경되었음을 명확히 하기위해 변경된 객체를 재할당하는 경우도 있다.) 따라서 변수를 선언할때는 일단 const키워드를 사용하자. 반드시 재할당이 필요하다면(반드시 재할당이 필요한지 한번생각해볼 일이다.)그때 const키워드를 let키워드로 변경해도 결코 늦지 않는다.</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://do-mandoo.github.io/2020/09/16/%EC%A0%84%EC%97%AD%EB%B3%80%EC%88%98%EC%9D%98-%EB%AC%B8%EC%A0%9C%EC%A0%90problem-of-global-variable/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="JinSol">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JINLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/16/%EC%A0%84%EC%97%AD%EB%B3%80%EC%88%98%EC%9D%98-%EB%AC%B8%EC%A0%9C%EC%A0%90problem-of-global-variable/" class="post-title-link" itemprop="url">전역변수의 문제점problem of global variable</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-09-16 22:19:32 / Modified: 22:20:40" itemprop="dateCreated datePublished" datetime="2020-09-16T22:19:32+09:00">2020-09-16</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>전역변수의 무분별한 사용은 위험하다. 전역변수를 반드시 사용해야할 이유를 찾지못한다면 지역변수를 사용해야한다. </li>
+<li>전역변수의 문제점과 전역변수의 사용을 억제할 수 있는 방법을 살펴보자.</li>
+</ul>
+<ol>
+<li>변수의 생명 주기<br>1-1. 지역 변수의 생명 주기</li>
+</ol>
+<ul>
+<li>변수는 선언에 의해 생성되고 할당을 통해 값을 갖는다. 그리고 언젠가는 소멸한다.= 변수는 생물과 유사하게 생성되고 소멸되는 생명주기(life cycle)가 있다. 변수에 생명주기가 없다면 한번선언된 변수는 프로그램을 종료하지않는 한 영원히 메모리공간을 점유하게 된다.</li>
+<li>변수는 자신이 선언된 위치에서 생성되고 소멸한다. 전역변수의 생명주기는 애플리케이션의 생명주기와 같다. 하지만 함수내부에서 선언된 지역변수는 함수가 호출되면 생성되고, 함수가 종료하면 소멸한다.<br>function foo() {<br>var x = ‘local’;<br>console.log(x); // local<br>return x;<br>}<br>foo();<br>console.log(x); // ReferenceError: x is not defined</li>
+<li>설명:<br>-지역변수 x는 foo함수가 호출되기 이전까지는 생성되지 않는다. foo함수를 호출하지않으면 함수내부의 변수선언문이 실행되지않기 때문이다.<ul>
+<li>‘4변수.4변수선언의실행시점과변수호이스팅’에서 살펴보았듯이 변수선언은 선언문이 어디에 있든 상관없이 가장먼저 실행된다. 다시말해, 변수선언은 코드가 한줄씩 순차적으로 실행되는 시점인 런타임에 실행되는것이 아니라 런타임이전단계에서 자바스크립트엔진에 의해 먼저 실행된다.<br>그런데, 엄밀히 말하자면 위 설명은 전역변수에 한정된 것이다. 함수내부에서 선언한 변수는 함수가 호출된 직후에 함수몸체의 코드가 한줄씩 순차적으로 실행되기이전에 자바스크립트 엔진에 의해 먼저 실행된다.</li>
+<li>위 코드의 foo함수를 호출하면 함수 몸체의 다른 문들이 순차적으로 실행되기 이전에 x변수의 선언문이 자바스크립트엔진에 의해 가장 먼저 실행되어 x 변수가 선언되고 undefined로 초기화된다. 그후, 함수몸체를 구성하는 문들이 순차적으로 실행되기 시작하고 변수할당문이 실행되면 x변수에 값이 할당된다. 그리고 함수가 종료하면 x변수도 소멸되어 생명주기가 종료된다. 따라서 함수내부에서 선언된 지역변수 x는 foo함수가 호출되어있는 동안에만 유효하다. 즉, 지역변수의 생명주기는 함수의 생명주기와 일치한다.</li>
+</ul>
+</li>
+<li>함수 몸체내부에서 선언되 지역변수의 생명주기는 함수의생명주기와 대부분일치하지만 지역변수가 함수보다 오래생존하는 경우도 있다.</li>
+<li>변수는 하나의 값을 저장하기위해 확보한 메모리공간 자체 또는 그 메모리공간을 식별하기위해 붙인 이름이다. 따라서 변수의 생명주기는 메모리공간이 확보(allocate)된 시점부터 메모리공간이 해제(release)되어 가용메모리풀(memory pool)에 반환되는 시점까지다.</li>
+<li>함수내부에서 선언된 지역변수는 함수가 생성한 스코프에 등록된다. 함수가 생성한 스코프는 렉시컬환경이라 부르는 물리적인 실체가 있다고 했다. 따라서 변수는 자신이 등록된 스코프가 소멸(스코프가 메모리에서 해제)될때까지 유효하다. 할당된메모리공간은 더이상 그누구도 참조하지않을때 가비지콜렉터에 의해 해제되어 가용메모리풀에 반환된다. 즉, 누군가 메모리 공간을 참조하고 있으면 해제되지않고 확보된 상태로 남아있게된다. 이는 스코프도 마찬가지다. 누군가 스코프를 참조하고있으면 스코프는 스멸하지않고 생존하게 된다.</li>
+<li>일반적으로 함수가 종료하면 함수가 생성한 스코프도 소멸한다. 하지만 누군가가 스코프를 참조하고있다면 스코프는 해제되지않고 생존하게 된다. 클로저에서 자세히 공부해보자.</li>
+<li>변형 문제 풀어보자<br>var x = ‘global’;<br>function foo() {<br>console.log(x); // ?-1<br>var x = ‘local’;<br>console.log(x); // ?-2 -&gt; 여기서는 x변수에 재할당된 local이 출력된다.<br>}<br>foo();<br>console.log(x);// global<br>나: ?-1: global , 정답: undefined<br>설명: foo함수내부에서 선언된 지역변수 x는 ?-1의 시점에 이미선언되었고 undefined로 초기화되어있다. 따라서 전역변수 x를 참조하는것이 아니라 지역변수 x를 참조해 값을 출력한다. 즉, 지역변수는 함수전체에서 유효하다. 단, 변수할당문이 실행되기이전까지는 undefined값을 갖는다.</li>
+</ul>
+<p>이처럼 호이스팅은 스코프단위로 동작한다.<br>전역변수의 호이스팅은 전역변수의 선언이 전역스코프의 선두로 끌어올려진것처럼 동작한다. 따라서 전역변수는 전역 전체에서 유효하다.<br>지역변수의 호이스팅은 지역변수의 선언이 지역스코프의 선두로 끌어올려진것처럼 동작한다. 따라서 지역변수는 함수 전체에서 유효하다.<br>즉, 호이스팅은 변수선언이 스코프의 선두로 끌어올려진것처럼 동작하는 자바스크립트 고유의 특징을 말한다.</p>
+<p>1-2. 전역 변수의 생명 주기</p>
+<ul>
+<li><p>함수와 달리 전역코드는 명시저인 호출없이 실행된다. 다시말해, 전역코드는 함수호출과 같이 전역코드를 실행하는 특별한 진입점(entry point)이 없고 코드가 로드되자마자 곧바로 해석되고 실행된다.<br> **** 진입점(entry point): C나 자바로 작성된 코드를 실행하면 가장먼저 main함수가 호출된다. 이 main함수는 프로그램이 시작되는 지점이므로 이를 진입점 또는 시작점이라고 한다.</p>
+</li>
+<li><p>함수는 함수몸체의 마지막 문 또는 반환문이 실행되면 종료한다. 하지만 전역코드에는 반환문을 사용할수 없으므로 마지막 문이 실행되어 더이상 실행할 문이 없을때 종료한다.</p>
+</li>
+<li><p>var키워드로 선언한 전역변수는 전역객체의 프로퍼티가 된다. 이는 전역변수의 생명주기가 전역객체의 생명주기와 일치한다는것을 말한다.<br> **** 전역 객체(global object): 전역 객체는 코드가 실행되기 이전단계에 자바스크립트엔진에 의해 어떤 객체보다도 먼전 생성되는 특수한 객체다. 전역객체는 클라이언트사이드환경(브라우저)에서는 window, 서버사이드환경(Node.js)에서는 global객체를 의미한다. 환경에 따라 전역객체를 가리키는 다양한 식별자(window, self, this, frames, global)가 존재했으나 ES11(ECMAScript 11) 에서 globalThis로 통일되었다. 전역객체에는 표준빌트인객체(Object, String, Number, Function, Array..)와 환경에 따른 호스트객체(클라이언트 Web API 또는 Node.js의 호스트 API), 그리고 var키워드로 선언한 전역변수와 전역함수를 프로퍼티로 갖는다. 전역객체와 표준빌트인객체는 빌트인객체에서 공부하자.</p>
+</li>
+<li><p>브라우저환경에서 전역객체는 window이므로 브라우저환경에서 var키워드로 선언한 전역변수는 전역객체 window의 프로퍼티다. 전역객체 window는 웹페이지를 닫기전까지 유효하다. 따라서 브라우저환경에서 var키워드로 선언한 전역변수는 웹페이지를 닫을때까지 유효하다. 즉, var키워드로 선언한 전역변수의 생명주기는 전역객체의 생명주기와 일치한다.</p>
+</li>
+<li><p>—————————————————사진넣기</p>
+</li>
+</ul>
+<ol start="2">
+<li><p>전역 변수의 문제점</p>
+<p>암묵적 결합<br>전역변수를 선언한 의도는 전역, 즉 코드 어디서든 참조하고 할당할 수 있는 변수를 사용하겠다는 것이다. 이는 모든 코드가 전역변수를 참조하고 변경할수 있는 암묵적결합(implicit coupling)을 허용하는것이다. 변수의 유효범위가 크면클수록 코드의 가독성은 나빠지고 의도치않게 상태가 변경될수있는 위험성도 높아진다.</p>
+<p>긴 생명주기<br>전역변수는 생명주기가 길다. 따라서 메모리리소스도 오랜기간 소비하고 전역변수의 상태를 변경할수 있는 시간도 길고 기회도 많다. 더욱이 var키워드는 변수의 중복선언을 허용하므로 생명주기가 긴 전역변수는 변수이름이 중복될 가능성이 있다. 변수이름이 중복되면 의도치않은 재할당이 이루어진다.<br>ex)<br>var x = 1;<br>// …<br>// 변수의 중복선언. 기존변수에 값을 재할당한다.<br>var x = 100;<br>console.log(x); // 100</p>
+</li>
+</ol>
+<p>지역변수는 전역변수보다 생명주기가 훨씬 짧다. 크지않은 함수의 지역변수는 생존시간이 극히 짧다. 따라서 지역변수의 상태를 변경할수 있는 시간도 짧고 기회도 적다. 이는 전역변수보다 상태 변경에 의한 오류가 발생할 확률이 작다는 것을 의미한다. 또한 메모리 리소스도 짧은 기간만 소비한다.</p>
+<p>  스코프 체인 상에서 종점에 존재<br>전역변수는 스코프 체인상에서 종점에 존재한다. 이는 변수를 검색할때 전역변수가 가장 마지막에 검색된다는것을 말한다. 즉, 전역변수의 검색속도가 가장 느리다. 검색속도의 차이는 그다지 크지않지만 속도의 차이는 분명히 있다.</p>
+<p>  네임스페이스 오염<br>자바스크립트의 가장 큰 문제점 중 하나는 파일이 분리되어있다해도 하나의 전역스코프를 공유한다는것이다. 따라서 다른파일내에서 동일한 이름으로 명명된 전역변수나 전역함수가 같은 스코프내에 존재할경우 예상치 못한 결과를 가져올 수 있다.</p>
+<ol start="3">
+<li>전역 변수의 사용을 억제하는 방법</li>
+</ol>
+<ul>
+<li>전역변수의 무분별한 사용은 위험하다. 전역변수를 반드시 사용해야할 이유를 찾지못한다면 지역변수를 사용해야한다. 변수의 스코프는 좁을수록 좋다. 전역변수를 절대 사용하지말라는 의미가 아닌 무분별한 전역변수의 남발은 억제해야한다는 것이다.<br>전역변수의 사용을 억제할 수 있는 몇가지 방법을 보자.</li>
+</ul>
+<p>3-1. 즉시 실행 함수</p>
+<ul>
+<li>함수정의와 동시에 호출되는 즉시실행함수는 단 한번만 호출된다. 모든코드를 즉시실행함수로 감싸면 모든변수는 즉시실행함수의 지역변수가 된다. 이러한 특성을 이용해 전역변수의 사용을 제한하는 방법이다. 이 방법을 사용하면 전역변수를 생성하지않으므로 라이브러리등에 자주 사용된다.<br>(function() {<br> var foo = 10; // 즉시 실행 함수의 지역 변수<br> // …<br>}());<br>console.log(foo); // ReferenceError: foo is not defined</li>
+</ul>
+<p>3-2. 네임스페이스 객체</p>
+<ul>
+<li>전역에 네임스페이스(Namespace)역할을 담당할 객체를 생성하고 전역변수처럼 사용하고싶은 변수를 프로퍼티로 추가하는 방법이다.<br>var MYAPP = {}; // 전역 네임스페이스 객체<br>MYAPP.name = ‘Lee’;<br>console.log(MYAPP.name); // Lee</li>
+<li>네임스페이스 객체에 또 다른 네임스페이스 객체를 프로퍼티로 추가해서 네임스페이스를 계층적으로 구성할수도 있다.<br>var MYAPP = {}; // 전역 네임스페이스 객체<br>MYAPP.person = {<br> name: ‘Lee’,<br>address: ‘Seoul’<br>};<br>console.log(MYAPP.person.name); // Lee<br>네임스페이스를 분리해서 식별자 충돌을 방지하는 효과는 있으나 네임스페이스 객체 자체가 전역변수에 할당되므로 그다지 유용해보이지는 않는다.</li>
+</ul>
+<p>3-3. 모듈 패턴</p>
+<ul>
+<li><p>모듈 패턴은 클래스를 모방해서 관련이 있는 변수와 함수를 모아 즉시 실행함수로 감싸 하나의 모듈을 만든다. 모듈 패턴은 자바스크립트의 강력한 기능인 클로저를 기반으로 동작한다. 모듈패턴의 특징은 전역변수의 억제는 물론 캡슐화까지 구현할 수 있다는것이다.</p>
+</li>
+<li><p>캡슐화(encapsulation)는 객체의 상태(state)를 나타내는 프로퍼티와 프로퍼티를 참조하고 조작할수있는 동작(behavior)인 메서드를 하나로 묶는것을 말한다. 캡슐화는 객체의 특정프로퍼티나 메서드를 감출목적으로 사용하기도 하는데 이를 정보은닉(information hiding)이라 한다.</p>
+</li>
+<li><p>대부분의 객체지향 프로그래밍언어는 클래스를 구성하는 멤버에대해 public, private, protected등의 접근제한자(access modifier)를 사용해 공개범위를 한정할 수 있다. public으로 선언된 데이터 또는 메서드는 외부에서 접근이 가능하지만  private으로 선언된 경우는 외부에서 접근할수 없고 내부에서만 사용된다. 이것은 클래스외부에는 제한된 접근권한을 제공하며 원하지않는 외부의 접근으로부터 내부를 보호하는 기능을 한다.</p>
+</li>
+<li><p>하지만 자바스크립트는 public, private, protected 등의 접근 제한자를 제공하지 않는다. 모듈패턴은 전역네임스페이스의 오염을 막는 기능은 물론 한정적이기는 하지만 정보 은닉을 구현하기 위해 사용한다.<br>var Counter = (function() {<br>// Private 변수<br>var num = 0;</p>
+<p>// 외부로 공개할 데이터나 메서드를 프로퍼티로 추가한 객체를 반환한다.<br>return{<br>  increase() {</p>
+<pre><code>return ++num;</code></pre>
+<p>  },<br>  decrease() {</p>
+<pre><code>return --num;</code></pre>
+<p>  }<br>};<br>}());</p>
+</li>
+</ul>
+<p>// private 변수는 외부로 노출되지 않는다.<br>console.log(Counter.num); // undefined</p>
+<p>console.log(Counter.increase()); // 1<br>console.log(Counter.increase()); // 2<br>console.log(Counter.decrease()); // 1<br>console.log(Counter.decrease()); // 0<br>위 코드의 즉시 실행함수는 객체를 반환한다. 이 객체에는 외부에 노출하고싶은 변수나 함수를 담아 반환한다. 이때 반환되는 객체의 프로퍼티는 외부에 노출되는 퍼블릭 멤버(public member)이다. 외부로 노출하고 싶지 않은 변수나 함수는 반환하는 객체에 추가하지않으면 외부에서 접근할수 없는 프라이빗 멤버(private member)가 된다. 클로저에서 더 공부해보자.</p>
+<p>3-4. ES6 모듈</p>
+<ul>
+<li>ES6 모듈을 사용하면 더는 전역변수를 사용할수 없다. ES6 모듈은 파일자체의 독자적인 모듈스코프를 제공한다. 즉, 모듈내에서 var키워드로 선언한 변수는 더는 전역변수가 아니며 window객체의 프로퍼티도 아니다.</li>
+<li>모던 브라우저(Chrome 61, FF 60, SF 10:1, Edge 16이상)에서 ES6 모듈을 사용할 수 있다. script태그에 type=”module”어트리뷰트를 추가하면 로드된 자바스크립트파일은 모듈로서 동작한다. 모듈의 파일확장자는 mjs를 권장한다.<script type=”module” src=”lib.mjs></script>
+<script type=”module” src=”app.mjs></script>
+ES6 모듈은 IE를 포함한 구형브라우저에서는 동작하지않으며, 브라우저의 ES6 모듈기능을 사용하더라도 트랜스파일링이나 번들링이 필요하기때문에 아직까지는 브라우저가 지원하는 ES6모듈기능보다는 Webpack등의 모듈번들러를 사용하는것이 일반적이다.</li>
+<li>모듈과 Webpack등의 모듈 번들러를 도입한느 방법에 대해서는 다음(48,49)에 더 자세히 공부하자.</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://do-mandoo.github.io/2020/09/16/%EC%8A%A4%EC%BD%94%ED%94%84scope/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="JinSol">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JINLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/16/%EC%8A%A4%EC%BD%94%ED%94%84scope/" class="post-title-link" itemprop="url">스코프scope</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-09-16 22:15:32 / Modified: 22:16:02" itemprop="dateCreated datePublished" datetime="2020-09-16T22:15:32+09:00">2020-09-16</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>스코프란?</li>
+</ol>
+<ul>
+<li><p>스코프(scope, 유효범위)는 자바스크립트를 포함한 모든 프로그래밍 언어에서 기본적이며 중요한 개념이다. 스코프의 이해가 부족하면 다른개념을 이해하기 어려울수 있다. 자바스크립트의 스코프는 다른언어의 스코프와 구별되는 특징이 있으므로 더욱 주의가 필요하다. </p>
+</li>
+<li><p>var키워드로 선언한 변수와 let 또는 const키워드로 선언한 변수의 스코프도 다르게 동작한다. </p>
+</li>
+<li><p>스코프는 변수와 함수에 깊은 관련이 있다.</p>
+</li>
+<li><p>function add(x,y){<br>   console.log(x,y); // 2 5<br>   return x+y;<br>}<br>add(2,5);<br>console.log(x,y); // ReferenceError: x is not defined<br>위와 같이 우리는 함수의 매개변수는 함수몸체내부에서만 참조할 수 있고 함수 몸체 외부에서는 참조할 수 없다는걸 알고있다. 매개변수를 참조할 수 있는 유효범위, 즉 스코프가 함수 몸체내부로 한정되기 때문인걸 이미 배운 셈이다.</p>
+</li>
+<li><p>변수는 코드의 가장 바깥 영역뿐 아니라 코드블록이나 함수몸체내에서도 선언할 수 있다. 이때 코드블록이나 함수는 중첩될 수 있다.<br>var var1 = 1; // 코드의 가장 바깥영역에서 선언한 변수</p>
+</li>
+</ul>
+<p>if(true) {<br>  var var2 = 2; // 코드 블록내에서 선언한 변수<br>  if(true) {<br>    var var3 = 3; // 중첩된 코드블록 내에서 선언한 변수<br>  }<br>}</p>
+<p>function foo() {<br>  var var4 = 4; // 함수 내에서 선언한 변수<br>  function bar() {<br>    var var5 = 5; // 중첩된 함수 내에서 선언한 변수<br>  }<br>}</p>
+<p>console.log(var1); // 1<br>console.log(var2); // 2<br>console.log(var3); // 3<br>console.log(var4); // ReferenceError: var4 is not defined<br>console.log(var5); // ReferenceError: var5 is not defined<br>변수는 자신이 선언된 위치에 의해, 자신이 유효한 범위, 즉 다른코드가 변수자신을 참조할 수 있는 범위가 결정된다. 변수뿐만아니라 모든 식별자가 그렇다.<br>모든식별자(변수이름, 함수이름, 클래스이름 등)는 자신이 선언된 위치에 의해 다른 코드가 식별자 자신을 참조할 수 있는 유효범위가 결정된다. 이를 스코프라 한다. 즉, 스코프는 식별자가 유효한 범위를 말한다.</p>
+<ul>
+<li>다음 코드를 예측해보자.<br>var x = ‘global’;<br>function foo() {<br>var x = ‘local’;<br>console.log(x); // ?-1<br>}<br>foo();<br>console.log(x); // ?-2</li>
+</ul>
+<p>*나: ?-1은 ‘local’. ?-2는 ‘global’ - 정답!! 맞음!!</p>
+<p>교안 설명: 코드의 가장 바깥영역과 foo함수 내부에 같은 이름을 갖는 x변수를 선언했고 ?-1과 ?-2에서 x변수를 참조했다. 이때 자바스크립트 엔진은 이름이 같은 두개의 변수중에서 어떤 변수를 참조해야할 것인지를 결정해야한다. 이를 식별자결정(identifier resolution)이라 한다. 자바스크립트 엔진은 스코프를 통해 어떤 변수를 참조해야할 것인지 결정하기때문에 스코프란 자바스크립트 엔진이 식별자를 검색할 때 사용하는 규칙이라고 말 할 수도 있다.<br>자바스크립트 엔진은 코드를 실행할 때 코드의 문맥(context)을 고려한다. 코드가 어디서 실행되며 주변에 어떤 코드가 있는지에 따라 위 예제의 ?-1과 ?-2처럼 동일한 코드도 다른 결과를 만들어 낸다.<br>  ****코드의 문맥(context)과 환경(environment) :  ‘코드가 어디서 실행되며 주변에 어떤 코드가 있는지’를 렉시컬환경(lexical environment)이라고 부른다. 즉, 코드의 문맥(context)은 렉시컬 환경으로 이뤄진다. 이를 구현한 것이 “실행 컨텍스트(execution context)”이며, 모든 코드는 실행컨텍스트에서 평가되고 실행된다. 스코프는 실행 컨텍스트와 깊은 관련이 있다.</p>
+<p>위 예제에서 코드의 가장 바깥영역에 선언된 x변수는 어디서든 참조할 수 있지만 foo함수 내부에서 선언된 x변수는 foo함수내부에서만 참조할 수 있고 foo함수 외부에서는 참조할 수 없다. 이때 두개의 x변수는 식별자이름이 동일하지만 자신이 유효한 범위,=스코프가 다른 별개의 변수다.<br>만약 스코프라는 개념이 없다면 같은 이름을 갖는 변수는 충돌을 일으키기 떄문에 프로그램 전체에서 하나밖에 사용할 수 없다.<br>식별자(identifier)에 대해 다시 생각해보자. 변수나 함수의 이름과 같은 식별자는 어떤 값을 구별하여 식별해낼수있는 고유한 이름을 말한다. 사람을 고유한 이름으로 구별하듯이 값도 사람이 이해할 수 있는 언어로 지정한 고유한 식별자인 변수이름에 의해 구별하여 참조할 수 있다.<br>식별자는 어떤값을 구별할 수 있어야하는 유일(unique)한 것이기 때문에 식별자인 변수이름은 중복될 수 없다. 즉, 하나의 값은 유일한 식별자에 연결(name binding)되어야 한다.<br>ex) 파일이름도 하나의 파일을 구별하여 식별할 수 있는 식별자이다. 폴더(디렉터리)를 나누어서 파일을 만들면 똑같은 이름의 파일을 각 폴더에 만들 수 있다.<br>이와 마찬가지로 프로그래밍 언어에서는 스코프(유효범위)를 통해 식별자인 변수이름의 충돌을 방지하여 같은 이름의 변수를 사용할 수 있게 한다. 스코프내에서 식별자는 유일해야하지만 다른 스코프에서는 같은 이름의 식별자를 사용할 수 있다.= 스코프는 네임스페이스다.<br> **** var 키워드로 선언한 변수의 중복선언: 같은 스코프내에서 중복선언이 허용되지만, 의도치않게 변수값이 재할당되어 변경되는 부작용을 발생시킨다. 하지만 let이나 const키워드로 선언된 변수는 같은 스코프내에서 중복선언을 허용하지 않는다.</p>
+<ol start="2">
+<li>스코프의 종류<br>코드는 전역(global)과 지역(local)으로 구분할 수 있다.</li>
+</ol>
+<p>구분<br>설명<br>스코프<br>변수<br>전역<br>코드의 가장 바깥 영역<br>전역 스코프<br>전역 변수<br>지역<br>함수 몸체 내부<br>지역 스코프<br>지역 변수</p>
+<p>이때 변수는 자신이 선언된 위치(전역 또는 지역)에 의해 자신이 유효한 범위인 스코프가 결정된다. 즉, 전역에서 선언된 변수는 전역스코프를 갖는 전역변수이고, 지역에서 선언된 변수는 지역스코프를 갖는 지역변수이다.<br>2-1. 전역과 전역스코프</p>
+<ul>
+<li>전역이란 코드의 가장 바깥 영역을 말한다. 전역은 전역스코프(global scope)를 만든다. 전역에 변수를 선언하면 전역스코프를 갖는 전역변수(global variable)가 된다. 전역변수는 어디서든지 참조할 수 있다.<br>2-2. 지역과 지역 스코프</li>
+<li>지역이란 함수 몸체 내부를 말한다. 지역은 지역스코프(local scope)를 만든다. 지역에 변수를 선언하면 지역스코프를 갖는 지역변수(local variable)가 된다. 지역변수는 자신이 선언된 지역과 하위지역(중첩함수)에서만 참조할 수 있다. 지역변수는 자신의 지역스코프와 하위지역스코프에서 유효하다.</li>
+</ul>
+<ol start="3">
+<li>스코프 체인</li>
+</ol>
+<p>-함수는 전역에서 정의할 수도 있고 함수 몸체내부에서 정의할수도 있다. 함수몸체내부에서 함수가 정의된것을 ‘함수의 중첩’이라 한다. 그리고 함수 몸체 내부에서 정의한 함수를 ‘중첩함수(nested function)’, 중첩함수를 포함하는 함수를 ‘외부함수(outer function)’라고 한다.</p>
+<ul>
+<li>함수는 중첩될수 있으므로 함수의 지역스코프도 중첩될수있다. 이는 스코프가 함수의 중첩에 의해 계층적구조를 갖는다는것을 의미한다. 다시말해, 중첩함수의 지역스코프는 중첩함수를 포함하는 외부함수의 지역스코프와 계층적구조를 갖고, 외부함수의 지역스코프를 중첩함수의 상위스코프라 한다.</li>
+<li>모든 스코프는 하나의 계층적 구조로 연결되며, 모든 지역스코프의 최상위스코프는 전역스코프이다. 이렇게 스코프가 계층적으로 연결된것을 스코프체인(scope chain)이라 한다.</li>
+<li>변수를 참조할 때 자바스크립트엔진은 스코프체인을 통해 변수를 참조하는 코드의 스코프에서 시작해서 상위스코프 방향으로 이동하며, 선언된 변수를 검색(identifier resolution)한다. 이를 통해 상위스코프에서 선언한 변수를 하위스코프에서도 참조할 수 있다.</li>
+<li>스코프체인은 물리적인 실체로 존재한다. 자바스크립트엔진은 코드(전역코드와 함수코드)를 실행하기에 앞서 자료구조인 렉시컬 환경(Lexical Environment)을 실제로 생성한다. 변수선언이 실행되면 변수식별자가 이 자료구조(렉시컬환경)에 키로 등록되고, 변수할당이 일어나면 이 자료구조의 변수 식별자에 해당하는 값을 변경한다. 변수의 검색도 이 자료구조상에서 이뤄진다.</li>
+<li>*****렉시컬환경(Lexical Environment) : 스코프체인은 실행컨텍스트의 렉스컬환경을 단방향으로 연결(chaining)한 것이다. 전역 렉시컬환경은 코드가 로드되면 곧바로 생성되고 함수의 렉시컬환경은 함수가 호출되면 곧바로 생성된다. 실행컨텍스트에서 더 다룬다.<br>3-1. 스코프 체인에 의한 변수 검색</li>
+<li>자바스크립트 엔진은 스코프 체인을 따라 변수를 참조하는 코드의 스코프에서 시작해서 상위스코프방향으로 이동하면서 선언된 변수를 검색한다. 절대 하위스코프로 내려가면 식별자를 검색하는 일은 없다. 이는 상위스코프에서 유효한 변수는 하위스코프에서 자유롭게 참조할수있지만 하위스코프에서 유효한 변수를 상위스코프에서 참조할수 없다는것을 의미한다.</li>
+<li>스코프체인으로 연결된 스코프의 계층적구조는 부자관계로 이뤄진 상속(inheritance)과 유사하다. 상속을 통해 부모의 자산(재산)을 자식이 자유롭게 사용할 수 있지만 자식의 자산(재산)을 부모가 사용할수는 없다. 스코프체인도 마찬가지 개념이다.<br>3-2. 스코프 체인에 의한 함수 검색<br>전역에서 정의된 foo함수와, bar함수 내부에서 정의된 foo함수가 있는 코드를 살펴보자.<br>//전역함수<br>function foo() {<br>console.log(‘global function foo’);<br>}</li>
+</ul>
+<p>function bar() {<br>  //중첩함수<br>  function foo() {<br>    console.log(‘local function foo’);<br>  }<br>  foo(); // ?-1<br>}</p>
+<p>bar();<br>나: foo: ‘global function foo’, bar: undefined??<br>결과: foo: ‘local function foo’, bar: ‘ ‘</p>
+<ul>
+<li>교안 설명 : 함수선언문으로 함수를 정의하면 런타임이전에 함수객체가 먼저 생성되고 자바스크립트 엔진은 함수이름과 동일한이름의 식별자를 암묵적으로 선언하고 생성된 함수객체를 할당한다.<br>따라서 위 예제의 모든함수는 함수이름과 동일한 이름의 식별자에 할당된다. ?-1에서 함수를 호출하면 자바스크립트 엔진은 함수를 호출하기위해 먼저 함수를 가리키는 식별자 foo를 검색한다.<br>이처럼 함수도 식별자에 할당하기때문에 스코플르 갖는다. 사실 함수는 식별자에 함수객체가 할당된 것 외에는 일반변수와 다를 바가 없다. 따라서 스코프를 “변수를 검색할때 사용하는 규칙”이라고 표현하기보다는 “식별자를 검색하는 규칙”이라고 표현하는 편이 좀더 적합하다.</li>
+</ul>
+<ol start="4">
+<li>함수 레벨 스코프</li>
+</ol>
+<ul>
+<li>지역은 함수몸체내부를 말하고 지역은 지역스코프를 만든다고 했다. 이는 코드블록이 아닌 함수에 의해서만 지역스코프가 생성된다는 의미이다.</li>
+<li>C나 자바 등을 비롯한 대부분의 프로그래밍 언어는 함수몸체만이 아니라 모든코드블록(if, for, while, try/catch 등)이 지역스코프를 만든다. 이러한 특성을 블록레벨스코프(block level scope)라 한다. var키워드로 선언된 변수는 오로지 함수의 코드블록(함수 몸체)만을 지역스코프를 인정한다. 이러한 특성을 함수레벨스코프(function level scope)라 한다.</li>
+<li>다음 코드를 살펴보자.<br>var x = 1;<br>if(true) {<br> // var 키워드로 선언된 변수는 함수의 코드블록(함수몸체)만을 지역스코프로 인정한다.<br> // 함수 밖에서 var키워드로 선언된 변수는 코드블록내에서 선언되었다할지라도 모두 전역변수다.<br> // 따라서 x는 전역변수다. 이미 선언된 전역변수x가 있으므로 x변수는 중복선언된다.<br> // 이는 의도치않게 변수값이 변경되는 부작용을 발생시킨다.<br> var x = 10;<br>}<br>console.log(x); // 10<br>설명: 위 코드에서 전역변수 x가 선언되었고 if문의 코드블록 내에도 x변수가 선언되었다. 이때 if문의 코드블록내에서 선언된 x변수는 전역변수다.<br>var키워드로 선언된 변수는 블록레벨스코프를 인정하기때문에 함수밖에서 var키워드로 선언된변수는 코드블록내에서 선언되었다할지라도 모두전역변수다. 따라서 전역변수x는 중복선언되고 그 결과 의도치않은 전역변수의 값이 재할당된다.</li>
+</ul>
+<p>-다른 코드 더 보자.<br>var i = 10;<br>//for문에서 선언한 i는 전역변수이다. 이미 선언된 전역변수 i가 있으므로 중복선언된다.<br>for(var i=0; i&lt;5; i++) {<br>  console.log(i); // 0 1 2 3 4<br>}<br>//의도치않게 변수의 값이 변경되었다.<br>console.log(i); // 5<br>설명: 블록레벨스코프를 지원하는 프로그래밍언어에서는 for문에서 반복을위해 선언된 i변수가 for문의 코드블록내에서만 유효한 지역변수다. 이 변수를 for문 외부에서 사용할 일은 없기때문이다. 하지만 var 키워드로 선언된 변수는 블록레벨스코프를 인정하지않기때문에 i변수는 전역변수가 된다. 따라서 전역변수 i는 중복선언되고 그결과 의도치않은 전역변수의 값이 재할당된다.<br>var키워드로 선언된 변수는 오로지 함수의 코드블록만을 지역스코프로 인정하지만, ES6에서 도입된 let, const 키워드는 블록레벨스코프를 지원한다.</p>
+<ol start="5">
+<li>렉시컬 스코프</li>
+</ol>
+<ul>
+<li>다음코드의 실행결과를 예측해보자<br>var x = 1;<br>function foo() {<br>var x = 10;<br>bar();<br>}</li>
+</ul>
+<p>function bar() {<br>  console.log(x);<br>}<br>foo(); // ?-1<br>bar(); // ?-2<br>나 : ?-1: 10, ?-2: 10// 정답: 1, 1<br>설명 : 위 코드의 실행결과는 bar함수의 상위스코프가 무엇인지에 따라 결정어 두가지 패턴을 예측할수 있다.</p>
+<ol>
+<li>함수를 어디서 호출했는지에 따라 함수의 상위스코프를 결정한다,</li>
+<li>함수를 어디서 정의했는지에 따라 함수의 상위스코프를 결정한다,</li>
+</ol>
+<p>첫번째 방식으로 함수의 상위스코프를 결정한다면 bar함수의 상위스코프는 foo함수의 지역스코프와 전역스코프일것이다.<br>두번째 방식으로 함수의 상위스코프를 결정한다면 bar함수의 상위스코프는 전역스코프일것이다.<br>프로그래밍 언어는 일반적으로 이 두가지 방식중 한가지 방식으로 함수의 상위스코프를 결정한다.</p>
+<p>첫번째 방식을 동적스코프(dynamic scope)라 한다. 함수를 정의하는 시점에서 어디서 호출될지 알수없다. 따라서 함수가 호출되는 시점에 동적으로 상위스코프를 결정해야하기때문에 동적스코프라 부른다.<br>두번째 방식을 렉시컬스코프(lexical scope)또는 정적스코프(static scope)라 한다. 동적스코프방식처럼 상위스코프가 동적으로 변하지않고 함수 정의가 평가되는 시점에 상위스코프가 정적으로 결정되기때문에 정적스코프라고 부른다. 자바스크립트를 비롯한 대부분의 프로그래밍 언어는 렉시컬 스코프를 따른다.</p>
+<p>자바스크립트는 렉시컬스코프를 따르므로 함수를 어디서 호출했는지가 아니라 함수를 어디서 정의했는지에 따라 상위스코프를 결정한다. 함수가 호출된 위치는 상위스코프 결정에 어떠한 영향도 주지 않는다. 즉, 함수의 상위스코프는 언제나 자신이 정의된 스코프다.</p>
+<p>이처럼 함수의 상위스코프는 함수정의가 실행될때 정적으로 결정된다. 함수정의(함수선언문 또는 함수표현식)가 실행되어 생성된 함수객체는 이렇게 결정된 상위스코프를 기억한다. 함수가 호출될때마다 함수의 상위스코프를 참조할 필요가 있기 떄문이다.</p>
+<p>위 코드의 bar함수는 전역에서 정의된 함수다. 함수선언문으로 정의된 bar함수는 전역코드가 실행되기 전에 먼저 평가되어 함수객체를 생성한다. 이때 생성된 bar함수 객체는 자신이 정의된 스코프=전역스코프를 기억한다. 그리고 bar 함수가 호출되면 호출된곳이 어디인지 관계없이 언제나 자신이 기억하고있는 전역스코프를 상위스코프로 사용한다. 따라서 위 예제를 실행하면 전역변수 x의 값 1을 두번 출력한다.</p>
+<p>렉시컬 스코프는 클로저와 깊은 관계가 있다.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://do-mandoo.github.io/2020/09/11/%EC%A0%9C%EC%96%B4%EB%AC%B8%EC%97%B0%EC%8A%B5%EB%AC%B8%EC%A0%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1114,312 +1520,6 @@ console.log(add(&#39;a&#39;, &#39;b&#39;)); // &#39;ab&#39;</code></pre>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://do-mandoo.github.io/2020/08/24/%EB%B3%80%EC%88%98variable/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="JinSol">
-      <meta itemprop="description" content="All Dev stories found in here">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JINLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/24/%EB%B3%80%EC%88%98variable/" class="post-title-link" itemprop="url">변수variable</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-08-24 17:42:50" itemprop="dateCreated datePublished" datetime="2020-08-24T17:42:50+09:00">2020-08-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-04 20:25:21" itemprop="dateModified" datetime="2020-09-04T20:25:21+09:00">2020-09-04</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="1-변수란-무엇인가-왜-필요한가"><a href="#1-변수란-무엇인가-왜-필요한가" class="headerlink" title="1. 변수란 무엇인가? 왜 필요한가?"></a>1. 변수란 무엇인가? 왜 필요한가?</h1><p>변수란 데이터를 관리하기 위한 핵심 개념이다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10</span> + <span class="number">20</span></span><br></pre></td></tr></table></figure>
-<p>자바스크립트를 해석하고 실행하는 자바스크립트 엔진이 위 코드를 계산(=평가evalution)하려면 10,20,+ 라는 기호의 의미를 알고 있어야 하며, 10+20이라는 식(=표현식expression)의 의미도 해석(=파싱parsing)할 수 있어야 한다.<br>10+20은 새로운 숫자값 30을 만들어 낸다.<br>컴퓨터는 CPU를 사용해서 연산하고, 메모리를 사용해서 데이터를 기억한다.<br>메모리(memory)는 데이터를 저장할 수 있는 메모리셀(memory cell)의 집합체이다. 메모리 셀 하나의 크기는 1바이트(byte)=8비트(bit)이며, 컴퓨터의 메모리 셀의 크기로(=1바이트 단위로) 데이터를 저장(write)하거나 읽어(read)들인다.<br><img src="https://user-images.githubusercontent.com/67843356/92218879-bc6da080-eed4-11ea-84ba-a8f82db0f4c7.jpg" alt="variable_memory_1" title="JS_memory"><br>각 셀은 고유의 메모리 주소(memory address)를 갖는다. 이 메모리 주소는 메모리공간의 위치를 나타내며, 0부터 시작해서 메모리의 크기만큼 정수로 표현된다.<br>컴퓨터는 모든 데이터를 2진수로 처리하기때문에 메모리에 저장되는 데이터는 데이터의종류(숫자,텍스트,이미지,동영상)와 상관없이 모두 2진수로 저장된다.<br>위 예제에서 숫자값 10과20은 메모리상 임의의 위치(메모리주소)에 기억(=저장)되고 CPU는 이 값을 읽어들여 연산을 수행한다 -&gt; 연산된 결과로 생성된 숫자 값 30도 메모리상 임의의 위치에 저장된다.<br><img src="https://user-images.githubusercontent.com/67843356/92218884-bd9ecd80-eed4-11ea-9e40-2afb7d8c939c.jpg" alt="variable_memory_2"><br>편의상 10진수로 표기한 이미지이다. 하지만 우리는 메모리에 저장되는 모든 값이 2진수로 저장된다는것을 기억해야한다.<br>여기서 문제가 발생한다. CPU가 연산해서 만들어낸 숫자 값30을 <strong>재사용할수 없다</strong>는 것이다.<br>연산결과를 단 한번만 사용한다면 문제가 없겠지만 만약 연산 결과 30을 재사용하고싶다면 메모리주소를 통해 연산결과 30이 저장된 메모리 공간에 직접 접근하는것 이외에는 방법이 없다.<br>하지만 자바스크립트는 개발자의 직접적인 메모리 제어를 허용하지 않는다. 다시말해 메모리 주소를 통해 값에 직접 접근하려는 시도는 올바른 방법이 아니다.<br>프로그래밍 언언느 기억하고 싶은 값을 메모리에 저장하고, 저장된 값을 읽어들여 <strong>재사용하기 위해 변수</strong>라는 메커니즘을 제공한다.<br><strong>변수는 <u>하나의 값을 저장</u>하기 위해 확보된 메모리 공간 자체(=<u>변수는 메모리 공간이다.</u>) 또는 그 <u>메모리공간을 식별하기 위해 붙인 이름</u>을 말한다.</strong>(상수도 변수이지만 일반적인 변수와 다른 성격을 갖고있다. 상수는 재할당이 안된다.)<br><strong><em>변수에 여러개의 값을 저장하는 방법</em></strong> : 변수는 하나의 값을 저장하기 위한 매커니즘이다. 여러개의 값을 지정하려면 여러개의 변수를 사용해야하지만 배열이나 객체같은 자료구조를 사용하면 관련이 있는 여러개의 값을 그룹화해서 하나의 값처럼 사용할 수 있다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> coffeeA = <span class="string">&#x27;latte&#x27;</span>; <span class="comment">// 하나의 값을 저장.</span></span><br><span class="line"><span class="keyword">var</span> coffeeShot = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> coffee = &#123;<span class="string">&#x27;americano&#x27;</span>, <span class="string">&#x27;latte&#x27;</span>, <span class="string">&#x27;mocha&#x27;</span>, <span class="string">&#x27;hazelnut&#x27;</span>&#125;; <span class="comment">// 하나의 변수에 객체나 배열과 같은 자료구조 사용하여 여러개의 값 저장.</span></span><br><span class="line"><span class="keyword">var</span> coffeeAShot[</span><br><span class="line">    &#123;<span class="attr">coffeeA</span>: <span class="string">&#x27;latte&#x27;</span>, <span class="attr">coffeeShot</span>: <span class="number">1</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">cooffeB</span>: <span class="string">&#x27;americano&#x27;</span>, <span class="attr">coffeeShot</span>: <span class="number">2</span>&#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
-<p>변수를 사용해서 위의 코드를 다시 작성하면</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = <span class="number">10</span> + <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
-<p>으로, 변수 result에 10+20의 결과 값인 30을 메모리 공간에 저장된다. 이때 메모리공간에 저장된 값 30을 다시 읽어들여 <strong>재사용할 수 있도록</strong> 저장된 메모리공간에 상징적인 이름을 붙인것이 바로 변수이다.<br>변수에 값을 저장하는것을 할당(assignment, 대입, 저장)이라 하고,<br>변수에 저장된 값을 읽어 들이는 것을 참조(reference)라 한다.</p>
-<p>사람이 이해할 수 있는 언어로 값이 저장된 메모리 공간에 붙인 상징적인 이름인 변수 이름을 통해 변수에 저장된 값의 의미를 명확히 이해할 수 있어 가독성을 높이는 부수적인 효과도 있다. 코드는 컴퓨터에게 내리는 명령이면서 개발자를 위한 문서이기때문에 개발자의 의도를 나타내는 명확한 네이밍은 코드를 이해하기 쉽게 만들며, 이는 협업과 품질향상에도 도움을 준다. 변수의 이름을 심사숙고해서 지어야한다.</p>
-<h1 id="2-식별자-‘8-식별자-네이밍-규칙’과-같이-보자"><a href="#2-식별자-‘8-식별자-네이밍-규칙’과-같이-보자" class="headerlink" title="2. 식별자 + ‘8.식별자 네이밍 규칙’과 같이 보자."></a>2. 식별자 + ‘8.식별자 네이밍 규칙’과 같이 보자.</h1><p>변수 이름(=식별자ID,identifer)은 <strong>어떤값을 구별해서 식별할 수 있는 고유한 이름</strong>으로 사람이름을 짓는거와 같다.<br>값은 메모리 공간에 저장되어 있기때문에 저장되어있는 어떤 값을 구별해서  식별해내야한다. 따라서 식별자는 이를위해 어떤값이 저장되어있는 메모리 주소를 기억(저장)해야한다.<br><strong>식별자는 값이 아니라 <u>메모리 주소를 기억</u>하고 있다는 것</strong>이 핵심이다.(=식별자는 메모리 주소에 붙인 이름이다.)<br><strong><em>!변수이름은 고유해야한다고 했다. 그렇다면 한 번 사용한 변수이름은 두 번 다시 못쓸까?!</em></strong> 결론부터 말하자면 <strong><u></u>아니다.</u></strong> 다시 쓸 수 있다. 쉽게말하면 파일이름지을때 <code>test.js</code>만들었다고 가정했을때 <code>test.js</code>를 같은 폴더에서는 못쓰고 다른 폴더에서 동일한 이름으로 사용할수있다. 이는 스코프에서 더 배우자!</p>
-<h1 id="3-변수-선언"><a href="#3-변수-선언" class="headerlink" title="3. 변수 선언"></a>3. 변수 선언</h1><p>변수를 생성하는 것을 변수 선언(variable declaration)이라 한다. 즉, 값을 저장하기 위한 메모리 공간을 확보하고 변수이름과 확보된 메모리 공간의 주소를 연결(name binding)해서 값을 저장할 수 있게 준비하는 것이다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> score; <span class="comment">// 변수 선언(변수 선언문)</span></span><br></pre></td></tr></table></figure>
-<p>변수를 사용하려면 반드시 선언이 필요하다. <strong>변수 선언 키워드(keyword) -&gt; <code>var</code>, <code>let</code>, <code>const</code></strong><br>(!리바인딩과 변형mutation을 헷갈려서는 안된다. 리바인딩은 참조하는 식별자에 대한 변화이고 변형은 참조되는 값의 변화이다.</p>
-<ul>
-<li><code>var</code>키워드로 선언한 변수는 런타임 이전에 자바스크립트 엔진에 의해 암묵적으로 ‘선언단계’와 ‘초기화단계’가 한번에 진행된다. 재할당이 가능하다.<ul>
-<li>선언 단계: 변수 이름을 등록해서 자바스크립트 엔진에 변수의 존재를 알린다.</li>
-<li>초기화 단계 : 값을 저장하기 위한 메모리 공간을 확보하고 암묵적으로 undefined를 할당해 초기화(initialization,변수가 선언된 이후 최초로 값을 할당함.)한다.</li>
-<li><code>var score;</code>는 선언 단계를 통해 변수이름 <code>score</code>를 등록하고, 초기화 단계를 통해 <code>score</code>변수에 암묵적으로 <code>undefined</code>를 할당해 초기화한다.</li>
-</ul>
-</li>
-<li><code>let</code>은 분리되어 진행된다. 즉, 런타임이전에 선언단계 실행되고 변수 선언문에 도달했을 때 초기화단계 실행한다. 재할당 가능하다.</li>
-<li><code>const</code>는 반드시 선언과 동시에 초기화해야한다. 재할당이 금지된다.</li>
-</ul>
-<h1 id="4-변수-선언의-실행-시점과-변수-호이스팅"><a href="#4-변수-선언의-실행-시점과-변수-호이스팅" class="headerlink" title="4. 변수 선언의 실행 시점과 변수 호이스팅"></a>4. 변수 선언의 실행 시점과 변수 호이스팅</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//올바른 상태</span></span><br><span class="line"><span class="keyword">var</span> score; <span class="comment">// 변수 선언문</span></span><br><span class="line"><span class="built_in">console</span>.log(score); <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//호이스팅이 일어나는 상태</span></span><br><span class="line"><span class="built_in">console</span>.log(score); <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">var</span> score; <span class="comment">// 변수 선언문</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//두개의 코드 모두 같은 결과를 도출함.</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>변수 선언의 실행: <ul>
-<li>변수 선언이 소스코드가 한 줄씩 순차적으로 실행되는 시점인 <strong>런타임(runtime)**이 아니라 **그 이전 단계에서 먼저 실행</strong>되기 때문에 선언문보다 변수를 참조하는 코드가 앞에 있다해서 <strong>참조에러ReferenceError를 발생시키지 않는다.</strong> 런타임단계를 실행하기 앞서 먼저 소스코드의 평가 과정을 거치면서 소스코드 실행을 위한 준비를 한다.</li>
-</ul>
-</li>
-<li>변수 호이스팅: <ul>
-<li>자바스크립트 엔진은 변수 선언이 소스코드의 어디에 있든 상관없이 다른 코드보다 먼저 실행한다. 즉, <strong>변수선언이 소스코드의 어디에 위치하는지와 상관없이 어디서든지 변수를 참조할 수 있다.</strong> (=변수선언(선언단계와 초기화단계)이 소스코드가 순차적으로 실행되는 런타임 이전 단계에서 먼저 실행된다는 증거===<strong><u>변수 선언문이 코드의 선두로 끌어 올려진것처럼 동작하는 자바스크립 고유의 특징을 변수 호이스팅(variable hoisting)</u></strong> 이라 한다.)</li>
-<li>호이스팅 발생을 이용해서 무언갈 하려는 행위를 하면 안된다.</li>
-<li>var는 호이스팅이 발생하지 않는것처럼 보이지만 let과 const로 바꾸면 에러가 발생한다.</li>
-</ul>
-</li>
-</ul>
-<p><em>!사실 호이스팅은 변수 선언 뿐만이 아니라 var, let, const, function, function*, class 키워드를 사용해서 선언하는 모든 식별자(변수, 함수, 클래스 등)는 호이스팅된다. 모든 선언문은 런타임 이전 단계에서 먼저 실행되기 때문이다.!</em></p>
-<h1 id="5-값의-할당"><a href="#5-값의-할당" class="headerlink" title="5. 값의 할당"></a>5. 값의 할당</h1><p>할당(assignment,대입, 저장) 할 때는 할당 연산자’=’를 사용한다. 우변의 값을 좌변의 변수에 할당한다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> score; <span class="comment">// 변수 선언(변수 선언문)</span></span><br><span class="line">score = <span class="number">80</span>; <span class="comment">// 값의 할당</span></span><br></pre></td></tr></table></figure>
-<p>변수 선언과 값의 할당을 하나의 문(statement)으로 단축 표현할 수 있다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> score = <span class="number">80</span>; <span class="comment">// 변수 선언(변수 선언문)과 값의 할당</span></span><br></pre></td></tr></table></figure>
-<p>자바스크립트 엔진은 변수 선언과 값의 할당을 하나의 문으로 표현해도 변수선언과 값의할당을 2개의 문으로 나누어 각각 실행한다.<br>주의할 점!!: 변수 선언은 소스코드가 순차적으로 실행되는 시점인 런타임 이전에 먼저 실행되지만 값의 할당은 소스코드가 순차적으로 실행되는 시점인 런타임에 실행된다는 것이다.<br>변수에 값을 할당할때는 이전값(=초기된 값)이 저장되어있던 <strong>메모리를 덮어쓰는것이 아니다.</strong> <u>새로운 메모리공간을 <strong>확보</strong></u>하고 그 곳에 할당 된 값을 저장한다는 것이 중요하다.<br><img src="https://user-images.githubusercontent.com/67843356/92231416-ae754b00-eee7-11ea-8512-5f1999b4c24b.jpg" alt="variable_memory_3"><br><strong><em>!변수선언때 메모리공간에 할당한 값을 덮어쓰지 않는 이유는 자바스크립트 엔진이 원래있던 값을 지우는 동작을 부수적으로 실행해야하기 때문이다. 컴퓨터입장에서는 새로운 메모리공간을 확보하는것이 더 편하기 때문이다.!</em></strong><br>초기화된 값은 더이상 불러올 수 없다. 왜냐하면 초기화된 값의 변수이름이 할당된 변수의 이름으로 이동했기 때문에 초기화된 값의 변수이름이 없어서 부를 수가 없다. 사용할 수 없다는 것이다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(score); <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//DO-1</span></span><br><span class="line"><span class="keyword">var</span> score;   <span class="comment">//변수 선언 -①</span></span><br><span class="line">score = <span class="number">80</span>;  <span class="comment">//값의 할당 -②</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// DO-2 </span></span><br><span class="line"><span class="comment">// score = 80; 값의 할당</span></span><br><span class="line"><span class="comment">// var score;  변수 선언</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(score); <span class="comment">// ?? -&gt; 80</span></span><br></pre></td></tr></table></figure>
-<p>위의 코드 DO-1의 코드와 DO-1과 DO-2의 동작의 결과가 똑같이 일어나는 이유를 설명할 수 있어야 한다.</p>
-<h1 id="6-값의-재할당"><a href="#6-값의-재할당" class="headerlink" title="6. 값의 재할당"></a>6. 값의 재할당</h1><p>이미 값이 할당되어 있는 변수에 새로운 값을 또다시 할당하는 것을 말한다.<br>var키워드로 선언한 <strong>변수는 값을 재할당하는게 가능</strong>하다. let도 가능하지만 const는 불가능하다.<br>만약 값을 재할당 할 수 없어 <u>한 번 정해지면 변하지 않는 값은 상수(constant)</u>라고 한다. const키워드도 상수를 표현할 수 있지만 반드시 상수만의 위해 사용하는것은 아니다.<br>초기값에 값을 할당하는것도 재할당이라고 할 수 있다.<br>재할당역시 새로운 메모리공간을 확보하고 재할당한 값을 저장한다.<br><em>!가비지 콜렉터(garbage collector) : 애플리케이션이 할당(allocate)한 메모리공간을 주기적으로 검사해서 더이상 사용되고 있지 않는 메모리, 즉 어떤 식별자도 참조하지 않는 <strong>메모리공간을 해제(release)</strong> 하는 기능을 말한다.</em><br><em>!언매니지드 언어(unmanaged language)와 매니지드 언어(managed language) : 프로그래밍 언어는 메모리 관리방식에 따라 분류할 수 있다.<br><u>C언어 같은 언매니지드 언어</u>는 개발자가 명시적으로 메모리를 할당하고 해제하기 위해 메모리 제어 기능을 제공하여 개발자가 주도할 수 있으므로 개발자의 역량에 따라  최적의 성능을 확보할수도 있지만 반대의 경우 치명적인 오류를 생산할 가능성도 있다.<br><u>자바스크립트같은 매니지드 언어</u>는 개발자가 명시적으로 메모리를 할당하고 해제할 수 없고, 메모리 해제는 가비지콜렉터가 수행하며 개발자가 관여할 수 없다. 개발자의 역량에 의존하는 부분이 상대적으로 작아져서 어느정도 일정한 생산성을 확보할 수 있지만 성능면에서 어느정도의 손실은 감수해야한다.!</em></p>
-<h1 id="7-값의-교환"><a href="#7-값의-교환" class="headerlink" title="7. 값의 교환"></a>7. 값의 교환</h1><p>두 변수의 값을 교환하는 코드를 작성하라.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> y=<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//TODO</span></span><br><span class="line"><span class="keyword">var</span> c = x;</span><br><span class="line"><span class="keyword">var</span> x = y;</span><br><span class="line"><span class="keyword">var</span> y = c;<span class="comment">// 2 1 교환재할당!.</span></span><br><span class="line"><span class="comment">//강사님의 또다른 풀이</span></span><br><span class="line">[x,y]=[y.x]</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(x,y); <span class="comment">// 2 1</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="8-식별자-네이밍-규칙-‘2-식별자’와-같이-보자"><a href="#8-식별자-네이밍-규칙-‘2-식별자’와-같이-보자" class="headerlink" title="8. 식별자 네이밍 규칙 + ‘2.식별자’와 같이 보자."></a>8. 식별자 네이밍 규칙 + ‘2.식별자’와 같이 보자.</h1><p>외우자.<br>식별자는 어떤 값을 구별해서 식별해낼 수 있는 고유한 이름을 말하기때문에 식별자는 네이밍 규칙을 준수해야한다.<br>-식별자는 특수문자를 제외한 문자, 숫자, 언더스코어<em>, 달러기호$를 포함할 수 있다.<br>    - 단, 특수문자를 제외한 문자, 언더스코어</em>, 달러기호$로 시작해야함. 숫자로 시작하는건 허용하지 않는다.<br>-예약어(reserved word)는 식별자로 사용할 수 없다.(예약어는 프로그래밍 언어에서 사용되고 있거나 사용 예정인 단어를 말한다.)</p>
-<ul>
-<li>var first-name // SyntaxError가 나오는 이유는 -기호를 산술연산자로 인식하기 때문이다.</li>
-<li>네이밍 컨벤션(naming convention)은 식별자를 만들 때 가독성이 좋게하여 단어를 한눈에 구분하기위해 규정한 명명규칙이다.<ul>
-<li>네이밍 컨벤션 4가지 유형<ol>
-<li>카멜 케이스 : firstName - 변수나 함수이름에 사용.</li>
-<li>스네이크 케이스 : first_name</li>
-<li>파스칼 케이스:FirstName - 생성자 함수, 클래스 이름에 사용.</li>
-<li>헝가리언케이스: strFirstName//type+identifier , $elem=document.getElenentById(‘myId)//JQuery에서 DOM노드 요소를 나타냄, observable=fromEvent(document, ‘click’)//RxJS옵저버블</li>
-</ol>
-</li>
-</ul>
-</li>
-</ul>
-<p>일반적으로 변수나 함수의 이름에는 카멜케이스를 사용하고,<br>생성자함수, 클래스의 이름에는 파스칼케이스를 사용하는 것이 좋다.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://do-mandoo.github.io/2020/08/18/My-JavaScript/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="JinSol">
-      <meta itemprop="description" content="All Dev stories found in here">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JINLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/18/My-JavaScript/" class="post-title-link" itemprop="url">My JavaScript</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-08-18 18:34:56" itemprop="dateCreated datePublished" datetime="2020-08-18T18:34:56+09:00">2020-08-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-19 23:54:29" itemprop="dateModified" datetime="2020-08-19T23:54:29+09:00">2020-08-19</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Hi there!!! It’s me again. LOL. welcome to my JIN BLOG :-)</p>
-<p>매년 나오는 버전업그레이드. 특징들을 적극적으로 받아들여야한다. 높은 수준의 함수이지만 배워야한다.</p>
-<p>웹페이지와 웹애플리케이션의 차이,구분은 애매하다. 만약 회사홈페이지를 만들었다면 그 상태도 웹페이지이고 로그인해야 게시판에 글을 쓰는것도 웹페이지라고 한다. 웹애플리케이션은 그 것을 가지고 일,업무를 하기위한 그런 느낌이다. 예를들면  vscode나 slack같은 프로그램들을 웹애플리케이션이라고 한다.</p>
-<p>SPA에서 single page라는것은 html이 하나만있다는 뜻.</p>
-<p>자바스크립트와 에크마스크립트<br>ECMAScript는 스펙상 용어이다. 노드랑 브라우저에서 동작 가능.<br>자바스크립트 alert(‘foo’);실행시키는 것을 nodejs에서 실행시키면 모른다고 나온다. 참조에러가 뜸. = 함수는 브라우저에서는 되고 노드에서는 안되는것이 있다. alert은 경고창이지만 브라우저에서 작동하는것이라 node는 브라우저가 없으니 실행이 안됨.<br>DOM!!!! 또한 브라우저가 있어야만 실행가능하기 때문에 node에서 동작안됨.</p>
-<p>인터프리터! 중요. 컴파일러(like번역)와 인터프리터(like통역) 구분.<br>소스코드는 순수한 text파일을 말한다.<br>컴파일러의 단점은 컴파일을 해야한다는것이 단점이다.<br>컴파일중 수정사항이 생기면 다시 파일을 줘야한다.<br>프로그래머에게 편한건 인터프리터언어이지만,<br>실행속도가 빠른것은 컴파일러언어이다.<br>따라서 일부 컴파일을 쓴다. 인터프리터 언어다! 실행파일을 안만들기때문에 인터프리터 언어라고 말한다!</p>
-<h2 id="변수에서의-값의-할당"><a href="#변수에서의-값의-할당" class="headerlink" title="변수에서의 값의 할당"></a>변수에서의 값의 할당</h2><p>변수는 초기값으로 쓰레기 값을 가지고 있다. 사용자(?)가 새로운 값을 할당해주면 쓰레기값의 메모리를 덮어씌우는 것이 아닌 새로운 메모리공간에 할당된 값을 저장한다는 개념이 중요하다.<br>키워드var, let, const중에서 var와 let은 값의 재할당이 가능하다.<br>따지면 쓰레기값에 값을 할당하는것도 재할당하는 것이다.<br>ex)<br>var mandoo; // mandoo라는 변수에는 값을 할당하지 않았지만 보이지않는 초기값인 쓰레기값을 갖고있다.<br>mandoo = 20; // mandoo라는 변수에 숫자20 값을 할당했다. = 쓰레기값에 숫자20을 재할당했다.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://do-mandoo.github.io/2020/08/11/My-HTML5-CSS3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="JinSol">
-      <meta itemprop="description" content="All Dev stories found in here">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JINLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/11/My-HTML5-CSS3/" class="post-title-link" itemprop="url">My HTML5 & CSS3</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-08-11 16:45:49" itemprop="dateCreated datePublished" datetime="2020-08-11T16:45:49+09:00">2020-08-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-08-19 23:55:42" itemprop="dateModified" datetime="2020-08-19T23:55:42+09:00">2020-08-19</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Hi, This is my TIL(Today I Learn). Welcome.</p>
-<h2 id="HTML의-ATTRIBUTE-와-CSS의-PROPERTY의-차이"><a href="#HTML의-ATTRIBUTE-와-CSS의-PROPERTY의-차이" class="headerlink" title="HTML의 ATTRIBUTE 와 CSS의 PROPERTY의 차이"></a>HTML의 ATTRIBUTE 와 CSS의 PROPERTY의 차이</h2><ul>
-<li><strong>HTML의 ATTRIBUTE</strong>: 속성이라는 뜻. html문서에서 elements(요소들)에 추가적인 정보를 넣을 때 사용되는 요소. 정적(변하지 않음)이다.<br>예) <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;my-study&quot;</span>&gt;</span>HI<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-위의 코드에서 <code>&quot;my-study&quot;</code>는 <code>&lt;div&gt;</code>의 element(요소)이고, <code>class</code>는 attribute(속성, <strong>추가정보</strong>)가 된다.<br><code>my-study&quot;</code>는 class attribute의 value(값)가 됨.</li>
-<li><strong>CSS의 PROPERTY</strong>: 특성, 요소라는 뜻. html DOM안에서 attribute를 가리키는/대신하는 표현. 동적(값이 변할 수 있음)이다.<br>예) 위의 예에서 DOM 노드트리로 표현한 것에서  className <code>&quot;my-study&quot;</code>가 property가 됨.<br>CSS에서의 font-size와 color는 property이다. font-size와 color는 태어날 때부터 가지고 있는 속성이 있지만 바뀔 수 있다. 그래서 동적과 정적이라고 함.</li>
-</ul>
-<h2 id="HTML이란"><a href="#HTML이란" class="headerlink" title="HTML이란"></a>HTML이란</h2><ul>
-<li><strong>H</strong>yper<strong>T</strong>ext<strong>M</strong>arkup<strong>L</strong>anguage =  문서와 문서가 태그로 이루어져있고 링크로 연결되어있는 언어. 마크업 언어이다.</li>
-<li>웹의 아버지 : 팀 버너스리<br>웹을 이루는 가장 기초적인 구성 요소이다.<br>hypertext는 다른 text에 대한 link를 포함하는 text이다. = text와 text가 link로 연결되어 있다.</li>
-</ul>
-<p><strong>1. W</strong>eb Standards 웹표준기술<br><strong>2. W</strong>eb Accessibilty 윕 접근성 - 한가지 대안만 사용하지 않는다.</p>
-<ul>
-<li>예) 계단 옆의 경사로. </li>
-<li>접근을 생각해보면 떠오르는 장애 접근성. </li>
-<li>장애에 대한 이해: 시각장애(전맹, 저시력), 청각장애, 지체장애(절단 및 지체기능 장애), 뇌변병장애</li>
-<li>장애 환경에 대한 이해: 다양한 Platform, Cross Browsing(크롬이나 익스플로러등 다양한 환경), SEO(Search Engine Optimization), 저사양 또는 저속 회선</li>
-<li>장애는 틀린것이 아닌 다른것임. 다름을 인정해야 한다.</li>
-</ul>
-<p><strong>3.</strong> HTML의 탄생 ( 운영체제 - vender )</p>
-<ul>
-<li>IE - MS</li>
-<li>Chrome - Google</li>
-<li>Safari - Apple</li>
-<li>Firefox - Gojira</li>
-<li>Opera - Opera</li>
-</ul>
-<p><strong>4. WHATWG</strong></p>
-<ul>
-<li>웹 하이퍼텍스트 애플리케이션 테크놀로지 워킹 그룹(Web Hypertext Application Technology Working Group, WHATWG)은 HTML 및 관련 기술을 발전시키는 데 관심이 있는 사람들의 모임이다. 2004년 애플, 모질라 재단, 오페라 소프트웨어의 개인들이 설립하였다. 그 후, 당시 WHATWG 규격의 편집장이었던 이안 힉슨(Ian Hickson)이 오페라 소프트웨어에서 구글로 이직함에 따라 구글도 WHATWG의 일원이 됐다.<br>WHATWG는 멤버스(Members)로 불리는 초대 전용의 조그마한 감시 위원회를 가지고 있으며 이 위원회는 규격을 맡은 편집장을 탄핵할 권한을 가지고 있다. 누구든지 WHATWG 메일링 리스트에 참가하여 기여자로 참여할 수 있다.</li>
-</ul>
-<h2 id="CSS란"><a href="#CSS란" class="headerlink" title="CSS란"></a>CSS란</h2><ul>
-<li><strong>C</strong>ascading <strong>S</strong>tyle <strong>S</strong>heets = 사용자에게 문서를 표시하는 방법을 지정하는 언어.<br>웹 이전부터 워드프로세서 등에서 사용했던 개념.</li>
-<li>프론트 엔드의 3대장(HTML5, CSS3, JavaScript)중 1대장은 JavaScript이다.</li>
-<li>Web기술의 설정 값으로 HTML5는 건강한 신체이고  CSS3은 근사한 스타일링을 맡는다고 할 수 있다.<br>CSS는 스타일링할때에 설계가 필요하고 기획, 디자인 또한 필요하다.<br>JavaScript는 스마트한 두뇌의 역할이라 코어까지 들어가면 어렵게 느껴질 수 있다.</li>
-<li>요소 배치 방법<br>: display, float, position, table, flex, grid</li>
-</ul>
-<p><strong>1.</strong> FLOAT 배치방법 </p>
-<ul>
-<li>classic버전.</li>
-<li>도움이 되는 동영상 = <a target="_blank" rel="noopener" href="https://youtu.be/xara4Z1b18I" title="CSS float이해">Youtube</a>링크 클릭.</li>
-<li>노멀플로우(Normal Flow)는 띄워지지 않은, 바닥에 위치해있는 기본위치를 의미한다.<br>float과 position(중 absolute)를 요소에 지정하면 공중에 띄워진다.</li>
-<li>float의 기본 값은 none이고 left와 right를 지정할 수 있다.</li>
-<li>float은 block레이아웃의 사용을 뜻하기 때문에 float을 하면 block요소로 바뀐다.</li>
-<li>group에 float을 적용하게 되면 부모인 main이 자식요소인 group을 알 수 없게 되어 높이를 잃어버리고, 뒤쪽에 오는 다른 요소들에게도 float이 영향을 끼치게 되기 때문에 clearfix를 사용하여 float을 해제하고 부모가 자식의 높이를 인지할 수 있도록 해줘야 한다.</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1489,7 +1589,7 @@ console.log(add(&#39;a&#39;, &#39;b&#39;)); // &#39;ab&#39;</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>

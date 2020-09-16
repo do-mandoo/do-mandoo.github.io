@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"do-mandoo.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="전역변수의 무분별한 사용은 위험하다. 전역변수를 반드시 사용해야할 이유를 찾지못한다면 지역변수를 사용해야한다.  전역변수의 문제점과 전역변수의 사용을 억제할 수 있는 방법을 살펴보자.   변수의 생명 주기1-1. 지역 변수의 생명 주기   변수는 선언에 의해 생성되고 할당을 통해 값을 갖는다. 그리고 언젠가는 소멸한다.&#x3D; 변수는 생물과 유사하게 생성되고">
+<meta property="og:type" content="article">
+<meta property="og:title" content="전역변수의 문제점problem of global variable">
+<meta property="og:url" content="https://do-mandoo.github.io/2020/09/16/%EC%A0%84%EC%97%AD%EB%B3%80%EC%88%98%EC%9D%98-%EB%AC%B8%EC%A0%9C%EC%A0%90problem-of-global-variable/index.html">
+<meta property="og:site_name" content="JINLOG">
+<meta property="og:description" content="전역변수의 무분별한 사용은 위험하다. 전역변수를 반드시 사용해야할 이유를 찾지못한다면 지역변수를 사용해야한다.  전역변수의 문제점과 전역변수의 사용을 억제할 수 있는 방법을 살펴보자.   변수의 생명 주기1-1. 지역 변수의 생명 주기   변수는 선언에 의해 생성되고 할당을 통해 값을 갖는다. 그리고 언젠가는 소멸한다.&#x3D; 변수는 생물과 유사하게 생성되고">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-16T13:19:32.000Z">
+<meta property="article:modified_time" content="2020-09-16T13:20:40.972Z">
+<meta property="article:author" content="JinSol">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://do-mandoo.github.io/2020/09/16/%EC%A0%84%EC%97%AD%EB%B3%80%EC%88%98%EC%9D%98-%EB%AC%B8%EC%A0%9C%EC%A0%90problem-of-global-variable/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>전역변수의 문제점problem of global variable | JINLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">JINLOG</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Awesome</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://do-mandoo.github.io/2020/09/16/%EC%A0%84%EC%97%AD%EB%B3%80%EC%88%98%EC%9D%98-%EB%AC%B8%EC%A0%9C%EC%A0%90problem-of-global-variable/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="JinSol">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JINLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          전역변수의 문제점problem of global variable
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-09-16 22:19:32 / Modified: 22:20:40" itemprop="dateCreated datePublished" datetime="2020-09-16T22:19:32+09:00">2020-09-16</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li>전역변수의 무분별한 사용은 위험하다. 전역변수를 반드시 사용해야할 이유를 찾지못한다면 지역변수를 사용해야한다. </li>
+<li>전역변수의 문제점과 전역변수의 사용을 억제할 수 있는 방법을 살펴보자.</li>
+</ul>
+<ol>
+<li>변수의 생명 주기<br>1-1. 지역 변수의 생명 주기</li>
+</ol>
+<ul>
+<li>변수는 선언에 의해 생성되고 할당을 통해 값을 갖는다. 그리고 언젠가는 소멸한다.= 변수는 생물과 유사하게 생성되고 소멸되는 생명주기(life cycle)가 있다. 변수에 생명주기가 없다면 한번선언된 변수는 프로그램을 종료하지않는 한 영원히 메모리공간을 점유하게 된다.</li>
+<li>변수는 자신이 선언된 위치에서 생성되고 소멸한다. 전역변수의 생명주기는 애플리케이션의 생명주기와 같다. 하지만 함수내부에서 선언된 지역변수는 함수가 호출되면 생성되고, 함수가 종료하면 소멸한다.<br>function foo() {<br>var x = ‘local’;<br>console.log(x); // local<br>return x;<br>}<br>foo();<br>console.log(x); // ReferenceError: x is not defined</li>
+<li>설명:<br>-지역변수 x는 foo함수가 호출되기 이전까지는 생성되지 않는다. foo함수를 호출하지않으면 함수내부의 변수선언문이 실행되지않기 때문이다.<ul>
+<li>‘4변수.4변수선언의실행시점과변수호이스팅’에서 살펴보았듯이 변수선언은 선언문이 어디에 있든 상관없이 가장먼저 실행된다. 다시말해, 변수선언은 코드가 한줄씩 순차적으로 실행되는 시점인 런타임에 실행되는것이 아니라 런타임이전단계에서 자바스크립트엔진에 의해 먼저 실행된다.<br>그런데, 엄밀히 말하자면 위 설명은 전역변수에 한정된 것이다. 함수내부에서 선언한 변수는 함수가 호출된 직후에 함수몸체의 코드가 한줄씩 순차적으로 실행되기이전에 자바스크립트 엔진에 의해 먼저 실행된다.</li>
+<li>위 코드의 foo함수를 호출하면 함수 몸체의 다른 문들이 순차적으로 실행되기 이전에 x변수의 선언문이 자바스크립트엔진에 의해 가장 먼저 실행되어 x 변수가 선언되고 undefined로 초기화된다. 그후, 함수몸체를 구성하는 문들이 순차적으로 실행되기 시작하고 변수할당문이 실행되면 x변수에 값이 할당된다. 그리고 함수가 종료하면 x변수도 소멸되어 생명주기가 종료된다. 따라서 함수내부에서 선언된 지역변수 x는 foo함수가 호출되어있는 동안에만 유효하다. 즉, 지역변수의 생명주기는 함수의 생명주기와 일치한다.</li>
+</ul>
+</li>
+<li>함수 몸체내부에서 선언되 지역변수의 생명주기는 함수의생명주기와 대부분일치하지만 지역변수가 함수보다 오래생존하는 경우도 있다.</li>
+<li>변수는 하나의 값을 저장하기위해 확보한 메모리공간 자체 또는 그 메모리공간을 식별하기위해 붙인 이름이다. 따라서 변수의 생명주기는 메모리공간이 확보(allocate)된 시점부터 메모리공간이 해제(release)되어 가용메모리풀(memory pool)에 반환되는 시점까지다.</li>
+<li>함수내부에서 선언된 지역변수는 함수가 생성한 스코프에 등록된다. 함수가 생성한 스코프는 렉시컬환경이라 부르는 물리적인 실체가 있다고 했다. 따라서 변수는 자신이 등록된 스코프가 소멸(스코프가 메모리에서 해제)될때까지 유효하다. 할당된메모리공간은 더이상 그누구도 참조하지않을때 가비지콜렉터에 의해 해제되어 가용메모리풀에 반환된다. 즉, 누군가 메모리 공간을 참조하고 있으면 해제되지않고 확보된 상태로 남아있게된다. 이는 스코프도 마찬가지다. 누군가 스코프를 참조하고있으면 스코프는 스멸하지않고 생존하게 된다.</li>
+<li>일반적으로 함수가 종료하면 함수가 생성한 스코프도 소멸한다. 하지만 누군가가 스코프를 참조하고있다면 스코프는 해제되지않고 생존하게 된다. 클로저에서 자세히 공부해보자.</li>
+<li>변형 문제 풀어보자<br>var x = ‘global’;<br>function foo() {<br>console.log(x); // ?-1<br>var x = ‘local’;<br>console.log(x); // ?-2 -&gt; 여기서는 x변수에 재할당된 local이 출력된다.<br>}<br>foo();<br>console.log(x);// global<br>나: ?-1: global , 정답: undefined<br>설명: foo함수내부에서 선언된 지역변수 x는 ?-1의 시점에 이미선언되었고 undefined로 초기화되어있다. 따라서 전역변수 x를 참조하는것이 아니라 지역변수 x를 참조해 값을 출력한다. 즉, 지역변수는 함수전체에서 유효하다. 단, 변수할당문이 실행되기이전까지는 undefined값을 갖는다.</li>
+</ul>
+<p>이처럼 호이스팅은 스코프단위로 동작한다.<br>전역변수의 호이스팅은 전역변수의 선언이 전역스코프의 선두로 끌어올려진것처럼 동작한다. 따라서 전역변수는 전역 전체에서 유효하다.<br>지역변수의 호이스팅은 지역변수의 선언이 지역스코프의 선두로 끌어올려진것처럼 동작한다. 따라서 지역변수는 함수 전체에서 유효하다.<br>즉, 호이스팅은 변수선언이 스코프의 선두로 끌어올려진것처럼 동작하는 자바스크립트 고유의 특징을 말한다.</p>
+<p>1-2. 전역 변수의 생명 주기</p>
+<ul>
+<li><p>함수와 달리 전역코드는 명시저인 호출없이 실행된다. 다시말해, 전역코드는 함수호출과 같이 전역코드를 실행하는 특별한 진입점(entry point)이 없고 코드가 로드되자마자 곧바로 해석되고 실행된다.<br> **** 진입점(entry point): C나 자바로 작성된 코드를 실행하면 가장먼저 main함수가 호출된다. 이 main함수는 프로그램이 시작되는 지점이므로 이를 진입점 또는 시작점이라고 한다.</p>
+</li>
+<li><p>함수는 함수몸체의 마지막 문 또는 반환문이 실행되면 종료한다. 하지만 전역코드에는 반환문을 사용할수 없으므로 마지막 문이 실행되어 더이상 실행할 문이 없을때 종료한다.</p>
+</li>
+<li><p>var키워드로 선언한 전역변수는 전역객체의 프로퍼티가 된다. 이는 전역변수의 생명주기가 전역객체의 생명주기와 일치한다는것을 말한다.<br> **** 전역 객체(global object): 전역 객체는 코드가 실행되기 이전단계에 자바스크립트엔진에 의해 어떤 객체보다도 먼전 생성되는 특수한 객체다. 전역객체는 클라이언트사이드환경(브라우저)에서는 window, 서버사이드환경(Node.js)에서는 global객체를 의미한다. 환경에 따라 전역객체를 가리키는 다양한 식별자(window, self, this, frames, global)가 존재했으나 ES11(ECMAScript 11) 에서 globalThis로 통일되었다. 전역객체에는 표준빌트인객체(Object, String, Number, Function, Array..)와 환경에 따른 호스트객체(클라이언트 Web API 또는 Node.js의 호스트 API), 그리고 var키워드로 선언한 전역변수와 전역함수를 프로퍼티로 갖는다. 전역객체와 표준빌트인객체는 빌트인객체에서 공부하자.</p>
+</li>
+<li><p>브라우저환경에서 전역객체는 window이므로 브라우저환경에서 var키워드로 선언한 전역변수는 전역객체 window의 프로퍼티다. 전역객체 window는 웹페이지를 닫기전까지 유효하다. 따라서 브라우저환경에서 var키워드로 선언한 전역변수는 웹페이지를 닫을때까지 유효하다. 즉, var키워드로 선언한 전역변수의 생명주기는 전역객체의 생명주기와 일치한다.</p>
+</li>
+<li><p>—————————————————사진넣기</p>
+</li>
+</ul>
+<ol start="2">
+<li><p>전역 변수의 문제점</p>
+<p>암묵적 결합<br>전역변수를 선언한 의도는 전역, 즉 코드 어디서든 참조하고 할당할 수 있는 변수를 사용하겠다는 것이다. 이는 모든 코드가 전역변수를 참조하고 변경할수 있는 암묵적결합(implicit coupling)을 허용하는것이다. 변수의 유효범위가 크면클수록 코드의 가독성은 나빠지고 의도치않게 상태가 변경될수있는 위험성도 높아진다.</p>
+<p>긴 생명주기<br>전역변수는 생명주기가 길다. 따라서 메모리리소스도 오랜기간 소비하고 전역변수의 상태를 변경할수 있는 시간도 길고 기회도 많다. 더욱이 var키워드는 변수의 중복선언을 허용하므로 생명주기가 긴 전역변수는 변수이름이 중복될 가능성이 있다. 변수이름이 중복되면 의도치않은 재할당이 이루어진다.<br>ex)<br>var x = 1;<br>// …<br>// 변수의 중복선언. 기존변수에 값을 재할당한다.<br>var x = 100;<br>console.log(x); // 100</p>
+</li>
+</ol>
+<p>지역변수는 전역변수보다 생명주기가 훨씬 짧다. 크지않은 함수의 지역변수는 생존시간이 극히 짧다. 따라서 지역변수의 상태를 변경할수 있는 시간도 짧고 기회도 적다. 이는 전역변수보다 상태 변경에 의한 오류가 발생할 확률이 작다는 것을 의미한다. 또한 메모리 리소스도 짧은 기간만 소비한다.</p>
+<p>  스코프 체인 상에서 종점에 존재<br>전역변수는 스코프 체인상에서 종점에 존재한다. 이는 변수를 검색할때 전역변수가 가장 마지막에 검색된다는것을 말한다. 즉, 전역변수의 검색속도가 가장 느리다. 검색속도의 차이는 그다지 크지않지만 속도의 차이는 분명히 있다.</p>
+<p>  네임스페이스 오염<br>자바스크립트의 가장 큰 문제점 중 하나는 파일이 분리되어있다해도 하나의 전역스코프를 공유한다는것이다. 따라서 다른파일내에서 동일한 이름으로 명명된 전역변수나 전역함수가 같은 스코프내에 존재할경우 예상치 못한 결과를 가져올 수 있다.</p>
+<ol start="3">
+<li>전역 변수의 사용을 억제하는 방법</li>
+</ol>
+<ul>
+<li>전역변수의 무분별한 사용은 위험하다. 전역변수를 반드시 사용해야할 이유를 찾지못한다면 지역변수를 사용해야한다. 변수의 스코프는 좁을수록 좋다. 전역변수를 절대 사용하지말라는 의미가 아닌 무분별한 전역변수의 남발은 억제해야한다는 것이다.<br>전역변수의 사용을 억제할 수 있는 몇가지 방법을 보자.</li>
+</ul>
+<p>3-1. 즉시 실행 함수</p>
+<ul>
+<li>함수정의와 동시에 호출되는 즉시실행함수는 단 한번만 호출된다. 모든코드를 즉시실행함수로 감싸면 모든변수는 즉시실행함수의 지역변수가 된다. 이러한 특성을 이용해 전역변수의 사용을 제한하는 방법이다. 이 방법을 사용하면 전역변수를 생성하지않으므로 라이브러리등에 자주 사용된다.<br>(function() {<br> var foo = 10; // 즉시 실행 함수의 지역 변수<br> // …<br>}());<br>console.log(foo); // ReferenceError: foo is not defined</li>
+</ul>
+<p>3-2. 네임스페이스 객체</p>
+<ul>
+<li>전역에 네임스페이스(Namespace)역할을 담당할 객체를 생성하고 전역변수처럼 사용하고싶은 변수를 프로퍼티로 추가하는 방법이다.<br>var MYAPP = {}; // 전역 네임스페이스 객체<br>MYAPP.name = ‘Lee’;<br>console.log(MYAPP.name); // Lee</li>
+<li>네임스페이스 객체에 또 다른 네임스페이스 객체를 프로퍼티로 추가해서 네임스페이스를 계층적으로 구성할수도 있다.<br>var MYAPP = {}; // 전역 네임스페이스 객체<br>MYAPP.person = {<br> name: ‘Lee’,<br>address: ‘Seoul’<br>};<br>console.log(MYAPP.person.name); // Lee<br>네임스페이스를 분리해서 식별자 충돌을 방지하는 효과는 있으나 네임스페이스 객체 자체가 전역변수에 할당되므로 그다지 유용해보이지는 않는다.</li>
+</ul>
+<p>3-3. 모듈 패턴</p>
+<ul>
+<li><p>모듈 패턴은 클래스를 모방해서 관련이 있는 변수와 함수를 모아 즉시 실행함수로 감싸 하나의 모듈을 만든다. 모듈 패턴은 자바스크립트의 강력한 기능인 클로저를 기반으로 동작한다. 모듈패턴의 특징은 전역변수의 억제는 물론 캡슐화까지 구현할 수 있다는것이다.</p>
+</li>
+<li><p>캡슐화(encapsulation)는 객체의 상태(state)를 나타내는 프로퍼티와 프로퍼티를 참조하고 조작할수있는 동작(behavior)인 메서드를 하나로 묶는것을 말한다. 캡슐화는 객체의 특정프로퍼티나 메서드를 감출목적으로 사용하기도 하는데 이를 정보은닉(information hiding)이라 한다.</p>
+</li>
+<li><p>대부분의 객체지향 프로그래밍언어는 클래스를 구성하는 멤버에대해 public, private, protected등의 접근제한자(access modifier)를 사용해 공개범위를 한정할 수 있다. public으로 선언된 데이터 또는 메서드는 외부에서 접근이 가능하지만  private으로 선언된 경우는 외부에서 접근할수 없고 내부에서만 사용된다. 이것은 클래스외부에는 제한된 접근권한을 제공하며 원하지않는 외부의 접근으로부터 내부를 보호하는 기능을 한다.</p>
+</li>
+<li><p>하지만 자바스크립트는 public, private, protected 등의 접근 제한자를 제공하지 않는다. 모듈패턴은 전역네임스페이스의 오염을 막는 기능은 물론 한정적이기는 하지만 정보 은닉을 구현하기 위해 사용한다.<br>var Counter = (function() {<br>// Private 변수<br>var num = 0;</p>
+<p>// 외부로 공개할 데이터나 메서드를 프로퍼티로 추가한 객체를 반환한다.<br>return{<br>  increase() {</p>
+<pre><code>return ++num;</code></pre>
+<p>  },<br>  decrease() {</p>
+<pre><code>return --num;</code></pre>
+<p>  }<br>};<br>}());</p>
+</li>
+</ul>
+<p>// private 변수는 외부로 노출되지 않는다.<br>console.log(Counter.num); // undefined</p>
+<p>console.log(Counter.increase()); // 1<br>console.log(Counter.increase()); // 2<br>console.log(Counter.decrease()); // 1<br>console.log(Counter.decrease()); // 0<br>위 코드의 즉시 실행함수는 객체를 반환한다. 이 객체에는 외부에 노출하고싶은 변수나 함수를 담아 반환한다. 이때 반환되는 객체의 프로퍼티는 외부에 노출되는 퍼블릭 멤버(public member)이다. 외부로 노출하고 싶지 않은 변수나 함수는 반환하는 객체에 추가하지않으면 외부에서 접근할수 없는 프라이빗 멤버(private member)가 된다. 클로저에서 더 공부해보자.</p>
+<p>3-4. ES6 모듈</p>
+<ul>
+<li>ES6 모듈을 사용하면 더는 전역변수를 사용할수 없다. ES6 모듈은 파일자체의 독자적인 모듈스코프를 제공한다. 즉, 모듈내에서 var키워드로 선언한 변수는 더는 전역변수가 아니며 window객체의 프로퍼티도 아니다.</li>
+<li>모던 브라우저(Chrome 61, FF 60, SF 10:1, Edge 16이상)에서 ES6 모듈을 사용할 수 있다. script태그에 type=”module”어트리뷰트를 추가하면 로드된 자바스크립트파일은 모듈로서 동작한다. 모듈의 파일확장자는 mjs를 권장한다.<script type=”module” src=”lib.mjs></script>
+<script type=”module” src=”app.mjs></script>
+ES6 모듈은 IE를 포함한 구형브라우저에서는 동작하지않으며, 브라우저의 ES6 모듈기능을 사용하더라도 트랜스파일링이나 번들링이 필요하기때문에 아직까지는 브라우저가 지원하는 ES6모듈기능보다는 Webpack등의 모듈번들러를 사용하는것이 일반적이다.</li>
+<li>모듈과 Webpack등의 모듈 번들러를 도입한느 방법에 대해서는 다음(48,49)에 더 자세히 공부하자.</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/16/%EC%8A%A4%EC%BD%94%ED%94%84scope/" rel="prev" title="스코프scope">
+      <i class="fa fa-chevron-left"></i> 스코프scope
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/16/let-const-and-block-level-scope/" rel="next" title="let, const and block-level scope">
+      let, const and block-level scope <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">JinSol</p>
+  <div class="site-description" itemprop="description">All Dev stories found in here</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JinSol</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
