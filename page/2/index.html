@@ -148,6 +148,143 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://do-mandoo.github.io/2020/08/25/%EC%97%B0%EC%82%B0%EC%9E%90operator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="JinSol">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JINLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/25/%EC%97%B0%EC%82%B0%EC%9E%90operator/" class="post-title-link" itemprop="url">연산자operator</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-25 22:20:35 / Modified: 22:20:48" itemprop="dateCreated datePublished" datetime="2020-08-25T22:20:35+09:00">2020-08-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>연산자(operator)는 하나 이상의 표현식을 대상으로 산술, 할당, 비교, 논리, 타입, 지수 연산(operation)등을 수행해 하나의 값을 만듦. 이때 연산의 대상의 피연산자(operand)라 함. 피연산자는 값으로 평가될 수 있는 표현식이어야 함.</p>
+<ul>
+<li>피연산자가 “값”이라는 명사의 역할을 한다면,<br>연산자는 “피연산자를 연산하여 새로운 값을 만든다”라는 동사의 역할을 한다고 볼 수 있음.<br>= 피연산자는 연산의 대상이 되어야 하므로 값으로 평가할 수 있어야 함. 연산자는 값으로 평가된 피연산자를 연산해 새로운 값을 만듦.</li>
+</ul>
+<ol>
+<li>산술연산자<br>arithmetic operator<br>피연산자를 대상으로 수학적 계산을 수행해 새로운 값을 만듦. 산술 연산이 불가능할 경우 NaN을 반환함. 산술연산자는 피연산자의 개수에 따라 이항산술연산자와 단항산술연산자로 구분할 수 있음.<br>1-1. 이항(binary) 산술 연산자<br>binary산술 연산자는 2개의 피연산자를 산술연산해서 숫자값을 만듦.<br>모든 이행 산술연산자는 피연산자의 값을 변경하는 부수효과(side effect)가 없음. = 어떤 산술을 해도 피연산자의 값이 바뀌는 경우는 없고 언제나 새로운값을 만들뿐!<br>종류: +덧셈 -뺼셈 *곱셈 /나누기 %나머지<br>1-2. 단항(unary) 산술 연산자<br>unary산술 연산자는 1개의 피연산자를 산술연산하여 숫자값을 만듦.<br>종류: ++증가(부수효과있음)<pre><code>    --감소(부수효과있음) 
+   +어떠한효과없고 음수양수반전도 안하고 부수효과도 없음.
+    -양수를음수로음수를양수로반전한값을 반환하고 부수효과는 없음.</code></pre>
+증가++ 감소– 연산자는 피연산자의 값을 변경하는 부수효과가 있다는 것이 중요!!= 증가/감소 연산을 하면 피연산자의 값을 변경하는 암묵적할당이 이루어짐.</li>
+</ol>
+<p>** 증가/감소(++/–)연산자는 위치에 의미가 있음!! 중요!!!</p>
+<ul>
+<li>피연산자 앞에 위치한 = 전위 증가/감소 연산자(prefix increment/ decrement operator)는 피연산자의 값은 먼저 증가/감소 시킨 후, 다른 연산을 수행.</li>
+<li>피연산자 뒤에 위치한 = 후위 증가/감소 연산자(postfix increment/ decrement operator)는 다른 연산을 먼저 수행한 후 피연산자의 값을 증가/감소시킴.</li>
+<li><ul>
+<li>단항연산자는 피연산자에 어떠한 효과도 없음. 음수를 양수로 반전하지도 않음. 숫자타입이 아닌 피연산자에 +사용하면 숫자타입으로 변환한 값을 생성해서 반환함. 부수효과없음.</li>
+</ul>
+</li>
+<li>-단항연산잔느 피연산자의 부호를 반전한 값을 반환함. +단항연산자와 마찬가지로 숫자타입이 아닌 피연산자에 사용하면 숫자타입으로 변환한 값을 생성하여 반환함. 피연산자를 변경한느것이 아닌 부호를 반전한 값을 생성해서 반환함. 부수효과 없음.<br>1-3. 문자열 연결 연산자<ul>
+<li>연산자는 피연산자 중 하나 이상이 문자열인 경우 문자열 연결 연산자로 동작. 그 외의 경우는 산술연산자로 동작.</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><p>할당 연산자<br>assignment operator는 우항에 있는 피연산자의 평가결과를 좌항에 있는 변수에 할당. 할당연산자는 좌항의 변수에 값을 할당하므로 변수값이 변하는 부수효과가 있음.<br>종류: = -&gt; x = 5 , x = 5</p>
+<pre><code> += -&gt; x += 5, x=x+5
+  -= -&gt; x -= 5, x=x-5
+  *= -&gt; x *= 5, x=x*5
+  /= -&gt; x /= 5, x=x/5
+  %= -&gt; x %= 5, x=x%5</code></pre>
+<p>할당문은 표현식인 문일까 표현식이 아닌 문일까? = 할당문은 값으로 평가되는 표현식인 문으로서 할당된 값으로 평가됨. 할당문을 다른 변수에 할당하는 특징을 활용해 여러변수에 동일한 값을 연쇄할당할 수 있음<br>ex) var a, b, c;<br>   a = b = c = 0; //연쇄할당. 오른쪽에서 왼쪽으로 진행. c=0, b=0, a=0.<br>  console.log(a, b, c); // 0, 0, 0</p>
+</li>
+<li><p>비교 연산자<br>comparison operator는 좌항과 우항의 피연산자를 비교한 다음 그 결과를 불리언 값으로 반환함. 비교 연산자는 if문이나 for문과 같은 제어문의 조건식에서 주로 사용함.<br>3-1. 동등/ 일치 비교 연산자<br>동등비교(loose equality)연산자와 일치비교(strict equality)연산자는 좌항과 우항의 피연산자가 같은 값으로 평가되는 지 비교해 불리언값을 반환함. 하지만 비교하는 엄격성의 정도가 다름! 동등비교는 느슨한비교, 일치비교는 엄격한비교. 부수효과 전부 없음.<br>종류 : == 동등비교, x == y, x와 y의 값이 같음.</p>
+<pre><code>    === 일치비교, x === y, x와 y의 타입이 같음.
+    != 부동등 비교, x != y, x와 y의 값이 다름.
+    !== 불일치비교, x !== y, x와 y의 타입이 다름.</code></pre>
+<p>동등비교(==)는 좌항과 우항의 피연산자를 비교할때 암묵적인 타입변환을 통해 타입일치시킨 후 같은 값인지 비교함.<br>ex) 0 == ‘ ‘; // true<br>   0 == ‘0’; // true<br>   ‘0’ == ‘ ‘; // false<br>동등비교연산자는 결과를 예측하기 어려우므로 일치비교(===)연산자를 사용한다.<br>ex) 5 === 5; // true<br>   5 === ‘5’; // false<br>일치비교(===)연산자에서 주의할 것은 NaN 이다!!!<br>NaN은 자신과 일치하지 않는 유일한 값임.<br>ex) NaN===NaN; // false<br>따라서 숫자가 NaN인지 조사하려면 빌트인 함수 isNaN을 사용.<br>ex) isNaN(NaN); // true</p>
+<pre><code>isNaN(10); // false</code></pre>
+<p>숫자 0도 주의!!!! 자바스에는 양의0과 음의0이 있는데 이들을 비교하면 true를 반환함.<br>ex) 0 === -0; // true</p>
+<pre><code>0 == -0; // true</code></pre>
+<dl><dt>(** Object.is 메서드</dt><dd>ES6에서 도입된 Object.is메서드는 예측 가능한 정확한 비교결과를 반환함. 그 외에는 일치비교(===)연산자와 동일하게 작동.<br>ex)  -0 === +0; // true</dd></dl><pre><code> Object.is(-0, +0); // false
+ NaN === NaN; // false
+ Object.is(NaN, NaN); // true</code></pre>
+<p>)<br>부동등 비교연산자(!=)와 불일치 비교 연산자(!==)는 각각 동등비교(==)연산자와 일치비교(===)연산자의 반대개념임.<br>3-2. 대소 관계 비교 연산자<br>피연산자의 크기를 비교하여 불리언 값을 반환함. 부수효과 없음.<br>종류 : &gt; , x &gt; y, x가 y보다 크다.</p>
+<pre><code>    &lt; , x &lt; y, x가 y보다 작다.
+    &gt;= , x &gt;= y, x가 y보다 크거나 같다.
+    &lt;= , x &lt;= y, x가 y보다 작거나 같다.</code></pre>
+</li>
+<li><p>삼항 조건 연산자<br>ternary operator는 조건식의 평가 결과에 따라 반환할 값을 결정함. 자바스의 유일한 삼항 연산자이며 부수효과 없음.<br>사용 예 : 조건식 ? 조건식이 true일 때 반환할 값 : 조건식이 false일 때 반환할 값<br>삼항조건연산자는 두번째 피연산자 또는 세번째 피연산자로 평가되는 표현식임.<br>물음표? 앞의 첫번째 피연산자는 조건식=불리언 타입의 값으로 평가될 표현식임. 조건식의 평가 결과가 불리언값이 아니어도 불리언값으로 암묵적타입변환됨. 이때 조건식이 참true이면 콜론:  앞의 두번째 피연산자가 평가되어 반환, 거짓false라면 콜론: 뒤의 세번째 피연산자가 평가되어 반환.<br>if~ else문을 사용해도 삼항조건 연산자 표현식과 유사하게 처리할 수 있음.<br>하지만 삼항조건연산자표현식은 값처럼 사용가능(=표현식인 문)하지만 if~else문은 값처럼 사용할 수 없음(=표현식이 아닌 문).</p>
+</li>
+<li><p>논리 연산자<br>logical operator는 우항과 좌항의 피연산자(부정 논리 연산자의 경우 우항의 피연산자)를 논리 연산한다. 부수효과 없음.<br>종류 : || 논리합(OR)</p>
+<pre><code>    &amp;&amp; 논리곱(AND)
+    ! 부정(NOT) // 언제나 불리언 값을 반환함.</code></pre>
+</li>
+</ol>
+<dl><dt>** 드 모르간의 법칙</dt><dd>논리 연산자로 구성된 복잡한 표현식은 가독성이 좋지 않아 한눈에 이해하기 어려울 때가 있음. 이러한 경우 드 모르간 법칙을 활용하면 복잡한 표현식을 좀 더 가독성 좋은 표현식으로 변환할 수 있음.<br>ex) !(x || y) === (!x &amp;&amp; !y)<br>      !(x &amp;&amp; y) === (!x || !y)</dd></dl><ol start="6">
+<li><p>쉼표 연산자<br>, 쉼표 연산자는 왼쪽 피 연산자부터 차례대로 피연산자를 평가하고 마지막 피연산자의 평가가 끝나면 마지막 피연산자의 평가결과를 반환함.<br>ex)  var x, y, z;</p>
+<pre><code>x = 1, y = 2, z = 3; // 3</code></pre>
+</li>
+<li><p>그룹 연산자<br>소괄호( ) 로 피연산자를 감싸는 그룹 연산자는 자신의 피연산자인 표현식을 가장 먼저 평가함. 연산자의 우선순위 조절 가능. 연산자 우선순위가 가장 높음.<br>ex) 10 * 2 + 3; // 23<br>   10 * (2 + 3); // 50</p>
+</li>
+<li><p>typeof 연산자<br>데이터 타입을 문자열로 반환함. 7가지 문자열 “string”, “number”, “boolean”, “undefined”, “symbol”, “object”, “function” 중 하나를 반환함. “null”을 반환하는 경우 없음. 함수의 경우 “function”을 반환. = typeof연산자가 반환하는 문자열은 7개의 데이터 타입과 정확하게 일치하지 않음!!<br>typeof연산자로 null값을 연산해보면 “null”이 아닌”object”를 반환한다는 데 주의!!! 자바스의 첫번째 버전의 버그임. 기존코드에 영향을 줄 수 있기때문에 아직까지 수정되지못함.<br>= 따라서 값이 null 타입인지 확인할때는 typeof연산자말고 일치연산자(===)사용하자.<br>그리고 선언하지 않은 식별자를 typeof연산자로 연산해보면 ReferenceError가 발생하지않고 undefined를 반환함.</p>
+</li>
+<li><p>지수 연산자<br>ES7에서 도입된 지수연산자는 좌항의 피연산자를 밑으로, 우항의 피연산자를 지수로 거듭 제곱하여 숫자값을 반환함.<br>ex) 2 ** 2; //4<br>   2 ** 0; // 1<br>   2 ** -2; // 0.25<br>   2 ** 2.5; // 5.65685<br>지수연산자 도입전까진 Math.pow메서드를 사용했음. 지수연산자가 가독성이 더 좋음<br>음수를 거듭제곱의 밑으로 사용해 계산하려면 괄호로 묶어야 함.<br>ex) (-5) ** 2; // 25<br>다른 산술연산자와 마찬가지로 할당연산자와 함께 사용할 수 있음.<br>이항 연산자 중에서 우선순위가 가장 높음.</p>
+</li>
+<li><p>그 외의 연산자<br>종류 : ?.  옵셔널 체이닝 연산자</p>
+<pre><code>   ??  null 병합 연산자
+   delete 프로퍼티 삭제
+   new 생성자 함수를 호출할 때 사용하여 인스턴스를 생성
+   instanceof 좌변의 객체가 우변의 생성자 함수와 연결된 인스턴스인지 판별
+   in 프로퍼티 존재 확인</code></pre>
+</li>
+<li><p>연산자의 부수 효과<br>대부분의 연산자는 다른 코드에 영향을 주지 않음. 일부 연산자는 다른코드에 영향을 주는 부수효과(side effect)가 있음.<br>부수 효과가 있는 연산자는 할당(=), 증가(++), 감소(–), delete연산자 이다.</p>
+</li>
+<li><p>연산자 우선순위<br>우선순위가 높을수록 먼저 실행됨.</p>
+</li>
+<li><p>연산자 결합 순서<br>연산자의 어느쪽(좌항 또는 우항)부터 평가를 수행할 것인지를 나타내는 순서를 말함.<br>결합순서:<br>좌항-&gt;우항: + , - , / , % , &lt; , &lt;= , &gt; , &gt;= , &amp;&amp; , || , . , [] , () , ?? , ?. , in , instanceof<br>우항-&gt;좌항: ++ , – , 할당연산자, !x , +x , -x , ++x , –x , typeof , delete , ? … : …</p>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://do-mandoo.github.io/2020/08/25/%EB%8D%B0%EC%9D%B4%ED%84%B0%ED%83%80%EC%9E%85-data-type/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -353,7 +490,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-09-04 20:25:21" itemprop="dateModified" datetime="2020-09-04T20:25:21+09:00">2020-09-04</time>
+                <time title="Modified: 2021-01-08 19:54:10" itemprop="dateModified" datetime="2021-01-08T19:54:10+09:00">2021-01-08</time>
               </span>
 
           
@@ -369,7 +506,7 @@
       
           <h1 id="1-변수란-무엇인가-왜-필요한가"><a href="#1-변수란-무엇인가-왜-필요한가" class="headerlink" title="1. 변수란 무엇인가? 왜 필요한가?"></a>1. 변수란 무엇인가? 왜 필요한가?</h1><p>변수란 데이터를 관리하기 위한 핵심 개념이다.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10</span> + <span class="number">20</span></span><br></pre></td></tr></table></figure>
-<p>자바스크립트를 해석하고 실행하는 자바스크립트 엔진이 위 코드를 계산(=평가evalution)하려면 10,20,+ 라는 기호의 의미를 알고 있어야 하며, 10+20이라는 식(=표현식expression)의 의미도 해석(=파싱parsing)할 수 있어야 한다.<br>10+20은 새로운 숫자값 30을 만들어 낸다.<br>컴퓨터는 CPU를 사용해서 연산하고, 메모리를 사용해서 데이터를 기억한다.<br>메모리(memory)는 데이터를 저장할 수 있는 메모리셀(memory cell)의 집합체이다. 메모리 셀 하나의 크기는 1바이트(byte)=8비트(bit)이며, 컴퓨터의 메모리 셀의 크기로(=1바이트 단위로) 데이터를 저장(write)하거나 읽어(read)들인다.<br><img src="https://user-images.githubusercontent.com/67843356/92218879-bc6da080-eed4-11ea-84ba-a8f82db0f4c7.jpg" alt="variable_memory_1" title="JS_memory"><br>각 셀은 고유의 메모리 주소(memory address)를 갖는다. 이 메모리 주소는 메모리공간의 위치를 나타내며, 0부터 시작해서 메모리의 크기만큼 정수로 표현된다.<br>컴퓨터는 모든 데이터를 2진수로 처리하기때문에 메모리에 저장되는 데이터는 데이터의종류(숫자,텍스트,이미지,동영상)와 상관없이 모두 2진수로 저장된다.<br>위 예제에서 숫자값 10과20은 메모리상 임의의 위치(메모리주소)에 기억(=저장)되고 CPU는 이 값을 읽어들여 연산을 수행한다 -&gt; 연산된 결과로 생성된 숫자 값 30도 메모리상 임의의 위치에 저장된다.<br><img src="https://user-images.githubusercontent.com/67843356/92218884-bd9ecd80-eed4-11ea-9e40-2afb7d8c939c.jpg" alt="variable_memory_2"><br>편의상 10진수로 표기한 이미지이다. 하지만 우리는 메모리에 저장되는 모든 값이 2진수로 저장된다는것을 기억해야한다.<br>여기서 문제가 발생한다. CPU가 연산해서 만들어낸 숫자 값30을 <strong>재사용할수 없다</strong>는 것이다.<br>연산결과를 단 한번만 사용한다면 문제가 없겠지만 만약 연산 결과 30을 재사용하고싶다면 메모리주소를 통해 연산결과 30이 저장된 메모리 공간에 직접 접근하는것 이외에는 방법이 없다.<br>하지만 자바스크립트는 개발자의 직접적인 메모리 제어를 허용하지 않는다. 다시말해 메모리 주소를 통해 값에 직접 접근하려는 시도는 올바른 방법이 아니다.<br>프로그래밍 언언느 기억하고 싶은 값을 메모리에 저장하고, 저장된 값을 읽어들여 <strong>재사용하기 위해 변수</strong>라는 메커니즘을 제공한다.<br><strong>변수는 <u>하나의 값을 저장</u>하기 위해 확보된 메모리 공간 자체(=<u>변수는 메모리 공간이다.</u>) 또는 그 <u>메모리공간을 식별하기 위해 붙인 이름</u>을 말한다.</strong>(상수도 변수이지만 일반적인 변수와 다른 성격을 갖고있다. 상수는 재할당이 안된다.)<br><strong><em>변수에 여러개의 값을 저장하는 방법</em></strong> : 변수는 하나의 값을 저장하기 위한 매커니즘이다. 여러개의 값을 지정하려면 여러개의 변수를 사용해야하지만 배열이나 객체같은 자료구조를 사용하면 관련이 있는 여러개의 값을 그룹화해서 하나의 값처럼 사용할 수 있다.</p>
+<p>자바스크립트를 해석하고 실행하는 자바스크립트 엔진이 위 코드를 계산(=평가evalution)하려면 10,20,+ 라는 기호의 의미를 알고 있어야 하며, 10+20이라는 식(=표현식expression)의 의미도 해석(=파싱parsing)할 수 있어야 한다.<br>10+20은 새로운 숫자값 30을 만들어 낸다.<br>컴퓨터는 CPU를 사용해서 연산하고, 메모리를 사용해서 데이터를 기억한다.<br>메모리(memory)는 데이터를 저장할 수 있는 메모리셀(memory cell)의 집합체이다. 메모리 셀 하나의 크기는 1바이트(byte)=8비트(bit)이며, 컴퓨터의 메모리 셀의 크기로(=1바이트 단위로) 데이터를 저장(write)하거나 읽어(read)들인다.<br>-그림-<br>각 셀은 고유의 메모리 주소(memory address)를 갖는다. 이 메모리 주소는 메모리공간의 위치를 나타내며, 0부터 시작해서 메모리의 크기만큼 정수로 표현된다.<br>컴퓨터는 모든 데이터를 2진수로 처리하기때문에 메모리에 저장되는 데이터는 데이터의종류(숫자,텍스트,이미지,동영상)와 상관없이 모두 2진수로 저장된다.<br>위 예제에서 숫자값 10과20은 메모리상 임의의 위치(메모리주소)에 기억(=저장)되고 CPU는 이 값을 읽어들여 연산을 수행한다 -&gt; 연산된 결과로 생성된 숫자 값 30도 메모리상 임의의 위치에 저장된다.<br>-그림-<br>편의상 10진수로 표기한 이미지이다. 하지만 우리는 메모리에 저장되는 모든 값이 2진수로 저장된다는것을 기억해야한다.<br>여기서 문제가 발생한다. CPU가 연산해서 만들어낸 숫자 값30을 <strong>재사용할수 없다</strong>는 것이다.<br>연산결과를 단 한번만 사용한다면 문제가 없겠지만 만약 연산 결과 30을 재사용하고싶다면 메모리주소를 통해 연산결과 30이 저장된 메모리 공간에 직접 접근하는것 이외에는 방법이 없다.<br>하지만 자바스크립트는 개발자의 직접적인 메모리 제어를 허용하지 않는다. 다시말해 메모리 주소를 통해 값에 직접 접근하려는 시도는 올바른 방법이 아니다.<br>프로그래밍 언언느 기억하고 싶은 값을 메모리에 저장하고, 저장된 값을 읽어들여 <strong>재사용하기 위해 변수</strong>라는 메커니즘을 제공한다.<br><strong>변수는 <u>하나의 값을 저장</u>하기 위해 확보된 메모리 공간 자체(=<u>변수는 메모리 공간이다.</u>) 또는 그 <u>메모리공간을 식별하기 위해 붙인 이름</u>을 말한다.</strong>(상수도 변수이지만 일반적인 변수와 다른 성격을 갖고있다. 상수는 재할당이 안된다.)<br><strong><em>변수에 여러개의 값을 저장하는 방법</em></strong> : 변수는 하나의 값을 저장하기 위한 매커니즘이다. 여러개의 값을 지정하려면 여러개의 변수를 사용해야하지만 배열이나 객체같은 자료구조를 사용하면 관련이 있는 여러개의 값을 그룹화해서 하나의 값처럼 사용할 수 있다.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> coffeeA = <span class="string">&#x27;latte&#x27;</span>; <span class="comment">// 하나의 값을 저장.</span></span><br><span class="line"><span class="keyword">var</span> coffeeShot = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> coffee = &#123;<span class="string">&#x27;americano&#x27;</span>, <span class="string">&#x27;latte&#x27;</span>, <span class="string">&#x27;mocha&#x27;</span>, <span class="string">&#x27;hazelnut&#x27;</span>&#125;; <span class="comment">// 하나의 변수에 객체나 배열과 같은 자료구조 사용하여 여러개의 값 저장.</span></span><br><span class="line"><span class="keyword">var</span> coffeeAShot[</span><br><span class="line">    &#123;<span class="attr">coffeeA</span>: <span class="string">&#x27;latte&#x27;</span>, <span class="attr">coffeeShot</span>: <span class="number">1</span>&#125;,</span><br><span class="line">    &#123;<span class="attr">cooffeB</span>: <span class="string">&#x27;americano&#x27;</span>, <span class="attr">coffeeShot</span>: <span class="number">2</span>&#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
 <p>변수를 사용해서 위의 코드를 다시 작성하면</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> result = <span class="number">10</span> + <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
@@ -407,7 +544,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> score; <span class="comment">// 변수 선언(변수 선언문)</span></span><br><span class="line">score = <span class="number">80</span>; <span class="comment">// 값의 할당</span></span><br></pre></td></tr></table></figure>
 <p>변수 선언과 값의 할당을 하나의 문(statement)으로 단축 표현할 수 있다.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> score = <span class="number">80</span>; <span class="comment">// 변수 선언(변수 선언문)과 값의 할당</span></span><br></pre></td></tr></table></figure>
-<p>자바스크립트 엔진은 변수 선언과 값의 할당을 하나의 문으로 표현해도 변수선언과 값의할당을 2개의 문으로 나누어 각각 실행한다.<br>주의할 점!!: 변수 선언은 소스코드가 순차적으로 실행되는 시점인 런타임 이전에 먼저 실행되지만 값의 할당은 소스코드가 순차적으로 실행되는 시점인 런타임에 실행된다는 것이다.<br>변수에 값을 할당할때는 이전값(=초기된 값)이 저장되어있던 <strong>메모리를 덮어쓰는것이 아니다.</strong> <u>새로운 메모리공간을 <strong>확보</strong></u>하고 그 곳에 할당 된 값을 저장한다는 것이 중요하다.<br><img src="https://user-images.githubusercontent.com/67843356/92231416-ae754b00-eee7-11ea-8512-5f1999b4c24b.jpg" alt="variable_memory_3"><br><strong><em>!변수선언때 메모리공간에 할당한 값을 덮어쓰지 않는 이유는 자바스크립트 엔진이 원래있던 값을 지우는 동작을 부수적으로 실행해야하기 때문이다. 컴퓨터입장에서는 새로운 메모리공간을 확보하는것이 더 편하기 때문이다.!</em></strong><br>초기화된 값은 더이상 불러올 수 없다. 왜냐하면 초기화된 값의 변수이름이 할당된 변수의 이름으로 이동했기 때문에 초기화된 값의 변수이름이 없어서 부를 수가 없다. 사용할 수 없다는 것이다.</p>
+<p>자바스크립트 엔진은 변수 선언과 값의 할당을 하나의 문으로 표현해도 변수선언과 값의할당을 2개의 문으로 나누어 각각 실행한다.<br>주의할 점!!: 변수 선언은 소스코드가 순차적으로 실행되는 시점인 런타임 이전에 먼저 실행되지만 값의 할당은 소스코드가 순차적으로 실행되는 시점인 런타임에 실행된다는 것이다.<br>변수에 값을 할당할때는 이전값(=초기된 값)이 저장되어있던 <strong>메모리를 덮어쓰는것이 아니다.</strong> <u>새로운 메모리공간을 <strong>확보</strong></u>하고 그 곳에 할당 된 값을 저장한다는 것이 중요하다.<br>-그림-<br><strong><em>!변수선언때 메모리공간에 할당한 값을 덮어쓰지 않는 이유는 자바스크립트 엔진이 원래있던 값을 지우는 동작을 부수적으로 실행해야하기 때문이다. 컴퓨터입장에서는 새로운 메모리공간을 확보하는것이 더 편하기 때문이다.!</em></strong><br>초기화된 값은 더이상 불러올 수 없다. 왜냐하면 초기화된 값의 변수이름이 할당된 변수의 이름으로 이동했기 때문에 초기화된 값의 변수이름이 없어서 부를 수가 없다. 사용할 수 없다는 것이다.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(score); <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//DO-1</span></span><br><span class="line"><span class="keyword">var</span> score;   <span class="comment">//변수 선언 -①</span></span><br><span class="line">score = <span class="number">80</span>;  <span class="comment">//값의 할당 -②</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// DO-2 </span></span><br><span class="line"><span class="comment">// score = 80; 값의 할당</span></span><br><span class="line"><span class="comment">// var score;  변수 선언</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(score); <span class="comment">// ?? -&gt; 80</span></span><br></pre></td></tr></table></figure>
 <p>위의 코드 DO-1의 코드와 DO-1과 DO-2의 동작의 결과가 똑같이 일어나는 이유를 설명할 수 있어야 한다.</p>
 <h1 id="6-값의-재할당"><a href="#6-값의-재할당" class="headerlink" title="6. 값의 재할당"></a>6. 값의 재할당</h1><p>이미 값이 할당되어 있는 변수에 새로운 값을 또다시 할당하는 것을 말한다.<br>var키워드로 선언한 <strong>변수는 값을 재할당하는게 가능</strong>하다. let도 가능하지만 const는 불가능하다.<br>만약 값을 재할당 할 수 없어 <u>한 번 정해지면 변하지 않는 값은 상수(constant)</u>라고 한다. const키워드도 상수를 표현할 수 있지만 반드시 상수만의 위해 사용하는것은 아니다.<br>초기값에 값을 할당하는것도 재할당이라고 할 수 있다.<br>재할당역시 새로운 메모리공간을 확보하고 재할당한 값을 저장한다.<br><em>!가비지 콜렉터(garbage collector) : 애플리케이션이 할당(allocate)한 메모리공간을 주기적으로 검사해서 더이상 사용되고 있지 않는 메모리, 즉 어떤 식별자도 참조하지 않는 <strong>메모리공간을 해제(release)</strong> 하는 기능을 말한다.</em><br><em>!언매니지드 언어(unmanaged language)와 매니지드 언어(managed language) : 프로그래밍 언어는 메모리 관리방식에 따라 분류할 수 있다.<br><u>C언어 같은 언매니지드 언어</u>는 개발자가 명시적으로 메모리를 할당하고 해제하기 위해 메모리 제어 기능을 제공하여 개발자가 주도할 수 있으므로 개발자의 역량에 따라  최적의 성능을 확보할수도 있지만 반대의 경우 치명적인 오류를 생산할 가능성도 있다.<br><u>자바스크립트같은 매니지드 언어</u>는 개발자가 명시적으로 메모리를 할당하고 해제할 수 없고, 메모리 해제는 가비지콜렉터가 수행하며 개발자가 관여할 수 없다. 개발자의 역량에 의존하는 부분이 상대적으로 작아져서 어느정도 일정한 생산성을 확보할 수 있지만 성능면에서 어느정도의 손실은 감수해야한다.!</em></p>
@@ -831,7 +968,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -859,7 +996,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -148,6 +148,106 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://do-mandoo.github.io/2020/11/03/Ajax-Asynchronous-Javascript-And-XML/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="JinSol">
+      <meta itemprop="description" content="All Dev stories found in here">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="JINLOG">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/03/Ajax-Asynchronous-Javascript-And-XML/" class="post-title-link" itemprop="url">Ajax(Asynchronous Javascript And XML)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-11-03 20:28:25" itemprop="dateCreated datePublished" datetime="2020-11-03T20:28:25+09:00">2020-11-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-11-04 12:32:04" itemprop="dateModified" datetime="2020-11-04T12:32:04+09:00">2020-11-04</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>Ajax란?</li>
+</ol>
+<ul>
+<li>Ajax(Asynchronous Javascript And XML)란 자바스크립트를 사용하여 브라우저가 서버에게 비동기 방식으로 데이터를 요청하고, 서버가 응답한 데이터를 수신하여 웹페이지를 동적으로 갱신하는 프로그래밍 방식을 말한다. Ajax는 브라우저에서 제공하는 Web API인 XMLHttpRequest 객체를 기반으로 동작한다. XMLHttpRequest는 HTTP비동기 통신을 위한 메서드와 프로퍼티를 제공한다.</li>
+<li>1999년 마이크로소프트가 개발한 XMLHttpRequest는 그다지 큰 주목을 받지 못하다가 2005년 구글이 발표한 구글 맵스를 통해 웹 애플리케이션 개발 프로그래밍 언어로서 자바스크립트의 가능성을 확인하는 계기를 마련했다. 웹 브라우저에서 자바스크립트와 Ajax를 기반으로 동작하는 구글 맵스가 데스크톱 애플리케이션과 비교해 손색이 없을 정도의 퍼포먼스와 부드러운 화면 전환 효과를 보여준 것이다.</li>
+<li>이전의 웹페이지는 html태그로 시작해서 html태그로 끝나는 완전한 HTML을 서버로부터 전송받아 웹페이지 전체를 처음부터 다시 렌더링하는 방식으로 동작했다. 따라서 화면이 전환되면 서버로부터 새로운 HTML을 전송받아 웹페이지 전체를 처음부터 다시 렌더링했다.<br>//사진//</li>
+<li>이러한 전통적인 방식은 다음과 같은 단점이 있다.<ol>
+<li>이전 웹페이지와 차이가 없어서 변경할 필요가 없는 부분까지 포함된 완전한 HTML을 서버로부터 매번 다시 전송받기 때문에 불필요한 데이터 통신이 발생한다.</li>
+<li>변경할 필요가 없는 부분까지 처음부터 다시 렌더링한다. 이로 인해 화면 전환이 일어나면 화면이 순간적으로 깜박이는 현상이 발생한다.</li>
+<li>클라이언트와 서버와의 통신이 동기방식으로 동작하기 때문에 서버로부터 응답이 있을때까지 다음 처리는 블로킹된다.</li>
+</ol>
+</li>
+<li>Ajax의 등장은 이전의 전통적인 패러다임을 획기적으로 전환했다. 즉, 서버로부터 웹페이지의 변경에 필요한 데이터만 비동기 방식으로 전송받아 웹페이지를 변경할 필요가 없는 부분은 다시 렌더링하지 않고, 변경할 필요가 있는 부분만 한정적으로 렌더링하는 방식이 가능해진 것이다. 이를 통해 브라우저에서도 데스크톱 애플리케이션과 유사한 빠른 퍼포먼스와 부드러운 화면 전환이 가능해졌다.<br>//사진//</li>
+<li>Ajax는 전통적인 방식과 비교했을 때 다음과 같은 장점이 있다.<ol>
+<li>변경할 부분을 갱신하는 데 필요한 데이터만 서버로부터 전송받기 때문에 불필요한 데이터 통신이 발생하지 않는다.</li>
+<li>변경할 필요가 없는 부분은 다시 렌더링하지 않는다. 따라서 화면이 순간적으로 깜박이는 현상이 발생하지 않는다.</li>
+<li>클라이언트와 서버와의 통신이 비동기 방식으로 동작하기 때문에 서버에게 요청을 보낸 이후 블로킹이 발생하지 않는다.</li>
+</ol>
+</li>
+</ul>
+<ol start="2">
+<li>JSON</li>
+</ol>
+<ul>
+<li>JSON(Javascript Object Notation)은 클라이언트와 서버 간의 HTTP 통신을 위한 텍스트 데이터 포맷이다. 자바스크립트에 종속되지 않는 언어 독립형 데이터 포맷으로, 대부분의 프로그래밍 언어에서 사용할 수 있다.<br>2-1. JSON 표기 방식</li>
+<li>JSON은 자바스크립트의 객체 리터럴과 유사하게 키와 값으로 구성된 순수한 텍스트다.<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;name&quot;</span>:<span class="string">&quot;Lee&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;age&quot;</span>:<span class="number">20</span>,</span><br><span class="line">  <span class="attr">&quot;alive&quot;</span>:<span class="literal">true</span>,</span><br><span class="line">  <span class="attr">&quot;hobby&quot;</span>:[<span class="string">&quot;traveling&quot;</span>,<span class="string">&quot;tennis&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>JSON의 키는 반드시 큰따옴표(작은따옴표 사용 불가)로 묶어야 한다. 값은 객체 리터럴과 같은 표기법을 그대로 사용할 수 있다. 하지만 문자열은 반드시 큰따옴표(작은따옴표 사용 불가)로 묶어야 한다.</li>
+</ul>
+<p>2-2. JSON.stringify<br>-JSON.stringify 메서드는 객체를 JSON 포맷의 문자열로 변환한다. 클라이언트가 서버로 객체를 전송하려면 객체를 문자열화해야 하는데, 이를 직렬화(serializing)라 한다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj =&#123;</span><br><span class="line">  name:<span class="string">&#x27;Lee&#x27;</span>,</span><br><span class="line">  age:<span class="number">20</span>,</span><br><span class="line">  alive:<span class="literal">true</span>,</span><br><span class="line">  hobby:[<span class="string">&#x27;traveling&#x27;</span>,<span class="string">&#x27;tennis&#x27;</span>]</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 객체를 JSON 포맷의 문자열로 변환한다.</span></span><br><span class="line"><span class="keyword">const</span> json = <span class="built_in">JSON</span>.stringify(obj);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> json, json);</span><br><span class="line"><span class="comment">// string &#123;&quot;name&quot;:&quot;Lee&quot;,&quot;age&quot;:20,&quot;alive&quot;:true,&quot;hobby&quot;:[&quot;traveling&quot;,&quot;tennis&quot;]&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 객체를 JSON 포맷의 문자열로 변환하면서 들여쓰기 한다.</span></span><br><span class="line"><span class="keyword">const</span> prettyJson = <span class="built_in">JSON</span>.stringify(obj, <span class="literal">null</span>, <span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> prettyJson, prettyJson);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">string &#123;</span></span><br><span class="line"><span class="comment">  &quot;name&quot;: &quot;Lee&quot;,</span></span><br><span class="line"><span class="comment">  &quot;age&quot;: 20,</span></span><br><span class="line"><span class="comment">  &quot;alive&quot;: true,</span></span><br><span class="line"><span class="comment">  &quot;hobby&quot;: [</span></span><br><span class="line"><span class="comment">    &quot;traveling&quot;,</span></span><br><span class="line"><span class="comment">    &quot;tennis&quot;</span></span><br><span class="line"><span class="comment">  ]</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// replacer 함수. 값의 타입이 Number이면 필터링되어 반환되지 않는다.</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filter</span>(<span class="params">key, value</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// undefined: 반환하지 않음</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">typeof</span> value === <span class="string">&#x27;number&#x27;</span> ? <span class="literal">undefined</span> : value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// JSON.stringify 메서드에 두 번째 인수로 replacer 함수를 전달한다.</span></span><br><span class="line"><span class="keyword">const</span> strFilteredObject = <span class="built_in">JSON</span>.stringify(obj, filter, <span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> strFilteredObject, strFilteredObject);</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">string &#123;</span></span><br><span class="line"><span class="comment">  &quot;name&quot;: &quot;Lee&quot;,</span></span><br><span class="line"><span class="comment">  &quot;alive&quot;: true,</span></span><br><span class="line"><span class="comment">  &quot;hobby&quot;: [</span></span><br><span class="line"><span class="comment">    &quot;traveling&quot;,</span></span><br><span class="line"><span class="comment">    &quot;tennis&quot;</span></span><br><span class="line"><span class="comment">  ]</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>JSON.stringify 메서드는 객체뿐만 아니라 배열도 JSON 포맷의 문자열로 변환한다.<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> todos = [</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">1</span>, <span class="attr">content</span>: <span class="string">&#x27;HTML&#x27;</span>, <span class="attr">completed</span>: <span class="literal">false</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">2</span>, <span class="attr">content</span>: <span class="string">&#x27;CSS&#x27;</span>, <span class="attr">completed</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">3</span>, <span class="attr">content</span>: <span class="string">&#x27;Javascript&#x27;</span>, <span class="attr">completed</span>: <span class="literal">false</span> &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 배열을 JSON 포맷의 문자열로 변환한다.</span></span><br><span class="line"><span class="keyword">const</span> json = <span class="built_in">JSON</span>.stringify(todos, <span class="literal">null</span>, <span class="number">2</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> json, json); <span class="comment">// string [1,5,&quot;false&quot;]</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">string [</span></span><br><span class="line"><span class="comment">  &#123;</span></span><br><span class="line"><span class="comment">    &quot;id&quot;: 1,</span></span><br><span class="line"><span class="comment">    &quot;content&quot;: &quot;HTML&quot;,</span></span><br><span class="line"><span class="comment">    &quot;completed&quot;: false</span></span><br><span class="line"><span class="comment">  &#125;,</span></span><br><span class="line"><span class="comment">  &#123;</span></span><br><span class="line"><span class="comment">    &quot;id&quot;: 2,</span></span><br><span class="line"><span class="comment">    &quot;content&quot;: &quot;CSS&quot;,</span></span><br><span class="line"><span class="comment">    &quot;completed&quot;: true</span></span><br><span class="line"><span class="comment">  &#125;,</span></span><br><span class="line"><span class="comment">  &#123;</span></span><br><span class="line"><span class="comment">    &quot;id&quot;: 3,</span></span><br><span class="line"><span class="comment">    &quot;content&quot;: &quot;Javascript&quot;,</span></span><br><span class="line"><span class="comment">    &quot;completed&quot;: false</span></span><br><span class="line"><span class="comment">  &#125;</span></span><br><span class="line"><span class="comment">]</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+2-3. JSON.parse</li>
+<li>JSON.parse</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://do-mandoo.github.io/2020/09/25/%EC%83%9D%EC%84%B1%EC%9E%90-%ED%95%A8%EC%88%98%EC%97%90-%EC%9D%98%ED%95%9C-%EA%B0%9D%EC%B2%B4-%EC%83%9D%EC%84%B1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1661,143 +1761,6 @@ console.log(add(&#39;a&#39;, &#39;b&#39;)); // &#39;ab&#39;</code></pre>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://do-mandoo.github.io/2020/08/25/%EC%97%B0%EC%82%B0%EC%9E%90operator/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="JinSol">
-      <meta itemprop="description" content="All Dev stories found in here">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="JINLOG">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/25/%EC%97%B0%EC%82%B0%EC%9E%90operator/" class="post-title-link" itemprop="url">연산자operator</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-08-25 22:20:35 / Modified: 22:20:48" itemprop="dateCreated datePublished" datetime="2020-08-25T22:20:35+09:00">2020-08-25</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>연산자(operator)는 하나 이상의 표현식을 대상으로 산술, 할당, 비교, 논리, 타입, 지수 연산(operation)등을 수행해 하나의 값을 만듦. 이때 연산의 대상의 피연산자(operand)라 함. 피연산자는 값으로 평가될 수 있는 표현식이어야 함.</p>
-<ul>
-<li>피연산자가 “값”이라는 명사의 역할을 한다면,<br>연산자는 “피연산자를 연산하여 새로운 값을 만든다”라는 동사의 역할을 한다고 볼 수 있음.<br>= 피연산자는 연산의 대상이 되어야 하므로 값으로 평가할 수 있어야 함. 연산자는 값으로 평가된 피연산자를 연산해 새로운 값을 만듦.</li>
-</ul>
-<ol>
-<li>산술연산자<br>arithmetic operator<br>피연산자를 대상으로 수학적 계산을 수행해 새로운 값을 만듦. 산술 연산이 불가능할 경우 NaN을 반환함. 산술연산자는 피연산자의 개수에 따라 이항산술연산자와 단항산술연산자로 구분할 수 있음.<br>1-1. 이항(binary) 산술 연산자<br>binary산술 연산자는 2개의 피연산자를 산술연산해서 숫자값을 만듦.<br>모든 이행 산술연산자는 피연산자의 값을 변경하는 부수효과(side effect)가 없음. = 어떤 산술을 해도 피연산자의 값이 바뀌는 경우는 없고 언제나 새로운값을 만들뿐!<br>종류: +덧셈 -뺼셈 *곱셈 /나누기 %나머지<br>1-2. 단항(unary) 산술 연산자<br>unary산술 연산자는 1개의 피연산자를 산술연산하여 숫자값을 만듦.<br>종류: ++증가(부수효과있음)<pre><code>    --감소(부수효과있음) 
-   +어떠한효과없고 음수양수반전도 안하고 부수효과도 없음.
-    -양수를음수로음수를양수로반전한값을 반환하고 부수효과는 없음.</code></pre>
-증가++ 감소– 연산자는 피연산자의 값을 변경하는 부수효과가 있다는 것이 중요!!= 증가/감소 연산을 하면 피연산자의 값을 변경하는 암묵적할당이 이루어짐.</li>
-</ol>
-<p>** 증가/감소(++/–)연산자는 위치에 의미가 있음!! 중요!!!</p>
-<ul>
-<li>피연산자 앞에 위치한 = 전위 증가/감소 연산자(prefix increment/ decrement operator)는 피연산자의 값은 먼저 증가/감소 시킨 후, 다른 연산을 수행.</li>
-<li>피연산자 뒤에 위치한 = 후위 증가/감소 연산자(postfix increment/ decrement operator)는 다른 연산을 먼저 수행한 후 피연산자의 값을 증가/감소시킴.</li>
-<li><ul>
-<li>단항연산자는 피연산자에 어떠한 효과도 없음. 음수를 양수로 반전하지도 않음. 숫자타입이 아닌 피연산자에 +사용하면 숫자타입으로 변환한 값을 생성해서 반환함. 부수효과없음.</li>
-</ul>
-</li>
-<li>-단항연산잔느 피연산자의 부호를 반전한 값을 반환함. +단항연산자와 마찬가지로 숫자타입이 아닌 피연산자에 사용하면 숫자타입으로 변환한 값을 생성하여 반환함. 피연산자를 변경한느것이 아닌 부호를 반전한 값을 생성해서 반환함. 부수효과 없음.<br>1-3. 문자열 연결 연산자<ul>
-<li>연산자는 피연산자 중 하나 이상이 문자열인 경우 문자열 연결 연산자로 동작. 그 외의 경우는 산술연산자로 동작.</li>
-</ul>
-</li>
-</ul>
-<ol start="2">
-<li><p>할당 연산자<br>assignment operator는 우항에 있는 피연산자의 평가결과를 좌항에 있는 변수에 할당. 할당연산자는 좌항의 변수에 값을 할당하므로 변수값이 변하는 부수효과가 있음.<br>종류: = -&gt; x = 5 , x = 5</p>
-<pre><code> += -&gt; x += 5, x=x+5
-  -= -&gt; x -= 5, x=x-5
-  *= -&gt; x *= 5, x=x*5
-  /= -&gt; x /= 5, x=x/5
-  %= -&gt; x %= 5, x=x%5</code></pre>
-<p>할당문은 표현식인 문일까 표현식이 아닌 문일까? = 할당문은 값으로 평가되는 표현식인 문으로서 할당된 값으로 평가됨. 할당문을 다른 변수에 할당하는 특징을 활용해 여러변수에 동일한 값을 연쇄할당할 수 있음<br>ex) var a, b, c;<br>   a = b = c = 0; //연쇄할당. 오른쪽에서 왼쪽으로 진행. c=0, b=0, a=0.<br>  console.log(a, b, c); // 0, 0, 0</p>
-</li>
-<li><p>비교 연산자<br>comparison operator는 좌항과 우항의 피연산자를 비교한 다음 그 결과를 불리언 값으로 반환함. 비교 연산자는 if문이나 for문과 같은 제어문의 조건식에서 주로 사용함.<br>3-1. 동등/ 일치 비교 연산자<br>동등비교(loose equality)연산자와 일치비교(strict equality)연산자는 좌항과 우항의 피연산자가 같은 값으로 평가되는 지 비교해 불리언값을 반환함. 하지만 비교하는 엄격성의 정도가 다름! 동등비교는 느슨한비교, 일치비교는 엄격한비교. 부수효과 전부 없음.<br>종류 : == 동등비교, x == y, x와 y의 값이 같음.</p>
-<pre><code>    === 일치비교, x === y, x와 y의 타입이 같음.
-    != 부동등 비교, x != y, x와 y의 값이 다름.
-    !== 불일치비교, x !== y, x와 y의 타입이 다름.</code></pre>
-<p>동등비교(==)는 좌항과 우항의 피연산자를 비교할때 암묵적인 타입변환을 통해 타입일치시킨 후 같은 값인지 비교함.<br>ex) 0 == ‘ ‘; // true<br>   0 == ‘0’; // true<br>   ‘0’ == ‘ ‘; // false<br>동등비교연산자는 결과를 예측하기 어려우므로 일치비교(===)연산자를 사용한다.<br>ex) 5 === 5; // true<br>   5 === ‘5’; // false<br>일치비교(===)연산자에서 주의할 것은 NaN 이다!!!<br>NaN은 자신과 일치하지 않는 유일한 값임.<br>ex) NaN===NaN; // false<br>따라서 숫자가 NaN인지 조사하려면 빌트인 함수 isNaN을 사용.<br>ex) isNaN(NaN); // true</p>
-<pre><code>isNaN(10); // false</code></pre>
-<p>숫자 0도 주의!!!! 자바스에는 양의0과 음의0이 있는데 이들을 비교하면 true를 반환함.<br>ex) 0 === -0; // true</p>
-<pre><code>0 == -0; // true</code></pre>
-<dl><dt>(** Object.is 메서드</dt><dd>ES6에서 도입된 Object.is메서드는 예측 가능한 정확한 비교결과를 반환함. 그 외에는 일치비교(===)연산자와 동일하게 작동.<br>ex)  -0 === +0; // true</dd></dl><pre><code> Object.is(-0, +0); // false
- NaN === NaN; // false
- Object.is(NaN, NaN); // true</code></pre>
-<p>)<br>부동등 비교연산자(!=)와 불일치 비교 연산자(!==)는 각각 동등비교(==)연산자와 일치비교(===)연산자의 반대개념임.<br>3-2. 대소 관계 비교 연산자<br>피연산자의 크기를 비교하여 불리언 값을 반환함. 부수효과 없음.<br>종류 : &gt; , x &gt; y, x가 y보다 크다.</p>
-<pre><code>    &lt; , x &lt; y, x가 y보다 작다.
-    &gt;= , x &gt;= y, x가 y보다 크거나 같다.
-    &lt;= , x &lt;= y, x가 y보다 작거나 같다.</code></pre>
-</li>
-<li><p>삼항 조건 연산자<br>ternary operator는 조건식의 평가 결과에 따라 반환할 값을 결정함. 자바스의 유일한 삼항 연산자이며 부수효과 없음.<br>사용 예 : 조건식 ? 조건식이 true일 때 반환할 값 : 조건식이 false일 때 반환할 값<br>삼항조건연산자는 두번째 피연산자 또는 세번째 피연산자로 평가되는 표현식임.<br>물음표? 앞의 첫번째 피연산자는 조건식=불리언 타입의 값으로 평가될 표현식임. 조건식의 평가 결과가 불리언값이 아니어도 불리언값으로 암묵적타입변환됨. 이때 조건식이 참true이면 콜론:  앞의 두번째 피연산자가 평가되어 반환, 거짓false라면 콜론: 뒤의 세번째 피연산자가 평가되어 반환.<br>if~ else문을 사용해도 삼항조건 연산자 표현식과 유사하게 처리할 수 있음.<br>하지만 삼항조건연산자표현식은 값처럼 사용가능(=표현식인 문)하지만 if~else문은 값처럼 사용할 수 없음(=표현식이 아닌 문).</p>
-</li>
-<li><p>논리 연산자<br>logical operator는 우항과 좌항의 피연산자(부정 논리 연산자의 경우 우항의 피연산자)를 논리 연산한다. 부수효과 없음.<br>종류 : || 논리합(OR)</p>
-<pre><code>    &amp;&amp; 논리곱(AND)
-    ! 부정(NOT) // 언제나 불리언 값을 반환함.</code></pre>
-</li>
-</ol>
-<dl><dt>** 드 모르간의 법칙</dt><dd>논리 연산자로 구성된 복잡한 표현식은 가독성이 좋지 않아 한눈에 이해하기 어려울 때가 있음. 이러한 경우 드 모르간 법칙을 활용하면 복잡한 표현식을 좀 더 가독성 좋은 표현식으로 변환할 수 있음.<br>ex) !(x || y) === (!x &amp;&amp; !y)<br>      !(x &amp;&amp; y) === (!x || !y)</dd></dl><ol start="6">
-<li><p>쉼표 연산자<br>, 쉼표 연산자는 왼쪽 피 연산자부터 차례대로 피연산자를 평가하고 마지막 피연산자의 평가가 끝나면 마지막 피연산자의 평가결과를 반환함.<br>ex)  var x, y, z;</p>
-<pre><code>x = 1, y = 2, z = 3; // 3</code></pre>
-</li>
-<li><p>그룹 연산자<br>소괄호( ) 로 피연산자를 감싸는 그룹 연산자는 자신의 피연산자인 표현식을 가장 먼저 평가함. 연산자의 우선순위 조절 가능. 연산자 우선순위가 가장 높음.<br>ex) 10 * 2 + 3; // 23<br>   10 * (2 + 3); // 50</p>
-</li>
-<li><p>typeof 연산자<br>데이터 타입을 문자열로 반환함. 7가지 문자열 “string”, “number”, “boolean”, “undefined”, “symbol”, “object”, “function” 중 하나를 반환함. “null”을 반환하는 경우 없음. 함수의 경우 “function”을 반환. = typeof연산자가 반환하는 문자열은 7개의 데이터 타입과 정확하게 일치하지 않음!!<br>typeof연산자로 null값을 연산해보면 “null”이 아닌”object”를 반환한다는 데 주의!!! 자바스의 첫번째 버전의 버그임. 기존코드에 영향을 줄 수 있기때문에 아직까지 수정되지못함.<br>= 따라서 값이 null 타입인지 확인할때는 typeof연산자말고 일치연산자(===)사용하자.<br>그리고 선언하지 않은 식별자를 typeof연산자로 연산해보면 ReferenceError가 발생하지않고 undefined를 반환함.</p>
-</li>
-<li><p>지수 연산자<br>ES7에서 도입된 지수연산자는 좌항의 피연산자를 밑으로, 우항의 피연산자를 지수로 거듭 제곱하여 숫자값을 반환함.<br>ex) 2 ** 2; //4<br>   2 ** 0; // 1<br>   2 ** -2; // 0.25<br>   2 ** 2.5; // 5.65685<br>지수연산자 도입전까진 Math.pow메서드를 사용했음. 지수연산자가 가독성이 더 좋음<br>음수를 거듭제곱의 밑으로 사용해 계산하려면 괄호로 묶어야 함.<br>ex) (-5) ** 2; // 25<br>다른 산술연산자와 마찬가지로 할당연산자와 함께 사용할 수 있음.<br>이항 연산자 중에서 우선순위가 가장 높음.</p>
-</li>
-<li><p>그 외의 연산자<br>종류 : ?.  옵셔널 체이닝 연산자</p>
-<pre><code>   ??  null 병합 연산자
-   delete 프로퍼티 삭제
-   new 생성자 함수를 호출할 때 사용하여 인스턴스를 생성
-   instanceof 좌변의 객체가 우변의 생성자 함수와 연결된 인스턴스인지 판별
-   in 프로퍼티 존재 확인</code></pre>
-</li>
-<li><p>연산자의 부수 효과<br>대부분의 연산자는 다른 코드에 영향을 주지 않음. 일부 연산자는 다른코드에 영향을 주는 부수효과(side effect)가 있음.<br>부수 효과가 있는 연산자는 할당(=), 증가(++), 감소(–), delete연산자 이다.</p>
-</li>
-<li><p>연산자 우선순위<br>우선순위가 높을수록 먼저 실행됨.</p>
-</li>
-<li><p>연산자 결합 순서<br>연산자의 어느쪽(좌항 또는 우항)부터 평가를 수행할 것인지를 나타내는 순서를 말함.<br>결합순서:<br>좌항-&gt;우항: + , - , / , % , &lt; , &lt;= , &gt; , &gt;= , &amp;&amp; , || , . , [] , () , ?? , ?. , in , instanceof<br>우항-&gt;좌항: ++ , – , 할당연산자, !x , +x , -x , ++x , –x , typeof , delete , ? … : …</p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1867,7 +1830,7 @@ console.log(add(&#39;a&#39;, &#39;b&#39;)); // &#39;ab&#39;</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1895,7 +1858,7 @@ console.log(add(&#39;a&#39;, &#39;b&#39;)); // &#39;ab&#39;</code></pre>
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
